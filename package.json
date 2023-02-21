@@ -1,0 +1,20 @@
+{
+  "name": "registrationappproject",
+  "version": "1.0.0",
+  "description": "This is a project for a course.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TrC-MT/RegistrationAppProject.git"
+  },
+  "keywords": [],
+  "authors": "TrC-MT, Walls101, Hjake07",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TrC-MT/RegistrationAppProject/issues"
+  },
+  "homepage": "https://github.com/TrC-MT/RegistrationAppProject#readme"
+}
