@@ -11,10 +11,15 @@
     "url": "git+https://github.com/TrC-MT/RegistrationAppProject.git"
   },
   "keywords": [],
-  "authors": "TrC-MT, Walls101, Hjake07",
+  "authors": "TrC-MT, ",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/TrC-MT/RegistrationAppProject/issues"
   },
-  "homepage": "https://github.com/TrC-MT/RegistrationAppProject#readme"
+  "homepage": "https://github.com/TrC-MT/RegistrationAppProject#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-jwt": "^8.4.1",
+    "jsonwebtoken": "^9.0.0"
+  }
 }
