@@ -1,0 +1,10 @@
+
+
+.loginContainer{
+    background-color: lightskyblue;
+    border-radius: 50px;
+    width: 80%;
+    position: fixed;
+    top: 30%;
+    left: 10%;
+}
