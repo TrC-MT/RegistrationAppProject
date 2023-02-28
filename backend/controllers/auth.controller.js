@@ -1,4 +1,10 @@
 const AuthUser = require('../services/AuthUser.js');
 
+// const authenticate = () => {
 
-module.exports = new AuthUser();
+// }
+
+
+module.exports = function (passport) {
+    
+};

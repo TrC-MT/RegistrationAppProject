@@ -1,4 +1,12 @@
 class AuthUser {
+    isValidUser() {
+
+    }
+
+    isValidPass() {
+
+    }
+
     login() {
         
     }
