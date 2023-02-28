@@ -32,9 +32,10 @@ export default function LoginPage() {
 }
 
 function studentLogin() {
-
+    // fetch('/studentLogin', {})
 }
 
 function adminLogin() {
+        // fetch('/adminLogin', {})
 
 }

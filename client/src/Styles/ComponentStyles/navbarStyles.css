@@ -4,7 +4,7 @@ nav{
     align-items: center;
     position: sticky;
     top: 0px;
-    background-color: #A5ffd6;
+    background-color: var(--lighter_blue);
 }
 
 #nav-title{

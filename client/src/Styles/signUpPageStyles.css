@@ -1,6 +1,6 @@
 
 #create-account-page-box{
-    background-color: #2678C9;
+    background-color: var(--blue);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,8 +9,8 @@
 #sign-up-form{
     width: 25%;
     height: 80%;
-    background-color: #0c7c59;
-    box-shadow: 0px 0px 30px 20px #0A6347;
+    background-color: var(--green);
+    box-shadow: 0px 0px 30px 20px var(--dark_green);
     display: grid;
     gap: 10%;
     padding: 2%;
@@ -23,7 +23,7 @@
 }
 
 .sign-up-form-label{
-    color: #A5ffd6;
+    color: var(--lighter_blue);
 }
 
 #sign-up-form-submit{

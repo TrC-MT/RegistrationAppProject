@@ -44,7 +44,7 @@ export default function SignUpPage() {
 
 function newUser(){
 
-    // fetch('/newUser', {
+    // fetch('/userRegistration', {
     //     method: "POST",
     //     headers: {
     //         "Content-Type": "application/json",

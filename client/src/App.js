@@ -9,6 +9,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<PAGES.Page1 />} />
           <Route path="/signUp" element={<PAGES.Page2 />} />
+          <Route path="/userProfile/courses" element={<PAGES.Page4 />} />
         </Routes>
       </Router>
      
