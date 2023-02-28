@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import PAGES from './pages/Pages'
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
   return (
@@ -9,7 +8,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<PAGES.Page1 />} />
-
+          <Route path="/signUp" element={<PAGES.Page2 />} />
         </Routes>
       </Router>
      

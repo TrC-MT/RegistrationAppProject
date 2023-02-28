@@ -1,0 +1,33 @@
+
+#create-account-page-box{
+    background-color: #2678C9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sign-up-form{
+    width: 25%;
+    height: 80%;
+    background-color: #0c7c59;
+    box-shadow: 0px 0px 30px 20px #0A6347;
+    display: grid;
+    gap: 10%;
+    padding: 2%;
+}
+
+.sign-up-form-section{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+label{
+    color: #A5ffd6;
+}
+
+#sign-up-form-submit{
+    width: 20%;
+    margin-left: 40%;
+    margin-top: -8%;
+}

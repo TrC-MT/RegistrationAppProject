@@ -1,10 +1,57 @@
+body{
+    margin: 0px;
+    background-color: #256117; /* For the browsers that don't support radial gradients. */
+    /* background-image: radial-gradient(ellipse at top left, #1C9900 0%,  #256117 45%); */ /* Not working on the login page. It works on the sign up page for some reason, but it's not needed anywhere else. */
+    font-size: 1.4vw;
+}
 
-
-.loginContainer{
-    background-color: lightskyblue;
-    border-radius: 50px;
-    width: 80%;
+#crecent-box{
+    background-color: #6FAD89;
+    width: 70%;
+    height: 50%;
+    border: 3px solid #6FAD89;
+    border-radius: 80px;
     position: fixed;
-    top: 30%;
-    left: 10%;
+    top: 10%;
+    left: 20%;
+    
+}
+
+#loginContainer{
+    padding-left: 2%;
+    background-color: #7FC79D;
+    border-radius: 80px 200px 200px 80px;
+    width: 92%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#login-form{
+    padding-left: 6%;
+    width: 90%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-section{
+    width:30%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#sign-up-button{
+    color: black;
+    background-color: aliceblue;
+    border: .5px solid black;
+    border-radius: 5px;
+    width: 12%;
 }
