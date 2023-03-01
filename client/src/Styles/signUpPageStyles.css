@@ -1,9 +1,6 @@
 
 #create-account-page-box{
     background-color: var(--blue);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #sign-up-form{

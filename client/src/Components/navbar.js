@@ -1,20 +1,26 @@
 import '../Styles/ComponentStyles/navbarStyles.css'
 import Link from 'react';
+import BackButton from './backButton';
+import LogOutButton from './logOutButton';
+import DataORCoursesButton from './dataORcoursesButton';
 
-export default function Navbar(){
+export default function Navbar({pieces}){
 
-    var navTitle = 'Create account';
+        return(
+            <>
+                <nav>
+                    <h2 id="nav-title">{pieces.title}</h2>
+                    <div className='nav-buttons-container'>
+                            <BackButton render={pieces.back}></BackButton>
 
-    return(
-        <>
-            <nav>
-                <h2 id="nav-title">{navTitle}</h2>
-                <div className='nav-buttons-container'>
-                    <button className='nav-button' onClick={back()}>Back</button>
-                </div>
-            </nav>
-        </>
-    )
+                            <DataORCoursesButton show={pieces.dOc}></DataORCoursesButton>
+                            
+                            <LogOutButton render={pieces.logout}></LogOutButton>
+                            
+                    </div>
+                </nav>
+            </>
+        )
 }
 
 function back() {

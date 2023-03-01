@@ -2,12 +2,13 @@
 
 import page1 from './loginPage'
 import page2 from './signUpPage'
-
+import page3 from './profilePage'
 import page4 from './studentCourses'
 
 
 export default {
     Page1: page1,
     Page2: page2,
+    Page3: page3,
     Page4: page4,
 }

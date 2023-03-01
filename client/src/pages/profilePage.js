@@ -1,48 +1,62 @@
 import '../Styles/commonStyles.css';
 import '../Styles/signUpPageStyles.css';
+import '../Styles/profilePageStyles.css'
 import Navbar from '../Components/navbar';
+import SideStudentProfileInfo from '../Components/sideStudentProfileInfo';
 
 
-export default function SignUpPage() {
+export default function ProfilePage() {
     
+    //call a fetch to get the user info
+    // fill in the values with that info
+
+    var val = 'Loading...';
+
+    //Check if the user is a student or admin
+    //if user is a student, set user_type to 'Student'; if user is admin, set user_type to 'Admin'.
+
+    var user_type = 'Admin';
+    //Uncomment line below to see student view, comment line below to see admin view.
+    user_type = 'Student';
 
     return(
         <>
-            <Navbar pieces={{title: 'Create account', back: 'True'}}></Navbar>
+            <Navbar pieces={{title: 'Profile', logout: 'True', dOc: {render: true, userType: user_type}}}></Navbar>
             <div className='page-box' id='create-account-page-box'>
                 <form id="sign-up-form">
                     <span className="form-section sign-up-form-section">
                         <label className='sign-up-form-label'>First name: </label>
-                        <input name="first-name" type="first-name" id="first-name" placeholder="Type your first name here."/>
+                        <input name="first-name" type="first-name" id="first-name" value={val}/>
                     </span>
                     <span className="form-section sign-up-form-section">
                         <label className='sign-up-form-label'>Last name: </label>
-                        <input name="last-name" type="last-name" id="last-name" placeholder="Type your last name here."/>
+                        <input name="last-name" type="last-name" id="last-name" value={val}/>
                     </span>
                     <span className="form-section sign-up-form-section">
                         <label className='sign-up-form-label'>Username: </label>
-                        <input name="username" id="username" placeholder="Type your username here."/>
+                        <input name="username" id="username" value={val}/>
                     </span>
                     <span className="form-section sign-up-form-section">
                         <label className='sign-up-form-label'>Password: </label>
-                        <input name="password" type="password" id="password" placeholder="Type your password here."/>
+                        <input name="password" type="password" id="password" value={val}/>
                     </span>
                     <span className="form-section sign-up-form-section">
                         <label className='sign-up-form-label'>Email: </label>
-                        <input name="email" type="email" id="email" placeholder="Type your email here."/>
+                        <input name="email" type="email" id="email" value={val}/>
                     </span>
                     <span className="form-section sign-up-form-section">
                         <label className='sign-up-form-label'>Address: </label>
-                        <input name="address" type="text" id="address" placeholder="Type your address here."/>
+                        <input name="address" type="text" id="address" value={val}/>
                     </span>
-                    <button id='sign-up-form-submit' onClick={newUser()}>Register</button>
+                    <button id='sign-up-form-submit' onClick={updateUser()}>Update</button>
                 </form>
+                <SideStudentProfileInfo render={user_type}></SideStudentProfileInfo>
             </div>
         </>
     )
 }
 
-function newUser(){
+function updateUser(){
 
     // fetch('/userRegistration', {
     //     method: "POST",
