@@ -9,7 +9,7 @@
     background-color: var(--green);
     box-shadow: 0px 0px 30px 20px var(--dark_green);
     display: grid;
-    gap: 10%;
+    gap: 9.5%;
     padding: 2%;
 }
 

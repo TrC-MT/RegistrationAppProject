@@ -32,6 +32,10 @@ export default function SignUpPage() {
                         <input name="email" type="email" id="email" placeholder="Type your email here."/>
                     </span>
                     <span className="form-section sign-up-form-section">
+                        <label className='sign-up-form-label'>Phone number: </label>
+                        <input name="phone-number" type="tel" id="phone-number" placeholder="Type your phone number here."/>
+                    </span>
+                    <span className="form-section sign-up-form-section">
                         <label className='sign-up-form-label'>Address: </label>
                         <input name="address" type="text" id="address" placeholder="Type your address here."/>
                     </span>

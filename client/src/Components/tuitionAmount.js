@@ -9,7 +9,7 @@ export default function TuitionAmount({render}){
         return(
             <>
                 <div id="tuition-amount-container" className="side-student-profile-info">
-                    <strong>Tuition due: {total_tuition}</strong>
+                    <strong>Tuition due: ${total_tuition}</strong>
                 </div>
             </>
         )

@@ -45,6 +45,10 @@ export default function ProfilePage() {
                         <input name="email" type="email" id="email" value={val}/>
                     </span>
                     <span className="form-section sign-up-form-section">
+                        <label className='sign-up-form-label'>Phone number: </label>
+                        <input name="phone-number" type="tel" id="phone-number" value={val}/>
+                    </span>
+                    <span className="form-section sign-up-form-section">
                         <label className='sign-up-form-label'>Address: </label>
                         <input name="address" type="text" id="address" value={val}/>
                     </span>
