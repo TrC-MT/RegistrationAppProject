@@ -4,9 +4,51 @@ body{
     background-color: var(--darker_green); 
     /* Not working on the login page. It works on the other pages for some reason, but it's not needed anywhere else. */
     /* background-image: radial-gradient(ellipse at top left, #1C9900 0%,  #256117 45%);  */
-    background-image: linear-gradient(to left, var(--darker_green), var(--green), var(--dark_green));
+    /* background-image: linear-gradient(to left, var(--darker_green), var(--green), var(--dark_green)); */
     font-size: 1.4vw;
 }
+
+.animate-background-box{
+    position: absolute;
+    top: 0;
+    width: 33.33%;
+    height: 99.8%;
+}
+#abb-1{
+    background-color: var(--darker_green);
+    left: 0;
+    animation-name: background-shift;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-delay: 3s;
+}
+#abb-2 {
+    background-color: var(--green);
+    left: 33.33%;
+    animation-name: background-shift;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-delay: 6s;
+}
+#abb-3 {
+    background-color: var(--dark_green);
+    left: 66.6%;
+    animation-name: background-shift;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-delay: 9s;
+}
+
+@keyframes background-shift {
+    0%  {background-color: var(--dark_green);}
+    33% {background-color: var(--green);}
+    66% {background-color: var(--darker_green);}
+    99% {background-color: var(--green);}
+}
+
 
 #crecent-box{
     background-color: var(--light_blue);
@@ -16,7 +58,7 @@ body{
     border-radius: 80px;
     position: fixed;
     top: 10%;
-    left: 20%;
+    left: 15%;
 }
 
 #image-helper{
@@ -38,7 +80,7 @@ body{
     width: 30%;
     filter: brightness(20) saturate(80%) invert(82%) sepia(10%) hue-rotate(190deg) contrast(20%);
     animation-name: flip;
-    animation-duration: 5s;
+    animation-duration: 10s;
     animation-timing-function: linear;
     animation-delay: 0s;
     animation-iteration-count: infinite;

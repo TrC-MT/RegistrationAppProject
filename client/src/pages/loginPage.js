@@ -7,6 +7,10 @@ export default function LoginPage() {
     
     return(
         <>
+            <div id='abb-1' className='animate-background-box'></div>
+            <div id='abb-2' className='animate-background-box'></div>
+            <div id='abb-3' className='animate-background-box'></div>
+
             <div id="crecent-box">
                 <div id='image-helper'>
                     <img src={require("../Images/logo192.png")} id="react-logo" alt='react-logo-green'/>
