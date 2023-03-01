@@ -1,8 +1,10 @@
 body{
     margin: 0px;
-    background-color: var(--darker_green); /* For the browsers that don't support radial gradients. */
-    /* Not working on the login page. It works on the sign up page for some reason, but it's not needed anywhere else. */
+    /* For the browsers that don't support gradients. */
+    background-color: var(--darker_green); 
+    /* Not working on the login page. It works on the other pages for some reason, but it's not needed anywhere else. */
     /* background-image: radial-gradient(ellipse at top left, #1C9900 0%,  #256117 45%);  */
+    background-image: linear-gradient(to left, var(--darker_green), var(--green), var(--dark_green));
     font-size: 1.4vw;
 }
 
@@ -15,18 +17,41 @@ body{
     position: fixed;
     top: 10%;
     left: 20%;
-    
 }
 
-#loginContainer{
-    padding-left: 2%;
+#image-helper{
+    display: flex;
     background-color: #7FC79D;
+    padding-left: 2%;
     border-radius: 80px 200px 200px 80px;
     width: 92%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
+}
+
+#react-logo{
+    position: absolute;
+    left: 2%;
+    top: 4%;
+    width: 30%;
+    filter: brightness(20) saturate(80%) invert(82%) sepia(10%) hue-rotate(190deg) contrast(20%);
+    animation-name: flip;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes flip {
+    0% {transform: rotate(0deg), filter(none);}
+    100% {transform: rotate(180deg) scaleX(-1.2);}
+}
+
+#loginContainer{
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
