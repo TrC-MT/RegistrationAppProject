@@ -17,6 +17,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
@@ -35,6 +36,10 @@ const port = process.env.PORT || 3001
 app.get('/userProfile', (req, res) => {
     res.render('../client/src/')
 })
+
+//test routes-----------------------------------
+app.get('/getUsers', db.getUsers);
+
 
 
 //when using passport.authenticate() method you don't need the callback!

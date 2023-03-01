@@ -2,7 +2,7 @@ body{
     margin: 0px;
     background-color: var(--darker_green); /* For the browsers that don't support radial gradients. */
     /* Not working on the login page. It works on the sign up page for some reason, but it's not needed anywhere else. */
-    /* background-image: radial-gradient(ellipse at top left, #1C9900 0%,  #256117 45%);  */
+    background-image: radial-gradient(ellipse at top left, #1C9900 0%,  #256117 45%); 
     font-size: 1.4vw;
 }
 
