@@ -1,7 +1,7 @@
 const passport = require('passport');
 const db = require('../db');
 const AuthUser = require('../services/AuthUser.js');
-const bcrypt = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
 const localStrategy = require('passport-local').Strategy;
 
 
@@ -17,7 +17,9 @@ exports.authUser = () => {
 //if it isn't found then it creates a new user account using INSERT
 exports.createUser = async (req, res) => {
     //variables
-    const user = req.newUser; // user object sent from front-end
+    const user = req.body.newUser; // user object sent from front-end
+    //redefine password inside of front-end user obj. to hashed value
+    user.password = await bcryptjs.hash(user.password, 10); 
     //create user 
     const databaseUser = db.getUser(user.username);
     if (databaseUser !== null) {
