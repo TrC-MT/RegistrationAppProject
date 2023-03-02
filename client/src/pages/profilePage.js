@@ -52,7 +52,7 @@ export default function ProfilePage() {
                         <label className='sign-up-form-label'>Address: </label>
                         <input name="address" type="text" id="address" value={val}/>
                     </span>
-                    <button id='sign-up-form-submit' onClick={updateUser()}>Update</button>
+                    <button id='sign-up-form-submit' onClick={updateUser}>Update</button>
                 </form>
                 <SideStudentProfileInfo render={user_type}></SideStudentProfileInfo>
             </div>
