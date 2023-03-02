@@ -1,4 +1,4 @@
-import '../Styles/ComponentStyles/navbarStyles.css'
+import '../../Styles/ComponentStyles/navbarStyles.css'
 import Link from 'react';
 import BackButton from './backButton';
 import LogOutButton from './logOutButton';
