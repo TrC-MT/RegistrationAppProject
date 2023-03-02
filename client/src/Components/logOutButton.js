@@ -1,12 +1,15 @@
 
 
-export default function LogOutButton(){
+export default function LogOutButton({render}){
 
-    return(
-        <>
-            <button className="log-out-button nav-button" onClick={logOut()}>Log out</button>
-        </>
-    )
+    if(render == 'True'){
+        return(
+            <>
+                <button className="log-out-button nav-button" onClick={logOut()}>Log out</button>
+            </>
+        )
+    }
+    
 }
 
 function logOut(){

@@ -1,12 +1,15 @@
 
 
-export default function BackButton(){
+export default function BackButton({render}){
 
-    return(
-        <>
-            <button className="nav-button back-button" onClick={back()}>Log out</button>
-        </>
-    )
+    if(render == 'True'){
+        return(
+            <>
+                <button className="nav-button back-button" onClick={back()}>Back</button>
+            </>
+        )
+    }
+    
 }
 
 function back(){
