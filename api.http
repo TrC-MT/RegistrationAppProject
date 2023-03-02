@@ -1,0 +1,12 @@
+### Get all courses
+POST http://localhost:3001/userRegistration
+content-type: application/json
+### get courses for specific user
+http://localhost:3001/api/getUserCourses
+### register new account
+POST http://localhost:3001/api/register
+content-type: application/json
+{
+    "username": "asdf",
+    "password": "asdf"
+}
