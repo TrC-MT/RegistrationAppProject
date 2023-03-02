@@ -24,11 +24,10 @@ app.use(methodOverride('_method'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-let users = [];
+//let users = [];
 
-require('./auth/authenticate.js')(passport,
-    
-    )
+const { login } = require('./controllers/auth.controller.js');
+login(passport);
 
 const port = process.env.PORT || 3001
 // public facing 'web requests'
@@ -41,35 +40,15 @@ app.get('/userProfile', (req, res) => {
 app.get('/getUsers', db.getUsers);
 
 
+//express.Router() routes------------------------
+app.use('/', authRoute);
 
-//when using passport.authenticate() method you don't need the callback!
-app.post('/studentLogin', passport.authenticate('local', {
-    successRedirect: '/userProfile',
-    failureRedirect: '/studentLogin',
-    failureFlash: true
-}));
 
-app.post('/userRegistration', (req, res) => {
-    const password = bcryptjs.hash(req.body.password, 10);
-    users.push({
-        firstName: req.body.first_name,
-        lastName: req.body.last_name,
-        username: req.body.user_name,
-        password: password,
-        email: req.body.email,
-        address: req.body.address
-    });
-    res.redirect('/studentLogin');
-})
-//app.use('/', authRoute);
-// app.use();
 
 // protected web requests, must go through authentication process!
 app.get('/courses',  (res, req) => {
 
 });
-
-
 
 app.listen(port, () => {
     console.log(`server is up on port ${port}`)

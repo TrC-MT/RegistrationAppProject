@@ -1,10 +1,58 @@
+const passport = require('passport');
+const db = require('../db');
 const AuthUser = require('../services/AuthUser.js');
-
-// const authenticate = () => {
-
-// }
+const bcryptjs = require('bcryptjs');
+const localStrategy = require('passport-local').Strategy;
 
 
-module.exports = function (passport) {
-    
+exports.authUser = () => {
+    passport.authenticate('local', {
+        successRedirect: '/userProfile',
+        failureRedirect: '/studentLogin',
+        failureFlash: true
+    })
 };
+
+//createUser first checks if the user already exists in the db
+//if it isn't found then it creates a new user account using INSERT
+exports.createUser = async (req, res) => {
+    //variables
+    const user = req.body.newUser; // user object sent from front-end
+    //redefine password inside of front-end user obj. to hashed value
+    user.password = await bcryptjs.hash(user.password, 10); 
+    //create user 
+    const databaseUser = db.getUser(user.username);
+    if (databaseUser !== null) {
+        db.insertNewUser(user);
+        console.log(`User ${user} was added to the db!`);
+    } else {
+        console.log('Username is unavailable.');
+    }
+    res.redirect('/studentLogin');
+}
+
+exports.login = (passport) => {
+        const callback = async (username, password, done) => {
+            const user = await db.getUser(username);
+            if (user === null) {
+                return done(null, false, { message: 'User does not exist'});
+            }
+            try {
+                //if we made it here then we know that the user exists 
+            if (await bcryptjs.compare(password, user.password)) {
+                return done(null, user);
+            } else {
+                //if we made it here the users password is incorrect
+                console.log('Incorrect password');
+                return done(null, false, { message: 'Incorrect password'});
+            }
+            } catch (err) {
+                return done(err);
+            }
+        };
+    
+        passport.use(new localStrategy(callback));
+        //symmetry-whatever you store when you serialize will be what is passed in when you deserialize
+        passport.serializeUser((user, cb) => cb(null, user.id)) //cb for 'callback' could also use 'done' or whatever else
+        passport.deserializeUser((id, cb) => cb(null, db.getUserById(id)))
+    };
