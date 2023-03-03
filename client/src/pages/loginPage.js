@@ -67,7 +67,7 @@ export default function LoginPage() {
                     setMessage(data.errorMessage)
                 } else {
                     setMessage(data.message)
-                    localStorage.setItem("myToken", data.token);
+                    // localStorage.setItem("myToken", data.token);
                 }
                 });
         }
