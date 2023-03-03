@@ -25,10 +25,10 @@ exports.createUser = async (req, res) => {
     if (databaseUser !== null) {
         db.insertNewUser(user);
         console.log(`User ${user} was added to the db!`);
+        res.status(200).json({status: true, msg: 'User account has been created'});
     } else {
-        console.log('Username is unavailable.');
+        res.status(200).json({status: false, msg: 'Username is unavailable.'})
     }
-    res.redirect('/studentLogin');
 }
 
 exports.login = (passport) => {

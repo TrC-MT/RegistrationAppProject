@@ -71,7 +71,7 @@ export default function SignUpPage() {
                     userName: username,
                     password: password,
                     email: email,
-                    phoneNumer: phone_number,
+                    phoneNumber: phone_number,
                     address: address,
             }
 
