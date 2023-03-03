@@ -44,10 +44,10 @@ export default function UserForm({render}) {
                     </span>
                     <span className="form-section user-form-section">
                         <label className='user-form-label'>Address: </label>
-                        <input name="address" type="text" id="address" {...render.attribute} onChange={(e) => {setAddress(e.target.value), setShowSubmitButton(true)}}/>
+                        <input name="address" type="text" id="address" {...render.attribute} onChange={(e) => {setAddress(e.target.value) }}/>
                     </span>
                     {/* render.click is what calls the functions defined below. */}
-                    {showSubmitButton && <button id='user-form-submit' onClick={render.click}>{render.buttonText}</button>}
+                    <button id='user-form-submit' onClick={render.click}>{render.buttonText}</button> 
                 </form>    
         </>
     )
