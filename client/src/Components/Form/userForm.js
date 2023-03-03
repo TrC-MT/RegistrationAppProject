@@ -47,7 +47,7 @@ export default function UserForm({render}) {
                         <input name="address" type="text" id="address" {...render.attribute} onChange={(e) => {setAddress(e.target.value) }}/>
                     </span>
                     {/* render.click is what calls the functions defined below. */}
-                    <button id='user-form-submit' onClick={render.click}>{render.buttonText}</button> 
+                    <button id='user-form-submit' onClick={newUser}>{render.buttonText}</button> 
                 </form>    
         </>
     )
@@ -81,12 +81,15 @@ export default function UserForm({render}) {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                if (data.errorMessage) {
-                    setMessage(data.errorMessage)
-                } else {
-                    setMessage(data.message)
-                    // localStorage.setItem("myToken", data.token);
-                }
+                    if (data.status == false) {
+                        setMessage(data.msg);
+                    } else {
+                        setMessage(data.msg);
+                    }
+                    })
+                .then(() => {
+                    console.log('redirecting..')
+                    Response.redirect('/')
                 });
         }
         else{

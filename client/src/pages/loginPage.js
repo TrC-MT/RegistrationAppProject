@@ -1,5 +1,5 @@
 import '../Styles/loginPageStyles.css';
-import {Link, redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { useState } from 'react';
 
 //======================
@@ -64,11 +64,10 @@ export default function LoginPage() {
                 .then((res) => res.json())
                 .then((data) => {
                 if (data.errorMessage) {
-                    setMessage(data.errorMessage);
+                    setMessage(data.errorMessage)
                 } else {
-                    setMessage(data.message);
-                    localStorage.setItem("myToken", data.token);
-                    redirect('/userProfile');
+                    setMessage(data.message)
+                    // localStorage.setItem("myToken", data.token);
                 }
                 });
         }
