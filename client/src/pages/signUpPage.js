@@ -9,7 +9,7 @@ export default function SignUpPage() {
 
     return(
         <>
-            <Navbar pieces={{title: 'Create account', back: 'True'}}></Navbar>
+            <Navbar pieces={{title: 'Create account', back: 'True', cl: 'lbnav'}}></Navbar>
             <div className='page-box' id='create-account-page-box'>
                 <UserForm render={{buttonText: 'Register', attribute: {placeholder: 'Type your information here.'}, click: 'newUser'}}></UserForm>
             </div>

@@ -4,6 +4,9 @@ nav{
     align-items: center;
     position: sticky;
     top: 0px;
+    background-color: var(--dark_green);
+}
+.lbnav{
     background-color: var(--lighter_blue);
 }
 

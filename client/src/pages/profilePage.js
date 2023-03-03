@@ -20,7 +20,7 @@ export default function ProfilePage() {
 
     return(
         <>
-            <Navbar pieces={{title: 'Profile', logout: 'True', dOc: {render: true, userType: user_type}}}></Navbar>
+            <Navbar pieces={{title: 'Profile', logout: 'True', dOc: {render: true, userType: user_type}, cl: 'lbnav'}}></Navbar>
             <div className='page-box' id='create-account-page-box'>
                 <UserForm render={{buttonText: 'Update', attribute: {defaultValue: ''}}}></UserForm>
                 <SideStudentProfileInfo render={user_type}></SideStudentProfileInfo>

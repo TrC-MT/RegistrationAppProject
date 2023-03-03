@@ -4,6 +4,7 @@ import page1 from './loginPage'
 import page2 from './signUpPage'
 import page3 from './profilePage'
 import page4 from './studentCourses'
+import page5 from './adminData'
 
 
 export default {
@@ -11,4 +12,5 @@ export default {
     Page2: page2,
     Page3: page3,
     Page4: page4,
+    Page5: page5,
 }
