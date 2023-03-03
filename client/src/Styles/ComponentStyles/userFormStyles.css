@@ -1,0 +1,25 @@
+#user-form{
+    width: 25%;
+    height: 80%;
+    background-color: var(--green);
+    box-shadow: 0px 0px 30px 20px var(--dark_green);
+    display: grid;
+    gap: 9.5%;
+    padding: 2%;
+}
+
+.user-form-section{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.user-form-label{
+    color: var(--lighter_blue);
+}
+
+#user-form-submit{
+    width: 20%;
+    margin-left: 40%;
+    margin-top: -8%;
+}
