@@ -3,8 +3,8 @@ const router = express.Router();
 const authController = require('../controllers/auth.controller.js');
 
 //authentication routes
-router.post('/login', authController.login);
-router.post('/studentLogin', authController.authUser);
+// router.post('/login', );
+router.post('/', authController.authUser);
 router.post('/userRegistration', authController.createUser);
 
 
