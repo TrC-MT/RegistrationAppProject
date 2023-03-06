@@ -40,15 +40,18 @@ app.get('/userProfile', (req, res) => {
 app.get('/getUsers', db.getUsers);
 
 
-//express.Router() routes------------------------
-app.use('/', authRoute);
-
-
 
 // protected web requests, must go through authentication process!
 app.get('/courses',  (res, req) => {
 
 });
+
+//express.Router() routes------------------------
+app.use('/', authRoute);
+
+app.get('/login', (req, res) => {
+    res.send('Unsuccessful login');
+})
 
 app.listen(port, () => {
     console.log(`server is up on port ${port}`)
