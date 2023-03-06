@@ -24,7 +24,7 @@ export default function LoginPage() {
                     <img src={require("../Images/logo192.png")} id="react-logo" alt='react-logo-green'/>
                     <div id="loginContainer">
                         <h2>Login</h2>
-                        <form id="login-form">
+                        <div id="login-form">
                             <span className="form-section">
                                 <label>Username: </label>
                                 <input name="username" id="username" placeholder="Type your username here." onChange={(e) => setLogin_username(e.target.value)}/>
@@ -37,7 +37,7 @@ export default function LoginPage() {
                                 <button className="login-button" onClick={studentLogin}>Login as a student</button>
                                 <button className="login-button" onClick={adminLogin}>Login as an administrator</button>
                             </span>
-                        </form>
+                        </div>
                         <Link to="/signUp" id="sign-up-button">New user?</Link>
                     </div>
                 </div>
