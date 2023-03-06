@@ -1,9 +1,10 @@
 import '../Styles/loginPageStyles.css';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { useState } from 'react';
 
 //======================
 export default function LoginPage() {
+    const navigate = useNavigate();
     const [message, setMessage] = useState('');
     const [login_username, setLogin_username] = useState('');
     const [login_password, setLogin_password] = useState('');
@@ -68,6 +69,7 @@ export default function LoginPage() {
                 } else {
                     setMessage(data.message)
                     // localStorage.setItem("myToken", data.token);
+                    navigate('/userProfile')
                 }
                 });
         }

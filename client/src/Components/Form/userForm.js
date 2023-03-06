@@ -1,8 +1,11 @@
 import '../../Styles/ComponentStyles/userFormStyles.css'
 
 import { useState } from 'react';
+import {useNavigate} from 'react-router'
 
 export default function UserForm({render}) {
+    const navigate = useNavigate();
+
     const [message, setMessage] = useState('')
     const [first_name, setFirst_name] = useState('');
     const [last_name, setLast_name] = useState('');
@@ -44,7 +47,7 @@ export default function UserForm({render}) {
 
     return(
         <>
-            <form id="user-form">
+            <div id="user-form">
                     {message && <div className='server-message'>{message}</div>}
                     <span className="form-section user-form-section">
                         <label className='user-form-label'>First name: </label>
@@ -76,7 +79,7 @@ export default function UserForm({render}) {
                     </span>
                     {/* render.click is what calls the functions defined below. */}
                     {showSubmitButton && <button id='user-form-submit' onClick={newUser}>{render.buttonText}</button>}
-                </form>    
+                </div>    
         </>
     )
 
@@ -113,12 +116,13 @@ export default function UserForm({render}) {
                         setMessage(data.msg);
                     } else {
                         setMessage(data.msg);
+                        
                     }
                     })
                 .then(() => {
                     console.log('redirecting..')
-                    Response.redirect('/')
-                });
+                    navigate("/")
+                })
         }
         else{
             setMessage('Please type your information into the proper fields.');
