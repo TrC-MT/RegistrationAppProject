@@ -82,7 +82,35 @@ export default function LoginPage() {
     //----------
     
     function adminLogin() {
-        // fetch('/adminLogin', {})
+        if(login_username != '' && login_password != ''){
+            var loginUser = {
+                    userName: login_username,
+                    password: login_password,
+            }
+
+            fetch('/adminLogin', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    Credentials: loginUser
+                }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                if (data.errorMessage) {
+                    setMessage(data.errorMessage)
+                } else {
+                    setMessage(data.message)
+                    // localStorage.setItem("myToken", data.token);
+                    navigate('/userProfile')
+                }
+                });
+        }
+        else{
+            setMessage('Please type your information into the proper fields.');
+        }
 
     }
 

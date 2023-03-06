@@ -1,10 +1,11 @@
+import { useState } from "react";
 import StudentIDs from "../Components/Data/studentIDs";
 import Navbar from "../Components/Nav/navbar";
 
 
 
 export default function AdminDataPage() {
-    let filter = 1;
+    let [filter, setFilter] = useState('');
     //Fetch the amount of students, tuition due
     var total_students = 50;
     var total_tuition = 9999
@@ -25,8 +26,9 @@ export default function AdminDataPage() {
                 </div>
                 
                 <div id="student-manager-container">
-                    <input placeholder="Search by ID" onKeyUp={(e) => (filter = e.target.value)}></input>
-                    <label for="students">Student:</label>
+                    <h5>Student:</h5>
+                    <input placeholder="Search by ID" onKeyUp={(e) => setFilter(e.target.value) }></input>
+                    <label for="students">ID:</label>
                     <select name="students" onClick={(e) => sendvalue(e)}>
                         <StudentIDs render={{student_IDs, filter}}></StudentIDs>
                     </select>
@@ -37,6 +39,6 @@ export default function AdminDataPage() {
     )
 
     function sendvalue(e){
-       console.log(e.target.value);
+    //send the e.target.value to filter the right student info
     }
 }
