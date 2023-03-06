@@ -2,9 +2,9 @@ const Pool = require('pg').Pool;
 
 let dbURL = {
     connectionString: 
-    process.env.DATABASE_URL ||
+    // process.env.DATABASE_URL ||
     'postgres://postgres:postgres@localhost:5432/postgres',
-    ssl: true
+    // ssl: true
 };
 const pool = new Pool(dbURL);
 
@@ -15,7 +15,6 @@ exports.getUserById = async (id) => {
     if (results.length !== 0) {
         return results.rows[0]
     }
-    
     return null;
 }
 exports.insertNewUser = async (user) => {
@@ -27,9 +26,9 @@ exports.insertNewUser = async (user) => {
 
 
 exports.getUser = async (username) => {
-    const user = await
+    const user = await 
         pool.query('SELECT * FROM users WHERE user_name=$1', [username]);
-    if (user.length !== 0) {
+    if (user.rows.length !== 0) {
         return user.rows[0]
     }
     //if we made it here the user wasn't found

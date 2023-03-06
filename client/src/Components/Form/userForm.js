@@ -16,7 +16,7 @@ export default function UserForm({render}) {
 
     return(
         <>
-            <form id="user-form">
+            <div id="user-form">
                     {message && <div className='server-message'>{message}</div>}
                     <span className="form-section user-form-section">
                         <label className='user-form-label'>First name: </label>
@@ -48,7 +48,7 @@ export default function UserForm({render}) {
                     </span>
                     {/* render.click is what calls the functions defined below. */}
                     <button id='user-form-submit' onClick={newUser}>{render.buttonText}</button> 
-                </form>    
+                </div>    
         </>
     )
 
