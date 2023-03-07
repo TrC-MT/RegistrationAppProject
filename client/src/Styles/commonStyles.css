@@ -7,6 +7,16 @@
     --lighter_blue: #A5ffd6;
 }
 
+body{
+    margin: 0px;
+    /* For the browsers that don't support gradients. */
+    background-color: var(--darker_green); 
+    /* Not working on the login page. It works on the other pages for some reason, but it's not needed anywhere else. */
+    /* background-image: radial-gradient(ellipse at top left, #1C9900 0%,  #256117 45%);  */
+    /* background-image: linear-gradient(to left, var(--darker_green), var(--green), var(--dark_green)); */
+    font-size: 1.4vw;
+}
+
 .page-box{
     position: fixed;
     top: 10%;
