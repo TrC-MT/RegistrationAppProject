@@ -1,5 +1,7 @@
 .table-box{
     margin-left: 2%;
+    width: 100%;
+    height: 90%;
 }
 
 .table-title{
@@ -9,24 +11,21 @@
 
 table {
     border-collapse: collapse;
-    width: 98%;
+    width: 100%;
+    height: 70%;
 }
 
-tr {
+tr, th, td{
     border: 2px solid var(--darker_green);
-    
-}
-
-th{
-    border: 2px solid var(--darker_green);
-}
-
-td {
-    border: 2px solid var(--darker_green);
-    width: 30%;
-    
+    width: 50%;
 }
 
 .course-desc{
-    overflow: scroll;
+    display: block;
+    width: 99%;
+    height: 97%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+    border: none;
 }

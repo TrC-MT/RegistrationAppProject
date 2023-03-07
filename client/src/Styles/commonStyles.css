@@ -7,6 +7,15 @@
     --lighter_blue: #A5ffd6;
 }
 
+::-webkit-scrollbar{
+    background-color: var(--light_blue);
+    box-shadow: inset 0 0 5px var(--blue);
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--dark_green);
+    border-radius: 10px;
+}
+
 body{
     margin: 0px;
     /* For the browsers that don't support gradients. */

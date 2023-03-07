@@ -2,6 +2,24 @@
 
 
 export default function CoursesTableTags({render}){
+
+    /*
+
+
+    Problem:
+        With only 3 courses being rendered,
+        the search is not usefull.
+    
+    Solution:
+        Make the search work to
+        render 3 courses that match the search
+
+    Reason:
+        Right now it's rendering 3, then searching.
+        Needs to be vice-versa.
+
+        
+    */
     let num = render.num;
 
     let results = [];
