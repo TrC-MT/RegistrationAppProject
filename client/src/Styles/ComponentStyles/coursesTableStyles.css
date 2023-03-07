@@ -1,0 +1,32 @@
+.table-box{
+    margin-left: 2%;
+}
+
+.table-title{
+    width: 90%;
+    margin-top: 0px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 98%;
+}
+
+tr {
+    border: 2px solid var(--darker_green);
+    
+}
+
+th{
+    border: 2px solid var(--darker_green);
+}
+
+td {
+    border: 2px solid var(--darker_green);
+    width: 30%;
+    
+}
+
+.course-desc{
+    overflow: scroll;
+}
