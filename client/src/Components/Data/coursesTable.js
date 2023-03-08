@@ -20,7 +20,7 @@ export default function CoursesTable({pieces}){
                         </tr>
                     </thead>
                     <tbody>
-                        <CoursesTableTags render={{courses: courses, filter: pieces.filter, num: pieces.num}}></CoursesTableTags>
+                        <CoursesTableTags render={{courses: courses, filter: pieces.filter, num: pieces.num, sn: pieces.sn}}></CoursesTableTags>
                     </tbody>
                 </table>
             </div>
@@ -42,4 +42,10 @@ let courses = [
     {name: 'D', description: 'none', tuition: 5}, 
     {name: 'e', description: 'none', tuition: 5}, 
     {name: 'f', description: 'none', tuition: 5},
+    {name: 'UnknownD', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
+    {name: 'UnknownE', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
+    {name: 'UnknownF', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
+    {name: 'UnknownG', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
+    {name: 'UnknownH', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
+
 ]
