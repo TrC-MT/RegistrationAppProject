@@ -49,3 +49,20 @@ body{
     border-radius: 10px;
     font-style: italic;
 }
+
+input, button{
+    background-color: #FAEBEB;
+}
+
+input{
+    border: 1.5px solid gray;
+}
+
+button{
+    border: .5px solid gray;
+    border-radius: 5px;
+}
+
+input:hover, button:hover{
+    background-color: #FBA0A0;
+}

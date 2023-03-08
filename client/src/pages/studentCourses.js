@@ -28,8 +28,8 @@ export default function StudentCourses(){
                     </div>
                         
                     <div className='tables-container'>
-                        <CoursesTable pieces={{ID: 'Scheduled', button: 'Remove', filter: filter, num: num, sn: setNum}}></CoursesTable>
-                        <CoursesTable pieces={{ID: 'UnScheduled', button: 'Add', filter: filter, num: num, sn: setNum}}></CoursesTable>
+                        <CoursesTable pieces={{ID: 'Scheduled', button: {text: 'Drop', do: drop}, filter: filter, num: num, sn: setNum}}></CoursesTable>
+                        <CoursesTable pieces={{ID: 'UnScheduled', button: {text: 'Enroll', do: enroll}, filter: filter, num: num, sn: setNum}}></CoursesTable>
                     </div>
                 </div>
             </div>
@@ -38,16 +38,19 @@ export default function StudentCourses(){
     )
 
     function subNum(){
-        console.log('subNum')
         if(num >= 6){
             setNum(num - 3)
-            console.log('num - 3 == ' + num)
         }
     }
     function incNum(){
-        console.log('incNum')
         setNum(num + 3)
-        console.log('num + 3 == ' + num)
+    }
 
+
+    function drop(){
+        console.log('drop')
+    }
+    function enroll(){
+        console.log('enroll')
     }
 }

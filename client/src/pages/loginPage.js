@@ -79,7 +79,7 @@ export default function LoginPage() {
         
     }
 
-    //----------
+    //----------  Yes, they are the same thing. If this were a different application, and/or we were using tokens, they would need to be different.
     
     function adminLogin() {
         if(login_username != '' && login_password != ''){

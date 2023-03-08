@@ -15,12 +15,12 @@ export default function CoursesTable({pieces}){
                             <th>Description</th>
                             <th>Tuition</th>
                             <th>
-                                <button>{pieces.button}</button>
+                                <h5>{pieces.button.text}</h5>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <CoursesTableTags render={{courses: courses, filter: pieces.filter, num: pieces.num, sn: pieces.sn}}></CoursesTableTags>
+                        <CoursesTableTags render={{courses: courses, filter: pieces.filter, num: pieces.num, sn: pieces.sn, button: pieces.button}}></CoursesTableTags>
                     </tbody>
                 </table>
             </div>
