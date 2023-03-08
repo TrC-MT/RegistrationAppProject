@@ -49,7 +49,7 @@ export default function LoginPage() {
     function studentLogin() {
         if(login_username != '' && login_password != ''){
             var loginUser = {
-                    userName: login_username,
+                    username: login_username,
                     password: login_password,
             }
 
@@ -59,14 +59,16 @@ export default function LoginPage() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    Credentials: loginUser
+                   Credentials: loginUser
                 }),
             })
                 .then((res) => res.json())
                 .then((data) => {
-                if (data.errorMessage) {
+                if (data) {
+                    console.log(data);
                     setMessage(data.errorMessage)
                 } else {
+                    console.log(data);
                     setMessage(data.message)
                     // localStorage.setItem("myToken", data.token);
                     navigate('/userProfile')
