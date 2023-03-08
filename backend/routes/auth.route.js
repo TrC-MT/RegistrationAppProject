@@ -4,7 +4,16 @@ const authController = require('../controllers/auth.controller.js');
 
 //authentication routes
 // router.post('/login', );
-router.post('/studentLogin', authController.authUser);
+// router.get('/studentLogin', (req, res) => {
+//     res.send('Inside get of /studentLogin')
+// })
+router.post('/studentLogin', authController.authUser, (req, res)=> {
+    res.send('success');
+});
+// router.post('/studentLogin', (req, res) => {
+//     console.log('inside /studentLogin path', req.body.username, req.body.password);
+//     res.send('success');
+// });
 router.post('/userRegistration', authController.createUser);
 
 

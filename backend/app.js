@@ -4,19 +4,28 @@ const cookieParser = require('cookie-parser')
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
+const cors = require('cors')
 const app = express()
 const db = require('./db')
 const authRoute = require('./routes/auth.route.js')
 const authenticate = require('./auth/authenticate.js')
+const reactClientURL = 'http://localhost:3000'
 
 // MIDDLEWARE----------------------------------------------
 //app.use(express.static('../client/build'))
+app.use(
+    cors({
+        origin: reactClientURL, // <-- location of the react app we're connecting to
+        credentials: true,
+    })
+)
 app.use(flash())
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }));
+
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -26,12 +35,17 @@ app.use(express.urlencoded({ extended: true }))
 
 //let users = [];
 
-const { login } = require('./controllers/auth.controller.js');
-login(passport);
+const { login } = require('./controllers/auth.controller.js')
+login(passport)
 
 const port = process.env.PORT || 3001
-// public facing 'web requests'
 
+
+// app.get('/studentLogin', (req, res) => {
+//     res.send('Inside get of /studentLogin')
+// })
+
+// public facing 'web requests'
 app.get('/userProfile', (req, res) => {
     res.render('../client/src/')
 })
@@ -46,12 +60,16 @@ app.get('/courses',  (res, req) => {
 
 });
 
+app.get('/loginSuccess', (req, res)=>{
+    res.send('login successful');
+})
+app.get('/loginFailed', (req, res)=>{
+    res.send('login failed');
+})
 //express.Router() routes------------------------
 app.use('/', authRoute);
 
-app.get('/login', (req, res) => {
-    res.send('Unsuccessful login');
-})
+
 
 app.listen(port, () => {
     console.log(`server is up on port ${port}`)
