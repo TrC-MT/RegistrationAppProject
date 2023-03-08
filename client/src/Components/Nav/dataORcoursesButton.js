@@ -7,26 +7,27 @@ export default function DataORCoursesButton({show}){
             if(show.userType == 'Student'){
                 return(
                     <>
-                        <button className="nav-button dOC-button" onClick={toStudentCourses()}>Courses</button>
+                        <button className="nav-button dOC-button" onClick={toStudentCourses}>Courses</button>
                     </>
                 )
             }
             else if(show.userType == 'Admin'){
                 return(
                     <>
-                        <button className="nav-button dOC-button" onClick={toAdminData()}>Data</button>
+                        <button className="nav-button dOC-button" onClick={toAdminData}>Data</button>
                     </>
                 )
             }
         }
 
     }
+
+    function toStudentCourses() {
+
+    }
+    
+    function toAdminData() {
+    
+    }
 }
 
-function toStudentCourses() {
-
-}
-
-function toAdminData() {
-
-}
