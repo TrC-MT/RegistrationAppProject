@@ -52,7 +52,6 @@ export default function LoginPage() {
                     username: login_username,
                     password: login_password,
             }
-
             fetch('/studentLogin', {
                 method: "POST",
                 headers: {
@@ -64,14 +63,15 @@ export default function LoginPage() {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                if (data) {
+                if (data.errorMessage) {
                     console.log(data);
                     setMessage(data.errorMessage)
                 } else {
                     console.log(data);
-                    setMessage(data.message)
                     // localStorage.setItem("myToken", data.token);
+                    setMessage(data.successMessage)
                     navigate('/userProfile')
+                    
                 }
                 });
         }

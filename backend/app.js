@@ -13,12 +13,12 @@ const reactClientURL = 'http://localhost:3000'
 
 // MIDDLEWARE----------------------------------------------
 //app.use(express.static('../client/build'))
-app.use(
-    cors({
-        origin: reactClientURL, // <-- location of the react app we're connecting to
-        credentials: true,
-    })
-)
+// app.use(
+//     cors({
+//         origin: reactClientURL, // <-- location of the react app we're connecting to
+//         credentials: true,
+//     })
+// )
 app.use(flash())
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -33,17 +33,10 @@ app.use(methodOverride('_method'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-//let users = [];
-
 const { login } = require('./controllers/auth.controller.js')
 login(passport)
 
 const port = process.env.PORT || 3001
-
-
-// app.get('/studentLogin', (req, res) => {
-//     res.send('Inside get of /studentLogin')
-// })
 
 // public facing 'web requests'
 app.get('/userProfile', (req, res) => {
@@ -60,15 +53,8 @@ app.get('/courses',  (res, req) => {
 
 });
 
-app.get('/loginSuccess', (req, res)=>{
-    res.send('login successful');
-})
-app.get('/loginFailed', (req, res)=>{
-    res.send('login failed');
-})
 //express.Router() routes------------------------
 app.use('/', authRoute);
-
 
 
 app.listen(port, () => {

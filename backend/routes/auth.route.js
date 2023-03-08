@@ -10,10 +10,13 @@ const authController = require('../controllers/auth.controller.js');
 router.post('/studentLogin', authController.authUser, (req, res)=> {
     res.send('success');
 });
-// router.post('/studentLogin', (req, res) => {
-//     console.log('inside /studentLogin path', req.body.username, req.body.password);
-//     res.send('success');
-// });
+router.get('/loginSuccess', (req, res)=>{
+    res.status(200).json( { successMessage: 'login successful!' });
+})
+router.get('/loginFailed', (req, res)=>{
+    res.status(401).json({ errorMessage: 'login failed' });
+})
+
 router.post('/userRegistration', authController.createUser);
 
 
