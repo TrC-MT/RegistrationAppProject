@@ -1,6 +1,7 @@
-
+import {useNavigate} from 'react-router-dom';
 
 export default function BackButton({render}){
+    const navigate = useNavigate();
 
     if(render == 'True'){
         return(
@@ -11,7 +12,7 @@ export default function BackButton({render}){
     }
 
     function back(){
-    
+        return navigate(-1);
     }
     
 }

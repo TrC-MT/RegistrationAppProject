@@ -1,6 +1,7 @@
-
+import { useNavigate } from "react-router-dom"
 
 export default function DataORCoursesButton({show}){
+    const navigate = useNavigate();
 
     if(show != undefined){
         if(show.render == true){
@@ -23,11 +24,11 @@ export default function DataORCoursesButton({show}){
     }
 
     function toStudentCourses() {
-
+        return navigate('/userProfile/courses')
     }
     
     function toAdminData() {
-    
+        return navigate('/userProfile/adminData')
     }
 }
 
