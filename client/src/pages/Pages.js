@@ -1,10 +1,11 @@
-//I want to change from pageNumber to something more descriptive. I'm going to take some time to think about it first.
+//I want to change from pageNumber to something more descriptive. I'm going to take a lot of time to think about it first.
 
 import page1 from './loginPage'
 import page2 from './signUpPage'
 import page3 from './profilePage'
 import page4 from './studentCourses'
-import page5 from './adminData'
+import page5 from './adminDataPage'
+import page6 from './adminManageCoursesPage'
 
 
 export default {
@@ -13,4 +14,5 @@ export default {
     Page3: page3,
     Page4: page4,
     Page5: page5,
+    Page6: page6,
 }

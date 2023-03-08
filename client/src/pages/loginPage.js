@@ -23,7 +23,7 @@ export default function LoginPage() {
                 <div id='image-helper'>
                     <img src={require("../Images/logo192.png")} id="react-logo" alt='react-logo-green'/>
                     <div id="loginContainer">
-                        <h2>Login</h2>
+                        <h2>Registration Capstone Login</h2>
                         <div id="login-form">
                             <span className="form-section">
                                 <label>Username: </label>
@@ -34,8 +34,8 @@ export default function LoginPage() {
                                 <input name="password" type="password" id="password" placeholder="Type your password here." onChange={(e) => setLogin_password(e.target.value)}/>
                             </span>
                             <span className="form-section">
-                                <button className="login-button" onClick={studentLogin}>Login as a student</button>
-                                <button className="login-button" onClick={adminLogin}>Login as an administrator</button>
+                                <button className="login-button" onClick={studentLogin}>Student login</button>
+                                <button className="login-button" onClick={adminLogin}>Admin login</button>
                             </span>
                         </div>
                         <Link to="/signUp" id="sign-up-button">New user?</Link>

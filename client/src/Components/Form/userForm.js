@@ -121,7 +121,7 @@ export default function UserForm({render}) {
                     })
                 .then(() => {
                     console.log('redirecting..')
-                    navigate("/")
+                    return navigate("/")
                 })
         }
         else{
