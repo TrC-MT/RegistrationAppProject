@@ -107,15 +107,17 @@
 }
 
 .login-button{
-    border: .5px solid gray;
-    border-radius: 5px;
     font-size: .9vw;
 }
 
 #sign-up-button{
     color: black;
-    background-color: aliceblue;
+    background-color: #FAEBEB;
     border: .5px solid black;
     border-radius: 5px;
     width: 12%;
+}
+
+#sign-up-button:hover{
+    background-color: #FBA0A0;
 }

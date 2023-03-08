@@ -69,8 +69,7 @@ export default function LoginPage() {
                 } else {
                     console.log(data);
                     // localStorage.setItem("myToken", data.token);
-                    setMessage(data.successMessage)
-                    navigate('/userProfile')
+                    setTimeout(navigate('/userProfile'), 8000)
                     
                 }
                 });
@@ -81,7 +80,7 @@ export default function LoginPage() {
         
     }
 
-    //----------
+    //----------  Yes, they are the same thing. If this were a different application, and/or we were using tokens, they would need to be different.
     
     function adminLogin() {
         if(login_username != '' && login_password != ''){
@@ -106,7 +105,7 @@ export default function LoginPage() {
                 } else {
                     setMessage(data.message)
                     // localStorage.setItem("myToken", data.token);
-                    navigate('/userProfile')
+                    setTimeout(navigate('/userProfile'), 8000)
                 }
                 });
         }
