@@ -1,16 +1,11 @@
 #account-manager-container{
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
-    width: 20%;
-    height: 60%;
+    width: 60%;
+    height: 80%;
     background-color: var(--lighter_blue);
 }
 
-#account-info-label{
-    font-size: 1.1vw;
-}
-
-.account-info-input{
-    width: 40%;
+#manage-account-form{
+    width: 100%;
 }

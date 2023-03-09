@@ -2,6 +2,7 @@ import '../Styles/adminDataPageStyles.css'
 import { useState } from "react";
 import StudentIDs from "../Components/Data/studentIDs";
 import Navbar from "../Components/Nav/navbar";
+import UserForm from '../Components/Form/userForm';
 
 
 
@@ -37,7 +38,7 @@ export default function AdminDataPage() {
                     </p>
                 </div>
                 
-                <div id="account-manager-container">
+                {/* <div id="account-manager-container">
                     <h5>Account:</h5>
                     <input placeholder="Search by ID" onKeyUp={(e) => setFilter(e.target.value) }></input>
                     <label for="accounts" id='account-info-label'>ID:</label>
@@ -56,8 +57,16 @@ export default function AdminDataPage() {
                         <option>Administrator</option>
                     </select>
                     {showChangeButton && <button onClick={updateUser}>Change</button>}
+                </div> */}
+                <div id="account-manager-container">
+                    <h5>Account:</h5>
+                    <input placeholder="Search by ID" onKeyUp={(e) => setFilter(e.target.value) }></input>
+                    <label for="accounts" id='account-info-label'>ID:</label>
+                    <select name="accounts" onClick={(e) => findaccount(e)}>
+                        <StudentIDs render={{student_IDs, filter}}></StudentIDs>
+                    </select>
+                    <UserForm render={{attribute: 'placeholder'}}></UserForm>
                 </div>
-
             </div>
         </>
     )
