@@ -3,8 +3,6 @@ import { useState } from "react";
 import StudentIDs from "../Components/Data/studentIDs";
 import Navbar from "../Components/Nav/navbar";
 
-
-
 export default function AdminDataPage() {
     const [message, setMessage] = useState('')
     let [filter, setFilter] = useState('');
@@ -23,6 +21,11 @@ export default function AdminDataPage() {
     //Fetch the accounts info
     var student_IDs = [134124, 2352435, 46546, 2423, 46546, 13425];
 
+    function handleRoll(target_value){
+        setRoll(target_value)
+        setShowChangeButton(true)
+    }
+
     return (
         <>
             <Navbar pieces={{title: 'Manage accounts', msc: 'True', mc: 'True', logout: 'True'}}></Navbar>
@@ -40,18 +43,26 @@ export default function AdminDataPage() {
                 <div id="account-manager-container">
                     <h5>Account:</h5>
                     <input placeholder="Search by ID" onKeyUp={(e) => setFilter(e.target.value) }></input>
-                    <label for="accounts" id='account-info-label'>ID:</label>
+                    <label for="accounts" className='account-info-label'>ID:</label>
                     <select name="accounts" onClick={(e) => findaccount(e)}>
                         <StudentIDs render={{student_IDs, filter}}></StudentIDs>
                     </select>
+                    <label for="account-first-name" className='account-info-label'>First name:</label>
                     <input className="account-info-input" name="account-first-name" id="account-first-name" onKeyUp={(e) => setaccount_first_name(e.target.value)} placeholder={account_first_name}></input>
+                    <label for="account-last-name" className='account-info-label'>Last name:</label>
                     <input className="account-info-input" name="account-last-name" id="account-last-name" onKeyUp={(e) => setaccount_last_name(e.target.value)} placeholder={account_last_name}></input>
+                    <label for="account-username" className='account-info-label'>Username:</label>
                     <input className="account-info-input" name="account-username" id="account-username" onKeyUp={(e) => setaccount_username(e.target.value)} placeholder={account_username}></input>
+                    <label for="account-password" className='account-info-label'>Password:</label>
                     <input className="account-info-input" name="account-password" id="account-password" onKeyUp={(e) => setaccount_password(e.target.value)} placeholder={account_password}></input>
+                    <label for="account-email" className='account-info-label'>Email:</label>
                     <input className="account-info-input" name="account-email" id="account-email" onKeyUp={(e) => setaccount_email(e.target.value)} placeholder={account_email}></input>
+                    <label for="account-phone-number" className='account-info-label'>Phone number:</label>
                     <input className="account-info-input" name="account-phone-number" id="account-phone-number" onKeyUp={(e) => setaccount_phone_number(e.target.value)} placeholder={account_phone_number}></input>
+                    <label for="account-address" className='account-info-label'>Address:</label>
                     <input className="account-info-input" name="account-address" id="account-address" onKeyUp={(e) => setaccount_address(e.target.value)} placeholder={account_address}></input>
-                    <select name="is-admin" id="is-admin" onClick={(e) => setRoll(e.target.value)}>
+                    <label for="is-admin" className='account-info-label'>Role:</label>
+                    <select name="is-admin" id="is-admin" onClick={(e) => handleRoll(e.target.value)}>
                         <option>Student</option>
                         <option>Administrator</option>
                     </select>

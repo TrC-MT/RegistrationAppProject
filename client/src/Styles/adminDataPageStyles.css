@@ -3,15 +3,20 @@
     flex-direction: column;
     justify-content:space-around;
     align-items: center;
-    width: 20%;
-    height: 60%;
+    width: 40%;
+    height: 80%;
     background-color: var(--lighter_blue);
+    box-shadow: inset 0px 0px 5px var(--blue);
 }
 
-#account-info-label{
-    font-size: 1.1vw;
+.account-info-label{
+    font-size: 1vw;
 }
 
 .account-info-input{
     width: 40%;
+}
+
+h5{
+    margin-top: 1%;
 }
