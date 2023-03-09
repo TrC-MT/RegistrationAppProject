@@ -69,7 +69,8 @@ export default function LoginPage() {
                 } else {
                     console.log(data);
                     // localStorage.setItem("myToken", data.token);
-                    setTimeout(navigate('/userProfile'), 8000)
+                    setTimeout(navigate('/userProfile'), 8000);
+                    setTimeout(setMessage(data.successMessage), 1000);
                     
                 }
                 });
@@ -105,7 +106,10 @@ export default function LoginPage() {
                 } else {
                     setMessage(data.message)
                     // localStorage.setItem("myToken", data.token);
-                    setTimeout(navigate('/userProfile'), 8000)
+                    setMessage(data.successMessage);
+                    // setTimeout(() => {
+                    //     navigate('/userProfile')
+                    // } , 8000)
                 }
                 });
         }
