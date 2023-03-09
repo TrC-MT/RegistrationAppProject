@@ -1,6 +1,7 @@
-
+import { useNavigate } from "react-router-dom"
 
 export default function LogOutButton({render}){
+    const navigate = useNavigate();
 
     if(render == 'True'){
         return(
@@ -11,7 +12,8 @@ export default function LogOutButton({render}){
     }
 
     function logOut(){
-
+        //kill the session
+        return navigate('/')
     }
     
 }

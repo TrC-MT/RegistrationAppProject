@@ -47,3 +47,17 @@ exports.getUsers = (req, res) => {
         res.status(200).json(results.rows);
     }
 )}
+
+exports.editUser = async (req, res) => {
+    console.log('editUser is running.');
+    const query = 'UPDATE user SET (user_name, password, email, first_name,'
+    + 'last_name, phone_number, address) VALUES ($1, $2, $3,'
+    + '$4, $5, $6, $7)'
+    const values = [user.userName, user.password, user.email, user.firstName,
+        user.lastName, user.phoneNumber, user.address]
+    await pool.query(query, values, (err, results) => {
+        if(err){
+            throw err;
+        }
+    })
+}

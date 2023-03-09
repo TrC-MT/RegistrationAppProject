@@ -2,6 +2,7 @@ import '../../Styles/ComponentStyles/userFormStyles.css'
 
 import { useState } from 'react';
 import {useNavigate} from 'react-router'
+import UserFormSubmitButton from './userFormSubmitButton';
 
 export default function UserForm({render}) {
     const navigate = useNavigate();
@@ -47,8 +48,8 @@ export default function UserForm({render}) {
 
     return(
         <>
+            {message && <div className='server-message'>{message}</div>}
             <div id="user-form">
-                    {message && <div className='server-message'>{message}</div>}
                     <span className="form-section user-form-section">
                         <label className='user-form-label'>First name: </label>
                         <input name="first-name" type="first-name" id="first-name" {...render.attribute} onChange={(e) => handleFNChange(e)}/>
@@ -78,7 +79,7 @@ export default function UserForm({render}) {
                         <input name="address" type="text" id="address" {...render.attribute} onChange={(e) => handleAChange(e)}/>
                     </span>
                     {/* render.click is what calls the functions defined below. */}
-                    {showSubmitButton && <button id='user-form-submit' onClick={newUser}>{render.buttonText}</button>}
+                    {showSubmitButton && <UserFormSubmitButton pieces={{type: {...render.attribute}, text: render.buttonText, funct: {newUser, updateUser}}}></UserFormSubmitButton>}
                 </div>    
         </>
     )
@@ -131,6 +132,7 @@ export default function UserForm({render}) {
     }
 
     function updateUser(){
+
         if(first_name != '' 
         && last_name != '' 
         && username != '' 
@@ -171,5 +173,4 @@ export default function UserForm({render}) {
             setMessage('Please type your information into the proper fields.');
         }
     }
-
 }
