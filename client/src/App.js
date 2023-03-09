@@ -13,6 +13,7 @@ function App() {
           <Route path="/userProfile/courses" element={<PAGES.Page4 />} />
           <Route path="/userProfile/adminData" element={<PAGES.Page5/>} />
           <Route path="/userProfile/adminData/manageCourses" element={<PAGES.Page6/>}/>
+          <Route path='*' element={<PAGES.PageE/>}/>
         </Routes>
       </Router>
      

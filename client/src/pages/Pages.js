@@ -1,5 +1,6 @@
 //I want to change from pageNumber to something more descriptive. I'm going to take a lot of time to think about it first.
 
+import pageE from './errorPage'
 import page1 from './loginPage'
 import page2 from './signUpPage'
 import page3 from './profilePage'
@@ -9,6 +10,7 @@ import page6 from './adminManageCoursesPage'
 
 
 export default {
+    PageE: pageE,
     Page1: page1,
     Page2: page2,
     Page3: page3,

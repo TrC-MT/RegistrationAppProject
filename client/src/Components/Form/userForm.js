@@ -132,7 +132,6 @@ export default function UserForm({render}) {
     }
 
     function updateUser(){
-        console.log('This is the right one!')
 
         if(first_name != '' 
         && last_name != '' 

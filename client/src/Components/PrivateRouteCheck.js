@@ -1,15 +1,12 @@
 
 
-export default function PRouteCheck(component){
+export default function privateRouteCheck(){
+    let credentials = false;
 
     if(credentials){
-        return(
-            <>
-            <component></component>
-            </>
-        )
+        
     }
     else{
-        <a href="loginpage"></a>
+        navigate('/')
     }
 }
