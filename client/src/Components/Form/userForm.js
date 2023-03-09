@@ -1,10 +1,13 @@
 import '../../Styles/ComponentStyles/userFormStyles.css'
 
 import { useState } from 'react';
+import {useNavigate} from 'react-router'
 import UserFormSubmitButton from './userFormSubmitButton';
 
 export default function UserForm({render}) {
+    const navigate = useNavigate();
 
+    const [message, setMessage] = useState('')
     const [first_name, setFirst_name] = useState('');
     const [last_name, setLast_name] = useState('');
     const [username, setUsername] = useState('');
@@ -45,6 +48,7 @@ export default function UserForm({render}) {
 
     return(
         <>
+            {message && <div className='server-message'>{message}</div>}
             <div id="user-form">
                     <span className="form-section user-form-section">
                         <label className='user-form-label'>First name: </label>
@@ -75,8 +79,99 @@ export default function UserForm({render}) {
                         <input name="address" type="text" id="address" {...render.attribute} onChange={(e) => handleAChange(e)}/>
                     </span>
                     {/* render.click is what calls the functions defined below. */}
-                    {showSubmitButton && <UserFormSubmitButton pieces={{type: {...render.attribute}, text: render.buttonText, info: {FN: first_name, LN: last_name, UN: username, PW: password, E: email, PN: phone_number, A: address }}}></UserFormSubmitButton>}
+                    {showSubmitButton && <UserFormSubmitButton pieces={{type: {...render.attribute}, text: render.buttonText, funct: {newUser, updateUser}}}></UserFormSubmitButton>}
                 </div>    
         </>
     )
+
+    function newUser(){
+        if(first_name != '' 
+        && last_name != '' 
+        && username != '' 
+        && password != ''
+        && email != ''
+        && phone_number != ''
+        && address != ''){
+            var User = {
+                    firstName: first_name,
+                    lastName: last_name,
+                    userName: username,
+                    password: password,
+                    email: email,
+                    phoneNumber: phone_number,
+                    address: address,
+            }
+
+            fetch('/userRegistration', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    newUser: User
+                }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.status == false) {
+                        setMessage(data.msg);
+                    } else {
+                        setMessage(data.msg);
+                        
+                    }
+                    })
+                .then(() => {
+                    console.log('redirecting..')
+                    return navigate("/")
+                })
+        }
+        else{
+            setMessage('Please type your information into the proper fields.');
+        }
+        
+    }
+
+    function updateUser(){
+        console.log('This is the right one!')
+
+        if(first_name != '' 
+        && last_name != '' 
+        && username != '' 
+        && password != ''
+        && email != ''
+        && phone_number != ''
+        && address != ''){
+            var User = {
+                    firstName: first_name,
+                    lastName: last_name,
+                    userName: username,
+                    password: password,
+                    email: email,
+                    phoneNumber: phone_number,
+                    address: address,
+            }
+
+            fetch('/editUser', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    newUser: User
+                }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                if (data.errorMessage) {
+                    setMessage(data.errorMessage)
+                } else {
+                    setMessage(data.message)
+                    // localStorage.setItem("myToken", data.token);
+                }
+                });
+        }
+        else{
+            setMessage('Please type your information into the proper fields.');
+        }
+    }
 }
