@@ -3,6 +3,7 @@
 export default function CoursesTableTags({render}){
 
     let num = render.num;
+    let numMultiple = render.nm;
     let courses = render.courses;
     let filter = render.filter;
     let setNum = render.sn;
@@ -60,11 +61,11 @@ export default function CoursesTableTags({render}){
     if(num > matchCourses.length){
         findNum(matchCourses.length)
     }
-    if((num - 3) > matchCourses.length){
+    if((num - numMultiple) > matchCourses.length){
         findNum(matchCourses.length)
     }
     let results = [];
-    for(let i = num - 3; i < num && i < matchCourses.length; i++){
+    for(let i = num - numMultiple; i < num && i < matchCourses.length; i++){
         results[i] = matchCourses[i]
 
     };
@@ -74,14 +75,14 @@ export default function CoursesTableTags({render}){
         let r = 0;
         let n = 0;
         if(mCLen == 0){
-            setNum(3)
+            setNum(numMultiple)
         }
-        else if(mCLen % 3 === 0){
+        else if(mCLen % numMultiple === 0){
             setNum(mCLen)
         }
         else{
-            r = mCLen % 3
-            n = 3 - r
+            r = mCLen % numMultiple
+            n = numMultiple - r
             setNum(mCLen + n)
         }
     }

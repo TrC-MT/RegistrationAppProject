@@ -7,7 +7,9 @@ import Navbar from '../Components/Nav/navbar'
 
 export default function StudentCourses(){
     let [filter, setFilter] = useState('');
-    let [num, setNum] = useState(3);
+    const initNum = 6; //I use this initNum, num, and numMultiple separetly. If I set them equal to each other, or used them in place of each other (ex: set numMultiple = num) then things could break when one changed through opperations.
+    let [num, setNum] = useState(initNum);
+    let[numMultiple, setNumMultiple] = useState(initNum);
 
     return(
         <>
@@ -22,7 +24,7 @@ export default function StudentCourses(){
                     </div>
                         
                     <div className='tables-container'>
-                        <CoursesTable pieces={{filter: filter, num: num, sn: setNum}}></CoursesTable>
+                        <CoursesTable pieces={{filter: filter, num: num, sn: setNum, nm: numMultiple}}></CoursesTable>
                     </div>
                 </div>
             </div>
@@ -31,12 +33,12 @@ export default function StudentCourses(){
     )
 
     function subNum(){
-        if(num >= 6){
-            setNum(num - 3)
+        if(num >= (numMultiple * 2)){
+            setNum(num - (numMultiple))
         }
     }
     function incNum(){
-        setNum(num + 3)
+        setNum(num + (numMultiple))
     }
 
 }

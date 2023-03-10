@@ -25,7 +25,7 @@ export default function CoursesTable({pieces}){
                         </tr>
                     </thead>
                     <tbody>
-                        <CoursesTableTags render={{courses: courses, filter: pieces.filter, num: pieces.num, sn: pieces.sn}}></CoursesTableTags>
+                        <CoursesTableTags render={{courses: courses, filter: pieces.filter, num: pieces.num, sn: pieces.sn, nm: pieces.nm}}></CoursesTableTags>
                     </tbody>
                 </table>
             </div>
