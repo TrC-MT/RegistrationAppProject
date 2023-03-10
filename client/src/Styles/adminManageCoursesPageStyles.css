@@ -1,0 +1,14 @@
+#add-course-container{
+    width: 60%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+}
+.add-course-section{
+    display: flex;
+    flex-direction: column;
+    margin-right: 2%;
+}
+#course-description-input{
+    height: 30%;
+}

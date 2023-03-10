@@ -7,13 +7,7 @@ import Navbar from '../Components/Nav/navbar'
 
 export default function StudentCourses(){
     let [filter, setFilter] = useState('');
-    let [num, setNum] = useState(3)
-
-    //if(registered){
-        // return(
-            //the page
-        // )
-    // }
+    let [num, setNum] = useState(3);
 
     return(
         <>
@@ -28,8 +22,7 @@ export default function StudentCourses(){
                     </div>
                         
                     <div className='tables-container'>
-                        <CoursesTable pieces={{ID: 'Scheduled', button: {text: 'Drop', do: drop}, filter: filter, num: num, sn: setNum}}></CoursesTable>
-                        <CoursesTable pieces={{ID: 'UnScheduled', button: {text: 'Enroll', do: enroll}, filter: filter, num: num, sn: setNum}}></CoursesTable>
+                        <CoursesTable pieces={{filter: filter, num: num, sn: setNum}}></CoursesTable>
                     </div>
                 </div>
             </div>

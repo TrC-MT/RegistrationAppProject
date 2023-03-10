@@ -7,7 +7,7 @@ import UserFormSubmitButton from './userFormSubmitButton';
 export default function UserForm({render}) {
     const navigate = useNavigate();
 
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState('');
     const [first_name, setFirst_name] = useState('');
     const [last_name, setLast_name] = useState('');
     const [username, setUsername] = useState('');

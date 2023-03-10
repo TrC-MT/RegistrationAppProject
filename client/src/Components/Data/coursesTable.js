@@ -7,20 +7,25 @@ export default function CoursesTable({pieces}){
     return(
         <>
             <div className='table-box'>
-                <h4 id={pieces.ID + '-table-title'} className="table-title">{pieces.ID}</h4>
-                <table id={pieces.ID + "-courses-table"}>
+                <h4 id='table-title' className="table-title">Schedual</h4>
+                <table id="courses-table">
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Identifier</th>
                             <th>Description</th>
                             <th>Tuition</th>
+                            <th>Credit hours</th>
+                            <th>Period</th>
+                            <th>Classroom</th>
+                            <th>Max capacity</th>
                             <th>
-                                <h5>{pieces.button.text}</h5>
+                                <h5>Enroll/Drop</h5>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <CoursesTableTags render={{courses: courses, filter: pieces.filter, num: pieces.num, sn: pieces.sn, button: pieces.button}}></CoursesTableTags>
+                        <CoursesTableTags render={{courses: courses, filter: pieces.filter, num: pieces.num, sn: pieces.sn}}></CoursesTableTags>
                     </tbody>
                 </table>
             </div>

@@ -1,6 +1,5 @@
 
 
-
 export default function CoursesTableTags({render}){
 
     let num = render.num;
@@ -21,11 +20,26 @@ export default function CoursesTableTags({render}){
                     <td className="course-name">
                         {courses[i].name}
                     </td>
+                    <td className="course-id">
+                        {courses[i].id}
+                    </td>
                     <td className="course-desc">
                         {courses[i].description}
                     </td>
                     <td className="course-tuition">
                         ${courses[i].tuition}
+                    </td>
+                    <td className="course-hours">
+                        {courses[i].creditHours}
+                    </td>
+                    <td className="course-period">
+                        {courses[i].period}
+                    </td>
+                    <td className="course-room">
+                        {courses[i].room}
+                    </td>
+                    <td className="course-seats">
+                        {courses[i].seats}
                     </td>
                     <td className="select-box">
                        <button className="course-select-button" onClick={button_do}>{button_text}</button>
