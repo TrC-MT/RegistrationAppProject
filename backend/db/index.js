@@ -36,17 +36,33 @@ exports.getUser = async (username) => {
 };
 
 
-exports.getUsers = (req, res) => {
-    console.log('Inside getUsers');
-    pool.query('SELECT id, user_name, password FROM users', (err, results) => {
-        if (err) throw err;
-        for (let row of results.rows) {
-            console.log(JSON.stringify(row));
-        }
-        console.log(results.rows);
-        res.status(200).json(results.rows);
-    }
-)}
+// exports.getUsers = (req, res) => {
+//     console.log('Inside getUsers');
+//     pool.query('SELECT id, user_name, password FROM users', (err, results) => {
+//         if (err) throw err;
+//         for (let row of results.rows) {
+//             console.log(JSON.stringify(row));
+//         }
+//         console.log(results.rows);
+//         res.status(200).json(results.rows);
+//     }
+// )}
+
+exports.getCourses = async () => {
+    query = 'SELECT id, title, description, schedule, classroom_number, maximum_capacity,'
+    + 'credit_hours, tuition_cost FROM classes';
+    const courses = await pool.query(query);
+    // console.log(`Courses are: ${courses.rows}`);
+    return JSON.stringify(courses.rows);
+}
+
+exports.addCourse = async () => {
+
+}
+
+exports.getUserEnrollment = async () => {
+
+}
 
 exports.editUser = async (req, res) => {
     console.log('editUser is running.');

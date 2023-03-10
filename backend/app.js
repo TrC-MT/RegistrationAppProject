@@ -8,7 +8,8 @@ const cors = require('cors')
 const app = express()
 const db = require('./db')
 const authRoute = require('./routes/auth.route.js')
-const authenticate = require('./auth/authenticate.js')
+const courseRoute = require('./routes/courses.route.js')
+// const authenticate = require('./auth/authenticate.js')
 const reactClientURL = 'http://localhost:3000'
 
 // MIDDLEWARE----------------------------------------------
@@ -23,7 +24,8 @@ app.use(flash())
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {httpOnly: true}
 }));
 
 
@@ -44,7 +46,7 @@ app.get('/userProfile', (req, res) => {
 })
 
 //test routes-----------------------------------
-app.get('/getUsers', db.getUsers);
+// app.get('/getUsers', db.getUsers);
 
 
 
@@ -54,7 +56,8 @@ app.get('/courses',  (res, req) => {
 });
 
 //express.Router() routes------------------------
-app.use('/', authRoute);
+app.use('/auth', authRoute);
+app.use('/course', courseRoute);
 
 
 app.listen(port, () => {

@@ -28,7 +28,7 @@ exports.createUser = async (req, res) => {
 exports.authUser =
     //console.log('inside authenticate');
     passport.authenticate('local', {
-        successRedirect: '/loginSuccess',
+        // successRedirect: '/loginSuccess',
         failureRedirect: '/loginFailed',
         failureFlash: true
     });
@@ -59,7 +59,10 @@ exports.login = (passport) => {
 passport.serializeUser((user, cb) => cb(null, user.id)) //cb for 'callback' could also use 'done' or whatever else
 passport.deserializeUser(async (id, cb) => cb(null, await db.getUserById(id)))
 };
+// SERVICE CALLS------------------------------------------------------------------
+// controller calls isAuthenticated service
+exports.currentlyAuthenticated = (req, res, next) => AuthUser.isAuthenticated(req, res, next);
 
-    
+exports.notAuthenticated = (req, res, next) => AuthUser.notAuthenticated(req, res, next);
     
     

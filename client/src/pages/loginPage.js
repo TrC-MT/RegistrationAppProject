@@ -106,10 +106,8 @@ export default function LoginPage() {
                 } else {
                     setMessage(data.message)
                     // localStorage.setItem("myToken", data.token);
-                    setMessage(data.successMessage);
-                    // setTimeout(() => {
-                    //     navigate('/userProfile')
-                    // } , 8000)
+                    // setMessage(data.successMessage);
+                    navigate('/userProfile')
                 }
                 });
         }
