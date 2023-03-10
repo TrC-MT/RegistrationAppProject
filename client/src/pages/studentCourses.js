@@ -39,11 +39,4 @@ export default function StudentCourses(){
         setNum(num + 3)
     }
 
-
-    function drop(){
-        console.log('drop')
-    }
-    function enroll(){
-        console.log('enroll')
-    }
 }

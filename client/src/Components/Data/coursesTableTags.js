@@ -6,15 +6,23 @@ export default function CoursesTableTags({render}){
     let courses = render.courses;
     let filter = render.filter;
     let setNum = render.sn;
-    let button_text = render.button.text;
-    let button_do = render.button.do;
 
+    let button_do = null;
+    let button_text = '';
 
     let matchCourses = [];
     let j = -1;
     for(let i = 0; i < courses.length; i++){
         if(((courses[i].name).toUpperCase()).includes((filter.toString()).toUpperCase())){
             j += 1
+            if(courses[i].registered == true){
+                button_do = drop;
+                button_text = 'DROP';
+            }
+            else{
+                button_do = enroll;
+                button_text = 'ENROLL';
+            }
             matchCourses[j] = 
                 <tr className="table-course">
                     <td className="course-name">
@@ -76,6 +84,13 @@ export default function CoursesTableTags({render}){
             n = 3 - r
             setNum(mCLen + n)
         }
+    }
+
+    function drop(){
+        console.log('drop')
+    }
+    function enroll(){
+        console.log('enroll')
     }
 }
 
