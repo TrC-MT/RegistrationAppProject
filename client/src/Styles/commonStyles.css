@@ -47,6 +47,7 @@ body{
     color:#403B26;
     box-shadow: 0px 0px 20px 5px #403B26;
     border-radius: 10px;
+    font-family: monospace;
     font-style: italic;
 }
 
@@ -56,6 +57,7 @@ input, button{
 
 input{
     border: 1.5px solid gray;
+    font-family: serif;
 }
 
 button{
