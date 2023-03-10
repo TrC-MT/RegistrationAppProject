@@ -9,7 +9,7 @@ export default function StudentCourses(){
     let [filter, setFilter] = useState('');
     const initNum = 6; //I use this initNum, num, and numMultiple separetly. If I set them equal to each other, or used them in place of each other (ex: set numMultiple = num) then things could break when one changed through opperations.
     let [num, setNum] = useState(initNum);
-    let[numMultiple, setNumMultiple] = useState(initNum);
+    let[numMultiple, setNumMultiple] = useState(initNum); //This is redundant.
 
     return(
         <>
