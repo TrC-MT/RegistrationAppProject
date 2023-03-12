@@ -53,14 +53,14 @@ exports.getCourses = async () => {
     + 'credit_hours, tuition_cost FROM classes';
     const courses = await pool.query(query);
     // console.log(`Courses are: ${courses.rows}`);
-    return JSON.stringify(courses.rows);
-}
-
-exports.addCourse = async () => {
-
+    return courses.rows;
 }
 
 exports.getUserEnrollment = async () => {
+    
+}
+
+exports.addCourse = async () => {
 
 }
 

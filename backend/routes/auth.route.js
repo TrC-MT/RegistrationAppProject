@@ -3,10 +3,6 @@ const router = express.Router();
 const authController = require('../controllers/auth.controller.js');
 
 //authentication routes
-// router.post('/login', );
-// router.get('/studentLogin', (req, res) => {
-//     res.send('Inside get of /studentLogin')
-// })
 router.post('/studentLogin', authController.notAuthenticated, authController.authUser, (req, res)=> {
     //if we're here then passport authentication was successful
     res.status(200).json({ successMessage: 'login successful' });

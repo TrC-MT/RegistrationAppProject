@@ -40,7 +40,7 @@ login(passport)
 
 const port = process.env.PORT || 3001
 
-// public facing 'web requests'
+// public facing routes
 app.get('/userProfile', (req, res) => {
     res.render('../client/src/')
 })
@@ -50,12 +50,8 @@ app.get('/userProfile', (req, res) => {
 
 
 
-// protected web requests, must go through authentication process!
-app.get('/courses',  (res, req) => {
+// protected routes-------------------------------
 
-});
-
-//express.Router() routes------------------------
 app.use('/auth', authRoute);
 app.use('/course', courseRoute);
 

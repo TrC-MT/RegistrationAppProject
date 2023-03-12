@@ -1,10 +1,10 @@
 const passport = require('passport');
 const db = require('../db');
 
+//controller that returns 'courses' payload from querying classes db table
 exports.returnCourses = async (req, res) => {
     const courses = await db.getCourses();
-    console.log(`Here's what db.getCourses() returned inside of course.controller.js: ${courses}`);
-    res.send('Courses sent!');
+    res.status(200).json(courses);
 }
 
 exports.returnUserEnrollment = () => {
