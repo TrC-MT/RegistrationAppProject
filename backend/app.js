@@ -41,9 +41,11 @@ login(passport)
 const port = process.env.PORT || 3001
 
 // public facing routes
-app.get('/userProfile', (req, res) => {
-    res.render('../client/src/')
-})
+app.use('/auth', authRoute);
+
+// app.get('/userProfile', (req, res) => {
+//     res.render('../client/src/')
+// })
 
 //test routes-----------------------------------
 // app.get('/getUsers', db.getUsers);
@@ -51,8 +53,6 @@ app.get('/userProfile', (req, res) => {
 
 
 // protected routes-------------------------------
-
-app.use('/auth', authRoute);
 app.use('/course', courseRoute);
 
 

@@ -2,6 +2,12 @@ const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/auth.controller.js');
 
+//coordinate with frontend to route unlogged in users to login page
+//if an authenticated user tries to access login page they will be redirected
+//to /userProfile by frontend
+router.get('/', authController.notAuthenticated, (req, res) => {
+    res.status(200).json({ authenticated: false })
+})
 //authentication routes
 router.post('/studentLogin', authController.notAuthenticated, authController.authUser, (req, res)=> {
     //if we're here then passport authentication was successful
