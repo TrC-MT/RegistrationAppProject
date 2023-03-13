@@ -1,0 +1,34 @@
+#error-heading{
+    color: var(--lighter_blue);
+    font-size: 4vw;
+}
+
+#error-login-link{
+    color: var(--light_blue);
+    font-size: 4.5vw;
+}
+#error-login-link:hover{
+    color: var(--blue);
+}
+
+#error-image-box{
+    /* border: 1px solid red; */
+    animation: errorMove 15s ease 0s infinite alternate;
+    width: 80%;
+}
+
+#error-react-logo{
+    width: 20%;
+    animation: errorSpin 8s linear 0s infinite alternate;
+}
+
+@keyframes errorMove {
+    0% {transform: translateX(-80%);}
+    50% {transform: translateX(80%);}
+}
+
+@keyframes errorSpin {
+    0% {transform: rotate(0deg);}
+
+    100% {transform: rotate(180deg);}
+}

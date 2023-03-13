@@ -1,0 +1,20 @@
+.server-message{
+    width: 47%;
+    position: absolute;
+    top: 1%;
+    left: 26%;
+    background-color: #DBCC81;
+    color:#403B26;
+    box-shadow: 0px 0px 20px 5px #403B26;
+    border-radius: 10px;
+    font-family: monospace;
+    font-style: italic;
+}
+
+.server-message-close{
+    background-color: var(--lighter_blue);
+    width: fit-content;
+}
+.server-message-close:hover{
+    background-color: var(--blue);
+}
