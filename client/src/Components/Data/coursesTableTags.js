@@ -10,6 +10,7 @@ export default function CoursesTableTags({render}){
 
     let button_do = null;
     let button_text = '';
+    let button_className = '';
 
     let matchCourses = [];
     let j = -1;
@@ -19,10 +20,12 @@ export default function CoursesTableTags({render}){
             if(courses[i].registered == true){
                 button_do = drop;
                 button_text = 'DROP';
+                button_className = 'drop-class-button';
             }
             else{
                 button_do = enroll;
                 button_text = 'ENROLL';
+                button_className = 'enroll-class-button';
             }
             matchCourses[j] = 
                 <tr className="table-course">
@@ -51,7 +54,7 @@ export default function CoursesTableTags({render}){
                         {courses[i].seats}
                     </td>
                     <td className="select-box">
-                       <button className="course-select-button" onClick={button_do}>{button_text}</button>
+                       <button className={`course-select-button ${button_className}`} onClick={button_do}>{button_text}</button>
                     </td>
                 </tr>
         }

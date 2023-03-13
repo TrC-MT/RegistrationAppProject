@@ -34,3 +34,18 @@ th, td{
     border: none;
     font-size: 1.2vw;
 }
+
+.course-select-button{
+    border-radius: 10px;
+    border-color: var(--light_blue);
+}
+.course-select-button:hover{
+    background-color: var(--blue);
+}
+
+.drop-class-button{
+    background-color: #FB5555;
+}
+.enroll-class-button{
+    background-color: var(--light_green);
+}
