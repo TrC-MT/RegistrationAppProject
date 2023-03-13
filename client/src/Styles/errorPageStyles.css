@@ -12,7 +12,7 @@
 }
 
 #error-image-box{
-    /* border: 1px solid red; */
+    margin-top: 5%;
     animation: errorMove 15s ease 0s infinite alternate;
     width: 80%;
 }
