@@ -2,7 +2,9 @@ import '../../Styles/ComponentStyles/userFormStyles.css'
 
 import { useState } from 'react';
 import {useNavigate} from 'react-router'
+
 import UserFormSubmitButton from './userFormSubmitButton';
+import ServerMessage from '../serverMessage';
 
 export default function UserForm({render}) {
     const navigate = useNavigate();
@@ -48,7 +50,7 @@ export default function UserForm({render}) {
 
     return(
         <>
-            {message && <div className='server-message'>{message}</div>}
+            <ServerMessage Message={{message, sm: setMessage}}></ServerMessage>
             <div id="user-form">
                     <span className="form-section user-form-section">
                         <label className='user-form-label'>First name: </label>

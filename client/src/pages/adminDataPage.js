@@ -2,6 +2,7 @@ import '../Styles/adminDataPageStyles.css'
 import { useState } from "react";
 import StudentIDs from "../Components/Data/studentIDs";
 import Navbar from "../Components/Nav/navbar";
+import ServerMessage from '../Components/serverMessage';
 
 export default function AdminDataPage() {
     const [message, setMessage] = useState('')
@@ -30,7 +31,7 @@ export default function AdminDataPage() {
         <>
             <Navbar pieces={{title: 'Manage accounts', msc: 'True', mc: 'True', logout: 'True'}}></Navbar>
             <div className="page-box">
-                {message && <div className='server-message'>{message}</div>}
+            <ServerMessage Message={{message, sm: setMessage}}></ServerMessage>
                 <div className="top-info">
                     <p>
                         Amount of students: {total_students}

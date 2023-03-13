@@ -1,6 +1,7 @@
 import '../Styles/loginPageStyles.css';
 import {Link, useNavigate} from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import ServerMessage from '../Components/serverMessage';
 
 //======================
 export default function LoginPage() {
@@ -17,7 +18,7 @@ export default function LoginPage() {
             <div id='abb-2' className='animate-background-box'></div>
             <div id='abb-3' className='animate-background-box'></div>
 
-            {message && <div className='server-message'>{message}</div>}
+            <ServerMessage Message={{message, sm: setMessage}}></ServerMessage>
 
             <div id="crecent-box">
                 <div id='image-helper'>
@@ -69,17 +70,13 @@ export default function LoginPage() {
                 } else {
                     console.log(data);
                     // localStorage.setItem("myToken", data.token);
-                    setTimeout(navigate('/userProfile'), 8000);
-                    setTimeout(setMessage(data.successMessage), 1000);
-                    
+                    navigate('/userProfile')
+                    setMessage(data.successMessage)
                 }
                 });
         }
         else{
             setMessage('Please type your information into the proper fields.');
-            console.log('timeout started')
-            setTimeout(setMessage(), 50000)
-            console.log('timeout ended')
         }
         
     }
@@ -121,5 +118,8 @@ export default function LoginPage() {
     }
 
 }
+
+//--------------
+
 //=================
 

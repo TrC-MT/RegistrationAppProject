@@ -1,6 +1,7 @@
 import '../Styles/adminManageCoursesPageStyles.css'
 import Navbar from "../Components/Nav/navbar";
 import { useState } from 'react';
+import ServerMessage from '../Components/serverMessage';
 
 export default function AdminManageCoursesPage(){
     const [message, setMessage] = useState('');
@@ -18,7 +19,7 @@ export default function AdminManageCoursesPage(){
         <>
             <Navbar pieces={{title: 'Manage Courses', back: 'True', logout: 'True'}}></Navbar>
             <div className="page-box">
-                {message && <div className='server-message'>{message}</div>}
+            <ServerMessage Message={{message, sm: setMessage}}></ServerMessage>
                 <div id="add-course-container">
                     <span className="add-course-section">
                         <label for="course-name-input">Course name</label>
