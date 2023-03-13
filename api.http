@@ -1,6 +1,34 @@
 ### Get all courses
 POST http://localhost:3001/userRegistration
 content-type: application/json
+
+{
+    "newUser": {
+        "firstName": "Joseph",
+        "lastName": "Smith",
+        "userName": "the_prophet",
+        "password": "GoldenPlates123",
+        "email": "jsmith@aol.com",
+        "phoneNumber": "8015550000",
+        "address": "123 S 456 E SLC, UT",
+    }
+}
+#### login request
+POST http://localhost:3001/studentLogin
+content-type: application/json
+
+{
+    "Credentials": {
+        "username": "Burton",
+        "password": "12345"
+    }
+}
+
+### logout request
+DELETE http://localhost:3001/logout
+content-type: application/json
+
+
 ### get courses for specific user
 http://localhost:3001/api/getUserCourses
 ### register new account
@@ -10,3 +38,18 @@ content-type: application/json
     "username": "asdf",
     "password": "asdf"
 }
+
+
+
+
+# {
+#     "newUser": {
+#         "userName": "ashleyburton",
+#         "password": "password12345",
+#         "email": "ashley@email.com",
+#         "firstName": "Ashley",
+#         "lastName": "Burton",
+#         "phoneNumber": 8015557777,
+#         "address": "123 st 555 blvd, SLC UT"
+#     }
+# }

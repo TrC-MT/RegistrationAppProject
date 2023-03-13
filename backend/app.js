@@ -3,7 +3,6 @@ const passport = require('passport')
 const cookieParser = require('cookie-parser')
 const flash = require('express-flash')
 const session = require('express-session')
-const methodOverride = require('method-override')
 const cors = require('cors')
 const app = express()
 const db = require('./db')
@@ -31,7 +30,7 @@ app.use(session({
 
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(methodOverride('_method'))
+// app.use(methodOverride('_method'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -40,19 +39,12 @@ login(passport)
 
 const port = process.env.PORT || 3001
 
-// public facing routes
-app.use('/auth', authRoute);
-
-// app.get('/userProfile', (req, res) => {
-//     res.render('../client/src/')
-// })
-
-//test routes-----------------------------------
-// app.get('/getUsers', db.getUsers);
+// public facing routes--------------------------------------
+// note: all auth routes use '/' root path
+app.use('/', authRoute);
 
 
-
-// protected routes-------------------------------
+// protected routes------------------------------------------
 app.use('/course', courseRoute);
 
 

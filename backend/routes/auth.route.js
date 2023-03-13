@@ -22,8 +22,10 @@ router.get('/loginFailed', (req, res)=>{
     res.status(401).json({ errorMessage: 'login failed' });
 })
 
-router.post('/userRegistration', authController.createUser);
+router.post('/userRegistration', authController.notAuthenticated, authController.createUser);
 
+//logout route
+router.delete('/logout', authController.currentlyAuthenticated, authController.logUserOut);
 
 // router.get('/userRegistration', (req, res) => {
 //     res.send('Inside auth.route.js file; request was successfully routed back to main app.js file!');
