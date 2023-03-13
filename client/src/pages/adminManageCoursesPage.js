@@ -61,20 +61,39 @@ export default function AdminManageCoursesPage(){
     )
 
     function addCourse(){
-        fetch('/addCourse', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: {
-                name: addName,
-                desc: addDesc,
-                tuition: addTuition,
-            }
-        })
-        .then((res) => res.json())
-        .then(data => {
-            setMessage(data.message)
-        })
+        if(
+            addName != ''
+            && addDesc != ''
+            && addTuition != undefined
+            && addCreditHours != undefined
+            && addPeriod != undefined
+            && addClassroom != undefined
+            && addMaxCapacity != undefined
+        )
+        {
+            fetch('/addCourse', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: {
+                    name: addName,
+                    desc: addDesc,
+                    tuition: addTuition,
+                    creditHours: addCreditHours,
+                    period: addPeriod,
+                    classroom: addClassroom,
+                    maxCapacity: addMaxCapacity,
+                }
+            })
+            .then((res) => res.json())
+            .then(data => {
+                setMessage(data.message)
+            })
+        }
+        else{
+            setMessage('Please type the proper fields before adding a course.')
+        }
     }
+        
 }
