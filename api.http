@@ -1,4 +1,4 @@
-### Get all courses
+### Register new user
 POST http://localhost:3001/userRegistration
 content-type: application/json
 
@@ -9,8 +9,8 @@ content-type: application/json
         "userName": "the_prophet",
         "password": "GoldenPlates123",
         "email": "jsmith@aol.com",
-        "phoneNumber": "8015550000",
-        "address": "123 S 456 E SLC, UT",
+        "phoneNumber": 8015550000,
+        "address": "123 S 456 E SLC, UT"
     }
 }
 #### login request
@@ -20,7 +20,7 @@ content-type: application/json
 {
     "Credentials": {
         "username": "Burton",
-        "password": "12345"
+        "password": "password"
     }
 }
 

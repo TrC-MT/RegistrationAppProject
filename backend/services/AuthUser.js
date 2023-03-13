@@ -20,11 +20,11 @@ class AuthUser {
     }
 
     notAuthenticated(req, res, next) {
-        if (!req.isAuthenticated()) {
+        if (req.isAuthenticated()) {
             //console.log(req.user.id)
-            next()
+            return res.json({ authenticated: true }) //, isAdmin: })
         }
-        return res.json({ authenticated: true }) //, isAdmin: })
+        next()
     }
 }
 
