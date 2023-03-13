@@ -1,4 +1,4 @@
-import '../Styles/errorPageStyles.css'
+import '../Styles/PageStyles/errorPageStyles.css'
 
 import { Link } from "react-router-dom";
 

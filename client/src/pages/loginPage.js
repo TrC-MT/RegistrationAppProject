@@ -1,4 +1,5 @@
-import '../Styles/loginPageStyles.css';
+import '../Styles/PageStyles/loginPageStyles.css';
+
 import {Link, useNavigate} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ServerMessage from '../Components/serverMessage';

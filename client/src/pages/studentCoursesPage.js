@@ -1,5 +1,7 @@
-import '../Styles/studentCoursesPageStyles.css'
+import '../Styles/PageStyles/studentCoursesPageStyles.css'
+
 import { useState } from 'react';
+
 import CoursesTable from '../Components/Data/coursesTable'
 import Navbar from '../Components/Nav/navbar'
 

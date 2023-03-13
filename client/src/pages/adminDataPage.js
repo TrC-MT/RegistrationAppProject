@@ -1,4 +1,4 @@
-import '../Styles/adminDataPageStyles.css'
+import '../Styles/PageStyles/adminDataPageStyles.css'
 import { useState } from "react";
 import StudentIDs from "../Components/Data/studentIDs";
 import Navbar from "../Components/Nav/navbar";

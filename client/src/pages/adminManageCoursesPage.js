@@ -1,4 +1,4 @@
-import '../Styles/adminManageCoursesPageStyles.css'
+import '../Styles/PageStyles/adminManageCoursesPageStyles.css'
 import Navbar from "../Components/Nav/navbar";
 import { useState } from 'react';
 import ServerMessage from '../Components/serverMessage';

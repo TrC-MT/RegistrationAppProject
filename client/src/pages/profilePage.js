@@ -1,6 +1,6 @@
 import '../Styles/commonStyles.css';
-import '../Styles/signUpPageStyles.css';
-import '../Styles/profilePageStyles.css'
+import '../Styles/PageStyles/signUpPageStyles.css';
+import '../Styles/PageStyles/profilePageStyles.css'
 import Navbar from '../Components/Nav/navbar';
 import SideStudentProfileInfo from '../Components/Data/sideStudentProfileInfo';
 import UserForm from '../Components/Form/userForm';

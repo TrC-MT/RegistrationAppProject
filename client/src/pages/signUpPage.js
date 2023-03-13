@@ -1,7 +1,9 @@
 import '../Styles/commonStyles.css';
-import '../Styles/signUpPageStyles.css';
-import Navbar from '../Components/Nav/navbar';
+import '../Styles/PageStyles/signUpPageStyles.css';
+
 import { useState } from 'react';
+
+import Navbar from '../Components/Nav/navbar';
 import UserForm from '../Components/Form/userForm';
 
 

@@ -4,7 +4,7 @@ import pageE from './errorPage'
 import page1 from './loginPage'
 import page2 from './signUpPage'
 import page3 from './profilePage'
-import page4 from './studentCourses'
+import page4 from './studentCoursesPage'
 import page5 from './adminDataPage'
 import page6 from './adminManageCoursesPage'
 
