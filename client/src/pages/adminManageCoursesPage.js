@@ -53,7 +53,7 @@ export default function AdminManageCoursesPage(){
                         <label for="course-max-capacity-input">Max capacity</label>
                         <input type='text' name="course-max-capacity-input" onKeyUp={(e) => handleAddMC(e.target.value)} />
                     </span>
-                    {showSubmitButton && <button onClick={addCourse}>Add course</button>}
+                    {showSubmitButton && <button onClick={addCourse} id="add-course-button">Add course</button>}
                 </div>
                 
             </div>
