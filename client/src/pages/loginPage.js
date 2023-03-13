@@ -77,6 +77,9 @@ export default function LoginPage() {
         }
         else{
             setMessage('Please type your information into the proper fields.');
+            console.log('timeout started')
+            setTimeout(setMessage(), 50000)
+            console.log('timeout ended')
         }
         
     }
