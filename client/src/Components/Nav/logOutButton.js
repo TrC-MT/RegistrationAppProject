@@ -13,7 +13,18 @@ export default function LogOutButton({render}){
 
     function logOut(){
         //kill the session
-        return navigate('/')
+        fetch('/logout', {
+            method: "DELETE",
+            // headers: {
+            //     "Content-Type": "application/json"
+            // },
+        }).then(res => res.json())
+        .then((data) => {
+            if (data.redirect === 'true') {
+                navigate('/');
+                return data;
+            }
+        })
     }
     
 }
