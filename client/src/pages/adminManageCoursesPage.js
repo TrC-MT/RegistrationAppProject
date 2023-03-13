@@ -23,7 +23,7 @@ export default function AdminManageCoursesPage(){
         <>
             <Navbar pieces={{title: 'Manage Courses', back: 'True', logout: 'True'}}></Navbar>
             <div className="page-box">
-            <ServerMessage Message={{message, sm: setMessage}}></ServerMessage>
+                <ServerMessage Message={{message, sm: setMessage}}></ServerMessage>
                 <div id="add-course-container">
                     <span className="add-course-section">
                         <label for="course-name-input">Course name</label>
@@ -55,7 +55,9 @@ export default function AdminManageCoursesPage(){
                     </span>
                     {showSubmitButton && <button onClick={addCourse} id="add-course-button">Add course</button>}
                 </div>
-                
+                <div className='courses-edit-container'>
+                    
+                </div>
             </div>
         </>
     )
