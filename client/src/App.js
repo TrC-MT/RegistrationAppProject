@@ -33,7 +33,7 @@ export default App;
 function checkToken(){
   console.log('checkToken was run')
   // fetch('/authenticated', {
-  //   method: 'POST',
+  //   method: 'GET',
   //   headers: {
   //     "Content-Type": "application/json",
   //   },
