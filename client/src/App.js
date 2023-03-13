@@ -32,7 +32,7 @@ export default App;
 
 function checkToken(){
   console.log('checkToken was run')
-  // fetch('/validate', {
+  // fetch('/authenticated', {
   //   method: 'POST',
   //   headers: {
   //     "Content-Type": "application/json",
@@ -43,7 +43,7 @@ function checkToken(){
   // })
   // .then((res) => res.json())
   // .then(data => {
-  //   return data;
+  //   return data.authenticated;
   // })
 
   //These will be deleted. Comment out the return true depending on what pages you want.
