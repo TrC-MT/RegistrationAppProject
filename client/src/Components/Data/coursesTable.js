@@ -36,7 +36,7 @@ export default function CoursesTable({pieces}){
 let courses = [
     {name: 'Web Development', description: 'One of the best classes possible. You should schedual it right away.', tuition: 1300},
     {name: 'Haunted Mansion Makeover', 
-        description: 'Learn how to be the spookiest house on Halloween. Unless someone else in your neihborhood takes this class, then you would have to share.',
+        description: 'Learn how to be the spookiest house on Halloween. Unless someone else in your neighborhood takes this class, then you would have to share.',
         tuition: 5324}, 
     {name: 'Water Skiing', description: 'Go to a large body of water, and ride on top of it.', tuition: 9876},
     {name: 'Unknown', 
