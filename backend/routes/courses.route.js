@@ -8,6 +8,6 @@ router.get('/allCourses', courseController.returnCourses);
 
 router.get('/enrolledCourses', courseController.returnUserEnrollment);
 
-router.post('/enrollInCourse', courseController.enrollNewCourse);
+router.post('/enroll', courseController.enrollNewCourse);
 
 module.exports = router;

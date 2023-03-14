@@ -1,3 +1,4 @@
+const passport = require('passport');
 const db = require('../db');
 
 //controller that returns 'courses' payload from querying classes db table
