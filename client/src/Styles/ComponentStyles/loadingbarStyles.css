@@ -1,0 +1,18 @@
+.progress-loadingbar{
+    position: absolute;
+    top: 2%;
+    left: 10%;
+    z-index: 5;
+    width: 80%;
+    border: 1px solid red;
+    height: 90%;
+}
+
+.loadingbar{
+    width: 10%;
+    height: 100%;
+    background-color: var(--yellow);
+    text-align: end;
+    line-height: 2500%;
+    color: black;
+}

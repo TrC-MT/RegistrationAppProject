@@ -31,7 +31,6 @@ export default App;
 
 
 function checkToken(){
-  console.log('checkToken was run')
   // fetch('/authenticated', {
   //   method: 'GET',
   //   headers: {
@@ -47,7 +46,7 @@ function checkToken(){
   // })
 
   //These will be deleted. Comment out the return true depending on what pages you want.
-  return true;
+  // return true;
   return false;
 }
 
