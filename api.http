@@ -33,12 +33,9 @@ GET http://localhost:3001/courses/allCourses
 content-type: application/json
 
 ### get current user's enrolled courses
-GET http://localhost:3001/courses/enrolledCourses
+GET http://localhost:3001/courses/enrolledCourses?classId=CSCI-2001
 content-type: application/json
 
-{
-    "classId": "CSCI-2001"
-}
 
 ### enroll standard user in an existing course
 POST http://localhost:3001/courses/enroll
