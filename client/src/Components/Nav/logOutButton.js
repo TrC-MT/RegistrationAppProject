@@ -20,9 +20,8 @@ export default function LogOutButton({render}){
             // },
         }).then(res => res.json())
         .then((data) => {
-            if (data.redirect === 'true') {
+            if (data.loggedOut === true) {
                 navigate('/');
-                return data;
             }
         })
     }

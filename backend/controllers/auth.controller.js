@@ -61,8 +61,12 @@ passport.deserializeUser(async (id, cb) => cb(null, await db.getUserById(id)))
 
 //logs out the current user and returns json redirect obj to frontend
 exports.logUserOut = (req, res) => {
-    req.logOut();
-    res.status(200).json({ redirect: 'true'}); //frontend redirects to login page
+    console.log(`Logging ${req.user.user_name} out.`);
+    req.logOut((err) => {
+        if (err) throw err;
+        res.status(200).json({ loggedOut: true});
+    });
+    //res.status(200).json({ redirect: 'true'}); //frontend redirects to login page
 }
 
 // SERVICE CALLS------------------------------------------------------------------

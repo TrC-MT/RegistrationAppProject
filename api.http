@@ -4,10 +4,10 @@ content-type: application/json
 
 {
     "newUser": {
-        "firstName": "Joseph",
+        "firstName": "John",
         "lastName": "Smith",
-        "userName": "the_prophet",
-        "password": "GoldenPlates123",
+        "userName": "the_spaniard",
+        "password": "Spaniard123",
         "email": "jsmith@aol.com",
         "phoneNumber": 8015550000,
         "address": "123 S 456 E SLC, UT"
@@ -19,8 +19,8 @@ content-type: application/json
 
 {
     "Credentials": {
-        "username": "Burton",
-        "password": "password"
+        "username": "the_prophet",
+        "password": "GoldenPlates123"
     }
 }
 
@@ -28,28 +28,7 @@ content-type: application/json
 DELETE http://localhost:3001/logout
 content-type: application/json
 
-
 ### get courses for specific user
-http://localhost:3001/api/getUserCourses
-### register new account
-POST http://localhost:3001/api/register
+GET http://localhost:3001/courses/allCourses
 content-type: application/json
-{
-    "username": "asdf",
-    "password": "asdf"
-}
 
-
-
-
-# {
-#     "newUser": {
-#         "userName": "ashleyburton",
-#         "password": "password12345",
-#         "email": "ashley@email.com",
-#         "firstName": "Ashley",
-#         "lastName": "Burton",
-#         "phoneNumber": 8015557777,
-#         "address": "123 st 555 blvd, SLC UT"
-#     }
-# }
