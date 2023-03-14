@@ -7,6 +7,7 @@ export default function AdminManageCoursesPage(){
     const [message, setMessage] = useState('');
     const [showSubmitButton, setShowSubmitButton] = useState(false);
     const [addName, setAddName] = useState('');
+    const [addIdentifier, setAddIdentifier] = useState('');
     const [addDesc, setAddDesc] = useState('');
     const [addTuition, setAddTuition] = useState();
     const [addCreditHours, setAddCreditHours] = useState();
@@ -28,6 +29,10 @@ export default function AdminManageCoursesPage(){
                     <span className="add-course-section">
                         <label for="course-name-input">Course name</label>
                         <input type='text' name="course-name-input" onKeyUp={(e) => setAddName(e.target.value)}></input>
+                    </span>
+                    <span className="add-course-section">
+                        <label for="course-identifier-input">Identifier</label>
+                        <input type='text' name="course-identifier-input" onKeyUp={(e) => setAddIdentifier(e.target.value)}></input>
                     </span>
                     <span className="add-course-section">
                         <label for="course-description-input">Description</label>
@@ -65,6 +70,7 @@ export default function AdminManageCoursesPage(){
     function addCourse(){
         if(
             addName != ''
+            && addIdentifier != ''
             && addDesc != ''
             && addTuition != undefined
             && addCreditHours != undefined
@@ -80,6 +86,7 @@ export default function AdminManageCoursesPage(){
                 },
                 body: {
                     name: addName,
+                    ID: addIdentifier,
                     desc: addDesc,
                     tuition: addTuition,
                     creditHours: addCreditHours,
