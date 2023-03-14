@@ -13,10 +13,23 @@ export default function ProfilePage() {
 
     //Check if the user is a student or admin
     //if user is a student, set user_type to 'Student'; if user is admin, set user_type to 'Admin'.
+    fetch('/isAdmin', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            question: 'Is this user an admin or student?'
+        }),
+    })
+    .then(res => res.json())
+    .then(data => {
+        user_type = data;
+    })
 
-    var user_type = 'Admin';
+    // var user_type = 'Admin';
     //Uncomment line below to see student view, comment line below to see admin view.
-    // user_type = 'Student';
+    var user_type = 'Student';
 
     return(
         <>

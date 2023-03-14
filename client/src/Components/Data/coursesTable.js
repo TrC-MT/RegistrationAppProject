@@ -3,6 +3,22 @@ import '../../Styles/ComponentStyles/coursesTableStyles.css'
 import CoursesTableTags from "./coursesTableTags"
 
 export default function CoursesTable({pieces}){
+    // let courses = [];
+
+    // fetch('/courses/allCourses', {
+    //     method: 'GET',
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //         question: 'All the courses please?'
+    //     }),
+        
+    // })
+    // .then((res) => res.json())
+    // .then((data) => {
+    //     courses = data;
+    // })
     
     return(
         <>

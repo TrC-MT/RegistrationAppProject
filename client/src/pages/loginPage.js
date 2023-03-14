@@ -3,6 +3,7 @@ import '../Styles/PageStyles/loginPageStyles.css';
 import {Link, useNavigate} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ServerMessage from '../Components/serverMessage';
+import Loadingbar from '../Components/loadingbar';
 
 //======================
 export default function LoginPage() {
@@ -10,6 +11,7 @@ export default function LoginPage() {
     const [message, setMessage] = useState('');
     const [login_username, setLogin_username] = useState('');
     const [login_password, setLogin_password] = useState('');
+    const [load, setLoad] = useState(false)
     
     //-----------------------
 
@@ -20,6 +22,7 @@ export default function LoginPage() {
             <div id='abb-3' className='animate-background-box'></div>
 
             <ServerMessage Message={{message, sm: setMessage}}></ServerMessage>
+            <Loadingbar render={load}></Loadingbar>
 
             <div id="crecent-box">
                 <div id='image-helper'>
@@ -49,6 +52,7 @@ export default function LoginPage() {
     //-----------------------------------------------------
 
     function studentLogin() {
+        setLoad(true)
         if(login_username != '' && login_password != ''){
             var loginUser = {
                     username: login_username,
@@ -66,11 +70,10 @@ export default function LoginPage() {
                 .then((res) => res.json())
                 .then((data) => {
                 if (data.errorMessage) {
-                    console.log(data);
                     setMessage(data.errorMessage)
                 } else {
-                    console.log(data);
                     // localStorage.setItem("myToken", data.token);
+                    setLoad(true)
                     navigate('/userProfile')
                     setMessage(data.successMessage)
                 }

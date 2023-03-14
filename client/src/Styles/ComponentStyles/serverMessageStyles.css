@@ -3,7 +3,7 @@
     position: absolute;
     top: 1%;
     left: 26%;
-    background-color: #DBCC81;
+    background-color: var(--yellow);
     color:#403B26;
     box-shadow: 0px 0px 20px 5px #403B26;
     border-radius: 10px;

@@ -9,10 +9,9 @@ import Navbar from '../Components/Nav/navbar'
 
 export default function StudentCourses(){
     let [filter, setFilter] = useState('');
-    const initNum = 6; //I use this initNum, num, and numMultiple separetly. If I set them equal to each other, or used them in place of each other (ex: set numMultiple = num) then things could break when one changed through opperations.
+    const initNum = 6; //I use this initNum, and num separetly. If I set them equal to each other later in the code, or used them in place of each other (ex: set initNum = num) then things could break when num changes through opperations.
     let [num, setNum] = useState(initNum);
-    let[numMultiple, setNumMultiple] = useState(initNum); //This is redundant.
-
+    
     return(
         <>
             <Navbar pieces={{title: 'Courses', logout: 'True'}}></Navbar>
@@ -26,7 +25,7 @@ export default function StudentCourses(){
                     </div>
                         
                     <div className='tables-container'>
-                        <CoursesTable pieces={{filter: filter, num: num, sn: setNum, nm: numMultiple}}></CoursesTable>
+                        <CoursesTable pieces={{filter: filter, num: num, sn: setNum, nm: initNum}}></CoursesTable>
                     </div>
                 </div>
             </div>
@@ -35,12 +34,12 @@ export default function StudentCourses(){
     )
 
     function subNum(){
-        if(num >= (numMultiple * 2)){
-            setNum(num - (numMultiple))
+        if(num >= (initNum * 2)){
+            setNum(num - (initNum))
         }
     }
     function incNum(){
-        setNum(num + (numMultiple))
+        setNum(num + (initNum))
     }
 
 }

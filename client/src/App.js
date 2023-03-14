@@ -31,7 +31,6 @@ export default App;
 
 
 function checkToken(){
-  console.log('checkToken was run')
   // fetch('/authenticated', {
   //   method: 'GET',
   //   headers: {
