@@ -16,7 +16,7 @@ export default function ProfilePage() {
 
     var user_type = 'Admin';
     //Uncomment line below to see student view, comment line below to see admin view.
-    user_type = 'Student';
+    // user_type = 'Student';
 
     return(
         <>

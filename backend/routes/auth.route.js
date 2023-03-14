@@ -12,6 +12,8 @@ const authController = require('../controllers/auth.controller.js');
 //authentication routes
 router.post('/studentLogin', authController.notAuthenticated, authController.authUser, (req, res)=> {
     //if we're here then passport authentication was successful
+    console.log(`${req.user}`);
+    console.log(`is the user authenticated? ${req.isAuthenticated()}`);
     res.status(200).json({ successMessage: 'login successful' });
 });
 

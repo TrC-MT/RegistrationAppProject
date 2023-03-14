@@ -56,12 +56,17 @@ exports.getCourses = async () => {
     return courses.rows;
 }
 
-exports.getUserEnrollment = async () => {
-    
+exports.getUserEnrollment = async (userId) => {
+    query = 'SELECT * FROM classes WHERE course_id IN ' 
+    + '(SELECT course_id FROM user_classes WHERE user_id=$1)';
+    const enrolledCourses = await pool.query(query, [userId]);
+    return enrolledCourses.rows;
 }
 
-exports.addCourse = async () => {
-
+exports.enrollCourseCurrentUser = async (userId, classId) => {
+    query = 'INSERT INTO user_classes (user_id, course_id) VALUES ($1, $2)';
+    const newEnrolledCourse = await pool.query(query, [userId, classId]);
+    return newEnrolledCourse;
 }
 
 exports.editUser = async (req, res) => {

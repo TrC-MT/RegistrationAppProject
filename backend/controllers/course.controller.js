@@ -7,6 +7,12 @@ exports.returnCourses = async (req, res) => {
     res.status(200).json(courses);
 }
 
-exports.returnUserEnrollment = () => {
+exports.returnUserEnrollment = async (req, res) => {
+    const userEnrollment = await db.getUserEnrollment(req.user.id);
+    res.status(200).json(userEnrollment);
+}
 
+exports.enrollNewCourse = async (req, res) => {
+    const enrolledCourse = await db.enrollCourseCurrentUser(req.user.id, req.body.classId);
+    res.status(200).json({ successful: `Successfully enrolled a course for user: ${req.user.username}`})
 }
