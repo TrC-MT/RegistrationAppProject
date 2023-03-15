@@ -2,6 +2,7 @@ import '../Styles/PageStyles/adminManageCoursesPageStyles.css'
 import Navbar from "../Components/Nav/navbar";
 import { useState } from 'react';
 import ServerMessage from '../Components/serverMessage';
+import AdminCoursesTable from '../Components/Data/adminCoursesTable';
 
 export default function AdminManageCoursesPage(){
     const [message, setMessage] = useState('');
@@ -61,7 +62,7 @@ export default function AdminManageCoursesPage(){
                     {showSubmitButton && <button onClick={addCourse} id="add-course-button">Add course</button>}
                 </div>
                 <div className='courses-edit-container'>
-                    
+                    <AdminCoursesTable></AdminCoursesTable>
                 </div>
             </div>
         </>
