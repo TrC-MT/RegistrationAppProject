@@ -46,7 +46,7 @@ function checkToken(){
   // })
 
   //These will be deleted. Comment out the return true depending on what pages you want.
-  // return true;
+  return true;
   return false;
 }
 
