@@ -34,7 +34,7 @@ export default function AdminCoursesTableTags({render}){
                         <input defaultValue={courses[i].id} onChange={(e) => setNIdent(e.target.value)}/>
                     </td>
                     <td className="course-desc">
-                        <input defaultValue={courses[i].description} onChange={(e) => setNDesc(e.target.value)}/>
+                        <textarea defaultValue={courses[i].description} onChange={(e) => setNDesc(e.target.value)}/>
                     </td>
                     <td className="course-tuition">
                         <input defaultValue={courses[i].tuition} onChange={(e) => setNTuit(e.target.value)}/>
