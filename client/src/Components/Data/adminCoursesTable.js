@@ -23,11 +23,13 @@ export default function AdminCoursesTable(){
 
     return(
         <>
-            <div className='controls-container'>
+            <div className='controls-container' id="admin-controls-container">
                 <label id='student-courses-filter-label' for='filter'>Search courses by name:</label>
                 <input id='student-courses-filter-input' name='filter' placeholder='Search course name here' onKeyUp={(e) => setFilter(e.target.value)}></input>
-                <button onClick={subNum}>&lt;</button>
-                <button onClick={incNum}>&gt;</button>
+                <span id="admin-controls-buttons">
+                    <button onClick={subNum}>&lt;</button>
+                    <button onClick={incNum}>&gt;</button>
+                </span>
             </div>
             <div id="admin-table-container">
                 <table id="admin-courses-table">
