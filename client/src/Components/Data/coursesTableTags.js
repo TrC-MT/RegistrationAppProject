@@ -54,7 +54,7 @@ export default function CoursesTableTags({render}){
                         {courses[i].seats}
                     </td>
                     <td className="select-box">
-                       <button className={`course-select-button ${button_className}`} onClick={button_do}>{button_text}</button>
+                       <button className={`course-select-button ${button_className}`} onClick={(e) => handleCourseButton(button_do, j)}>{button_text}</button>
                     </td>
                 </tr>
         }
@@ -90,10 +90,19 @@ export default function CoursesTableTags({render}){
         }
     }
 
-    function drop(){
+    function handleCourseButton(button_do, j){
+        if (button_do == 'drop'){
+            drop(j)
+        }
+        else if (button_do == 'enroll'){
+            enroll(j)
+        }
+    }
+
+    function drop(j){
         console.log('drop')
     }
-    function enroll(){
+    function enroll(j){
         console.log('enroll')
     }
 }
