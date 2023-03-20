@@ -54,7 +54,7 @@ export default function CoursesTableTags({render}){
                         {courses[i].seats}
                     </td>
                     <td className="select-box">
-                       <button className={`course-select-button ${button_className}`} onClick={(e) => button_do(courses[i].name)}>{button_text}</button>
+                       <button className={`course-select-button ${button_className}`} onClick={(e) => button_do(courses[i].name, i)}>{button_text}</button>
                     </td>
                 </tr>
         }
@@ -90,11 +90,47 @@ export default function CoursesTableTags({render}){
         }
     }
 
-    function drop(course_name){
-        console.log('drop, ' + course_name)
+    function drop(course_name, i){
+        console.log('drop, ' + course_name + ', ' + i)
+        // courses[i].registered = false;
+        
+        fetch('/courses/drop', {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                courseName: course_name,
+                place: i
+                //The course[i].registered for that student should become false
+            }),
+        
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            courses = data;
+            //should rerender the table with the correct button
+        })
     }
-    function enroll(course_name){
-        console.log('enroll, ' + course_name)
+    function enroll(course_name, i){
+        console.log('enroll, ' + course_name + ', ' + i)
+        fetch('/courses/enroll', {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                courseName: course_name,
+                place: i
+                //The course[i].registered for that student should become true
+            }),
+        
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            courses = data;
+            //should rerender the table with the correct button
+        })
     }
 }
 
