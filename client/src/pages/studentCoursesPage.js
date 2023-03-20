@@ -23,7 +23,7 @@ export default function StudentCourses(){
                         <button onClick={subNum}>&lt;</button>
                         <button onClick={incNum}>&gt;</button>
                     </div>
-                        
+
                     <div className='tables-container'>
                         <CoursesTable pieces={{filter: filter, num: num, sn: setNum, nm: initNum}}></CoursesTable>
                     </div>
