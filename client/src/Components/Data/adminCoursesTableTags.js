@@ -17,9 +17,6 @@ export default function AdminCoursesTableTags({render}){
     const [nCr, setNCr] = useState();
     const [nMC, setNMC] = useState();
 
-
-
-
     let matchCourses = [];
     let j = -1;
     for(let i = 0; i < courses.length; i++){

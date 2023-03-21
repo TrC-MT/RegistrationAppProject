@@ -18,16 +18,14 @@ export default function CoursesTableTags({render}){
         if(((courses[i].name).toUpperCase()).includes((filter.toString()).toUpperCase())){
             j += 1
             if(courses[i].registered == true){
-                button_do = drop;
+                courses[i].button_do = drop;
                 button_text = 'DROP';
                 button_className = 'drop-class-button';
-                console.log(courses[i].name + ' ' + courses[i].registered + '  True ' + String(button_do))
             }
             else{
-                button_do = enroll;
+                courses[i].button_do = enroll;
                 button_text = 'ENROLL';
                 button_className = 'enroll-class-button';
-                console.log(courses[i].name + ' ' + courses[i].registered + '  False ' + String(button_do))
             }
             matchCourses[j] = 
                 <tr className="table-course">
@@ -56,7 +54,7 @@ export default function CoursesTableTags({render}){
                         {courses[i].seats}
                     </td>
                     <td className="select-box">
-                       <button className={`course-select-button ${button_className}`} onClick={(e) => button_do(courses[i].name, i)}>{button_text}</button>
+                       <button className={`course-select-button ${button_className}`} onClick={(e) => courses[i].button_do(courses[i].name, i)}>{button_text}</button>
                     </td>
                 </tr>
         }
