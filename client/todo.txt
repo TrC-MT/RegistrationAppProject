@@ -1,0 +1,11 @@
+Error: the first course escapes the filter.
+
+Admins delete courses
+
+Admins register students.
+
+Students see registered courses first
+
+Finish the loading bar.
+
+Add logging.
