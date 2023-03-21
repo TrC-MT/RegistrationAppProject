@@ -21,11 +21,13 @@ export default function CoursesTableTags({render}){
                 button_do = drop;
                 button_text = 'DROP';
                 button_className = 'drop-class-button';
+                console.log(courses[i].name + ' ' + courses[i].registered + '  True ' + String(button_do))
             }
             else{
                 button_do = enroll;
                 button_text = 'ENROLL';
                 button_className = 'enroll-class-button';
+                console.log(courses[i].name + ' ' + courses[i].registered + '  False ' + String(button_do))
             }
             matchCourses[j] = 
                 <tr className="table-course">
