@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 
 export default function AdminCoursesTableTags({render}){
     let num = render.num;
@@ -12,6 +10,7 @@ export default function AdminCoursesTableTags({render}){
     let j = -1;
     for(let i = 0; i < courses.length; i++){
         if(((courses[i].name).toUpperCase()).includes((filter.toString()).toUpperCase())){
+            if(filter != ''){console.log(filter + ' ' + courses[i].name)}
             j += 1
             matchCourses[j] = 
                 <tr className="table-course">
@@ -56,7 +55,6 @@ export default function AdminCoursesTableTags({render}){
     let results = [];
     for(let i = num - numMultiple; i < num && i < matchCourses.length; i++){
         results[i] = matchCourses[i]
-
     };
     return results;
 
@@ -96,24 +94,24 @@ export default function AdminCoursesTableTags({render}){
             (courses[i].seats != '' && courses[i].seats != undefined && courses[i].seats != null)
         )
         {
-            fetch('/updateCourse', {
-                method: 'GET',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: {
-                    name: courses[i].name,
-                    ID: courses[i].id,
-                    description: courses[i].description,
-                    tuition: courses[i].tuition,
-                    creditHours:  courses[i].creditHours,
-                    period: courses[i].period,
-                    classroom:  courses[i].room,
-                    maxCapacity:  courses[i].seats,
-                }
-            })
-            .then(res => res.json())
-            .then(data => data)
+            // fetch('/updateCourse', {
+            //     method: 'GET',
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     },
+            //     body: {
+            //         name: courses[i].name,
+            //         ID: courses[i].id,
+            //         description: courses[i].description,
+            //         tuition: courses[i].tuition,
+            //         creditHours:  courses[i].creditHours,
+            //         period: courses[i].period,
+            //         classroom:  courses[i].room,
+            //         maxCapacity:  courses[i].seats,
+            //     }
+            // })
+            // .then(res => res.json())
+            // .then(data => data)
         }
         
     }

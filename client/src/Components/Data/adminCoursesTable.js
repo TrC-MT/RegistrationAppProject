@@ -9,17 +9,17 @@ export default function AdminCoursesTable(){
 
     // var courses = [];
 
-    fetch('/getAllCourses', {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: {
-            question: 'Can I get all of the courses please?'
-        }
-    })
-    .then(res => res.json())
-    .then(data => courses = data)
+    // fetch('/getAllCourses', {
+    //     method: 'GET',
+    //     headers: {
+    //         "Content-Type": "application/json"
+    //     },
+    //     body: {
+    //         question: 'Can I get all of the courses please?'
+    //     }
+    // })
+    // .then(res => res.json())
+    // .then(data => courses = data)
 
     return(
         <>
