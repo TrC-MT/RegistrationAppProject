@@ -39,6 +39,7 @@ export default function AdminCoursesTableTags({render}){
                     </td>
                     <td className="select-box">
                        <button className={`course-select-button`} onClick={(e) => updateCourse(i)}>UPDATE</button>
+                       <button className={`course-select-button d-class-button`} onClick={(e) => delCourse(i)}>DELETE</button>
                     </td>
                 </tr>
         }
@@ -99,6 +100,31 @@ export default function AdminCoursesTableTags({render}){
             //         "Content-Type": "application/json"
             //     },
             //     body: {
+            //         place: i,
+            //         Nname: courses[i].name,
+            //         NID: courses[i].id,
+            //         Ndescription: courses[i].description,
+            //         Ntuition: courses[i].tuition,
+            //         NcreditHours:  courses[i].creditHours,
+            //         Nperiod: courses[i].period,
+            //         Nclassroom:  courses[i].room,
+            //         NmaxCapacity:  courses[i].seats,
+            //     }
+            // })
+            // .then(res => res.json())
+            // .then(data => courses = data)
+        }
+        
+    }
+    function delCourse(i){
+        if(window.confirm(`Are you sure you want to delete the ${courses[i].name} course?`)){
+            // fetch('/delCourse', {
+            //     method: 'GET',
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     },
+            //     body: {
+            //         place: i,
             //         name: courses[i].name,
             //         ID: courses[i].id,
             //         description: courses[i].description,
@@ -110,7 +136,7 @@ export default function AdminCoursesTableTags({render}){
             //     }
             // })
             // .then(res => res.json())
-            // .then(data => data)
+            // .then(data => courses = data)
         }
         
     }

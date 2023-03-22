@@ -1,11 +1,9 @@
-Error: the first course escapes the filter.
-
-Admins delete courses
+Error: the first course escapes the filter only on the admin side.
 
 Admins register students.
 
-Students see registered courses first
-
 Finish the loading bar.
+
+Students see registered courses first
 
 Add logging.

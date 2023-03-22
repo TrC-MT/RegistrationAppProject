@@ -43,6 +43,7 @@ export default function AdminCoursesTable(){
                             <th>Period</th>
                             <th>Classroom</th>
                             <th>Max capacity</th>
+                            <th>Controls</th>
                         </tr>
                     </thead>    
                     <tbody>

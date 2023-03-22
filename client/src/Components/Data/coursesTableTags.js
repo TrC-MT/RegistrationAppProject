@@ -20,7 +20,7 @@ export default function CoursesTableTags({render}){
             if(courses[i].registered == true){
                 courses[i].button_do = drop;
                 button_text = 'DROP';
-                button_className = 'drop-class-button';
+                button_className = 'd-class-button';
             }
             else{
                 courses[i].button_do = enroll;
