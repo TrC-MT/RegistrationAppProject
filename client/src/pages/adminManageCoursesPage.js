@@ -29,6 +29,9 @@ export default function AdminManageCoursesPage(){
                 <div id='admin-manage-courses-page-box'>
                     <div id="add-course-container">
                         <span className="add-course-section">
+                            <h5 id='add-course-title'>Add a course</h5>
+                        </span>
+                        <span className="add-course-section">
                             <label for="course-name-input">Course name</label>
                             <input type='text' name="course-name-input" onKeyUp={(e) => setAddName(e.target.value)}></input>
                         </span>

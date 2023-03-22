@@ -8,18 +8,21 @@
 }
 
 #add-course-container{
-    width: 80%;
+    width: 85%;
     height: 10%;
     display: flex;
     justify-content: center;
     background-color: var(--darker_green);
     border: 3px solid var(--green)
 }
+#add-course-title{
+    line-height: 3.5vw;
+}
 .add-course-section{
     display: flex;
     flex-direction: column;
     margin-right: 1%;
-    width: 11%;
+    width: 10%;
 }
 #course-description-input{
     height: 30%;
