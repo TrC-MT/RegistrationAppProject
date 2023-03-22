@@ -10,7 +10,6 @@ export default function AdminCoursesTableTags({render}){
     let j = -1;
     for(let i = 0; i < courses.length; i++){
         if(((courses[i].name).toUpperCase()).includes((filter.toString()).toUpperCase())){
-            if(filter != ''){console.log(filter + ' ' + courses[i].name)}
             j += 1
             matchCourses[j] = 
                 <tr className="table-course">
