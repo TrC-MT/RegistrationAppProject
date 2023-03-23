@@ -36,18 +36,6 @@ exports.getUser = async (username) => {
 };
 
 
-// exports.getUsers = (req, res) => {
-//     console.log('Inside getUsers');
-//     pool.query('SELECT id, user_name, password FROM users', (err, results) => {
-//         if (err) throw err;
-//         for (let row of results.rows) {
-//             console.log(JSON.stringify(row));
-//         }
-//         console.log(results.rows);
-//         res.status(200).json(results.rows);
-//     }
-// )}
-
 exports.getCourses = async () => {
     query = 'SELECT id, title, description, schedule, classroom_number, maximum_capacity,'
     + 'credit_hours, tuition_cost FROM classes';
@@ -63,9 +51,9 @@ exports.getUserEnrollment = async (userId) => {
     return enrolledCourses.rows;
 }
 
-exports.enrollCourseCurrentUser = async (userId, classId) => {
+exports.enrollCourseCurrentUser = async (userId, courseId) => {
     query = 'INSERT INTO user_classes (user_id, course_id) VALUES ($1, $2)';
-    const newEnrolledCourse = await pool.query(query, [userId, classId]);
+    const newEnrolledCourse = await pool.query(query, [userId, courseId]);
     return newEnrolledCourse;
 }
 

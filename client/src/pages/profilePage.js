@@ -14,9 +14,9 @@ export default function ProfilePage() {
     //Check if the user is a student or admin
     //if user is a student, set user_type to 'Student'; if user is admin, set user_type to 'Admin'.
 
-    var user_type = 'Admin';
+    // var user_type = 'Admin';
     //Uncomment line below to see student view, comment line below to see admin view.
-    // user_type = 'Student';
+    var user_type = 'Student';
 
     return(
         <>
