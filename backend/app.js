@@ -8,8 +8,8 @@ const app = express()
 const db = require('./db')
 const authRoute = require('./routes/auth.route.js')
 const courseRoute = require('./routes/courses.route.js')
-// const authenticate = require('./auth/authenticate.js')
 const reactClientURL = 'http://localhost:3000'
+const authenticatedUser = require('./authenticate.js')
 
 // MIDDLEWARE----------------------------------------------
 //app.use(express.static('../client/build'))
@@ -45,7 +45,7 @@ app.use('/', authRoute);
 
 
 // protected routes------------------------------------------
-app.use('/courses', courseRoute);
+app.use('/courses', authenticatedUser, courseRoute);
 
 
 app.listen(port, () => {
