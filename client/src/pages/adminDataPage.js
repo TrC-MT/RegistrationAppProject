@@ -16,9 +16,25 @@ export default function AdminDataPage() {
     const [account_phone_number, setaccount_phone_number] = useState('');
     const [account_address, setaccount_address] = useState('');
     let [roll, setRoll] = useState('Student');
-    //Fetch the amount of accounts, tuition due
+
     var total_students = 50;
     var total_tuition = 9999
+    //Fetch the amount of accounts, tuition due
+    fetch('/totalStuTuit', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            question: 'Can I get the total students and total tuition?'
+        }),
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        total_students = data.ts
+        total_tuition = data.tt
+    });
+    
     //Fetch the accounts info
     var student_IDs = [134124, 2352435, 46546, 2423, 46546, 13425];
 
@@ -101,6 +117,7 @@ export default function AdminDataPage() {
                     email: account_email,
                     phoneNumber: account_phone_number,
                     address: account_address,
+                    role: roll,
             }
 
             fetch('/editUser', {
@@ -118,7 +135,6 @@ export default function AdminDataPage() {
                     setMessage(data.errorMessage)
                 } else {
                     setMessage(data.message)
-                    // localStorage.setItem("myToken", data.token);
                 }
                 });
         }

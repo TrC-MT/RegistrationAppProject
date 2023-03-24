@@ -1,9 +1,12 @@
+All fetch statements
+
 Error: the first course escapes the filter only on the admin side.
 
 Admins register students.
 
 Finish the loading bar.
 
+Add logging.
+
 Students see registered courses first
 
-Add logging.

@@ -9,11 +9,7 @@ export default function CoursesTable({pieces}){
     //     method: 'GET',
     //     headers: {
     //         "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //         question: 'All the courses please?'
-    //     }),
-        
+    //     }
     // })
     // .then((res) => res.json())
     // .then((data) => {

@@ -17,10 +17,7 @@ export default function ProfilePage() {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            question: 'Is this user an admin or student?'
-        }),
+        }
     })
     .then(res => res.json())
     .then(data => {

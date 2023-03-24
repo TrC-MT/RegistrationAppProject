@@ -4,6 +4,9 @@
 export default function NumClasses({render}){
 
         //get the num_classes from server
+        // fetch('/numberStuSchedualedClasses', {
+            
+        // })
 
         var num_classes = 8;
 
