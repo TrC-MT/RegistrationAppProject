@@ -51,12 +51,6 @@ exports.getUserEnrollment = async (userId) => {
     return enrolledCourses.rows;
 }
 
-exports.enrollCourseCurrentUser = async (userId, courseId) => {
-    query = 'INSERT INTO user_classes (user_id, course_id) VALUES ($1, $2)';
-    const newEnrolledCourse = await pool.query(query, [userId, courseId]);
-    return newEnrolledCourse;
-}
-
 exports.editUser = async (req, res) => {
     console.log('editUser is running.');
     const query = 'UPDATE user SET (user_name, password, email, first_name,'
@@ -70,3 +64,45 @@ exports.editUser = async (req, res) => {
         }
     })
 }
+// api/courses/enroll database logic------------------------------------------------
+exports.enrollCourseCurrentUser = async (courseId, userId) => {
+    const notEnrolled = await isUserEnrolled(courseId, userId);
+    const validCourse = await isValidCourse(courseId);
+
+    if (notEnrolled && validCourse) {
+        query = 'INSERT INTO user_classes (user_id, course_id) VALUES ($1, $2)';
+        const newEnrolledCourse = await pool.query(query, [userId, courseId]);
+        return newEnrolledCourse;
+    }
+    //if we got here then either the user's already been enrolled or the course doesn't exist
+    return false;
+}
+
+// enrollCourseCurrentUser helper functions---------
+const isUserEnrolled = async (userId, courseId) => {
+    query = 'SELECT course_id FROM user_classes'
+    + 'WHERE user_id=$1 AND course_id=$2';
+    const notAlreadyEnrolled = await pool.query(query, [userId, courseId])
+
+    if (notAlreadyEnrolled) {
+        return false;
+    }
+    //if we made it here the user has NOT previously enrolled in the course
+    return true;
+}
+
+const isValidCourse = async (courseId) => {
+    //check if course_id actually exists in db
+    const query = 'SELECT * FROM users_classes'
+    + 'WHERE course_id=$1';
+    const isValidCourseId = await pool.query(query, [courseId]);
+
+    if (isValidCourseId) {
+        return true;
+    }
+    //if we made it here the course does NOT currently exist in the database
+    return false;
+}
+
+
+
