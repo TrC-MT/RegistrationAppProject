@@ -6,13 +6,13 @@ export default function Loadingbar({render}){
         console.log('rendering')
         return(
             <div className="progress-loadingbar">
-                <div className="loadingbar" onLoad={(e) => move(e.target.value).then(console.log('loaded'))}>10%</div>
+                <div className="loadingbar" onClick={(e) => move(e.target)}>10%</div>
             </div>
         )
     }
 
     function move(target){
-        console.log('moving')
+        console.log(target)
         var i = 0;
         if(i == 0){
             var elem = target
