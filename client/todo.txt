@@ -4,9 +4,8 @@ Error: the first course escapes the filter only on the admin side.
 
 Admins register students.
 
-Finish the loading bar.
+Implement the loading bar to places that should have it.
 
 Add logging.
 
 Students see registered courses first
-
