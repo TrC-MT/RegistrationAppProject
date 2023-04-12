@@ -52,7 +52,6 @@ export default function LoginPage() {
     //-----------------------------------------------------
 
     function studentLogin() {
-        setLoad(true)
         if(login_username != '' && login_password != ''){
             var loginUser = {
                     username: login_username,
@@ -108,6 +107,7 @@ export default function LoginPage() {
                 if (data.errorMessage) {
                     setMessage(data.errorMessage)
                 } else {
+                    setLoad(true)
                     setMessage(data.message)
                     // localStorage.setItem("myToken", data.token);
                     // setMessage(data.successMessage);
