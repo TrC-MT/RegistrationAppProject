@@ -5,6 +5,7 @@ export default function AdminCoursesTableTags({render}){
     let courses = render.courses;
     let filter = render.filter;
     let setNum = render.sn;
+    let scra = render.scra;
 
     let matchCourses = [];
     let j = -1;
@@ -56,6 +57,7 @@ export default function AdminCoursesTableTags({render}){
     for(let i = num - numMultiple; i < num && i < matchCourses.length; i++){
         results[i] = matchCourses[i]
     };
+    scra(matchCourses.length)
     return results;
 
     function findNum(mCLen){

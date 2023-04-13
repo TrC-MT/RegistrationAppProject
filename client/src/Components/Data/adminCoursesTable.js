@@ -7,6 +7,8 @@ export default function AdminCoursesTable(){
     const initNum = 4;
     let [num, setNum] = useState(initNum);
 
+    let [course_results_amount, setCourse_results_amount] = useState();
+
     // var courses = [];
 
     // fetch('courses/allCourses', {
@@ -45,8 +47,11 @@ export default function AdminCoursesTable(){
                         </tr>
                     </thead>    
                     <tbody>
-                        <AdminCoursesTableTags render={{courses: courses, filter: filter, num: num, nm: initNum, sn: setNum}}></AdminCoursesTableTags>
+                        <AdminCoursesTableTags render={{courses: courses, filter: filter, num: num, nm: initNum, sn: setNum, scra: setCourse_results_amount}}></AdminCoursesTableTags>
                     </tbody>
+                    <tfoot>
+                        Results: {course_results_amount}
+                    </tfoot>
                 </table>
             </div>
         </>

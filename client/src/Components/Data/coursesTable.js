@@ -1,8 +1,11 @@
 import '../../Styles/ComponentStyles/coursesTableStyles.css'
-import { useEffect } from 'react';
+import { useState } from 'react';
 import CoursesTableTags from "./coursesTableTags"
 
 export default function CoursesTable({pieces}){
+
+    let [course_results_amount, setCourse_results_amount] = useState();
+
 
     // useEffect(() => {
     //     fetch('/courses/allCourses')
@@ -43,8 +46,11 @@ export default function CoursesTable({pieces}){
                         </tr>
                     </thead>
                     <tbody>
-                        <CoursesTableTags render={{courses: courses, filter: pieces.filter, num: pieces.num, sn: pieces.sn, nm: pieces.nm}}></CoursesTableTags>
+                        <CoursesTableTags render={{courses: courses, filter: pieces.filter, num: pieces.num, sn: pieces.sn, nm: pieces.nm, scra: setCourse_results_amount}}></CoursesTableTags>
                     </tbody>
+                    <tfoot>
+                        Results: {course_results_amount}
+                    </tfoot>
                 </table>
             </div>
         </>
