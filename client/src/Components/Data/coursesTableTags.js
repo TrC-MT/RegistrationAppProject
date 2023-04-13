@@ -70,7 +70,6 @@ export default function CoursesTableTags({render}){
     let results = [];
     for(let i = num - numMultiple; i < num && i < matchCourses.length; i++){
         results[i] = matchCourses[i]
-
     };
     return results;
 

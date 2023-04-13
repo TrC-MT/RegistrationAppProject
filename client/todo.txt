@@ -1,7 +1,5 @@
 All fetch statements
 
-Error: the first course escapes the filter only on the admin side.
-
 Admins register students.
 
 Implement the loading bar to places that should have it.
@@ -9,3 +7,5 @@ Implement the loading bar to places that should have it.
 Add logging.
 
 Students see registered courses first
+
+Find a better way to fix the admin courses search.       (https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)

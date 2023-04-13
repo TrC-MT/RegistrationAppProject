@@ -7,23 +7,23 @@ export default function AdminCoursesTable(){
     const initNum = 4;
     let [num, setNum] = useState(initNum);
 
-    var courses = [];
+    // var courses = [];
 
-    fetch('courses/allCourses', {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .then(data => courses = data)
+    // fetch('courses/allCourses', {
+    //     method: 'GET',
+    //     headers: {
+    //         "Content-Type": "application/json"
+    //     }
+    // })
+    // .then(res => res.json())
+    // .then(data => console.log(data))
+    // .then(data => courses = data)
 
     return(
         <>
             <div className='controls-container' id="admin-controls-container">
                 <label id='student-courses-filter-label' for='filter'>Search courses by name:</label>
-                <input id='student-courses-filter-input' name='filter' placeholder='Search course name here' onKeyUp={(e) => setFilter(e.target.value)}></input>
+                <input id='student-courses-filter-input' name='filter' placeholder='Search course name here' onChange={(e) => changeFilter(e.target.value)}></input>
                 <span id="admin-controls-buttons">
                     <button onClick={subNum}>&lt;</button>
                     <button onClick={incNum}>&gt;</button>
@@ -52,6 +52,12 @@ export default function AdminCoursesTable(){
         </>
     )
 
+    function changeFilter(target_value){
+        setFilter(target_value)
+        incNum()
+        subNum()
+    }
+
 
     function subNum(){
         if(num >= (initNum * 2)){
@@ -63,24 +69,24 @@ export default function AdminCoursesTable(){
     }
 }
 
-// let courses = [
-//     {name: 'Web Development', description: 'One of the best classes possible. You should schedual it right away.', tuition: 1300},
-//     {name: 'Haunted Mansion Makeover', 
-//         description: 'Learn how to be the spookiest house on Halloween. Unless someone else in your neighborhood takes this class, then you would have to share.',
-//         tuition: 5324}, 
-//     {name: 'Water Skiing', description: 'Go to a large body of water, and ride on top of it.', tuition: 9876},
-//     {name: 'Unknown', 
-//         description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', 
-//         tuition: 0}, 
-//     {name: 'UnknownB', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
-//     {name: 'UnknownC', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
-//     {name: 'D', description: 'none', tuition: 5}, 
-//     {name: 'e', description: 'none', tuition: 5}, 
-//     {name: 'f', description: 'none', tuition: 5},
-//     {name: 'UnknownD', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
-//     {name: 'UnknownE', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
-//     {name: 'UnknownF', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
-//     {name: 'UnknownG', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
-//     {name: 'UnknownH', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
+let courses = [
+    {name: 'Web Development', description: 'One of the best classes possible. You should schedual it right away.', tuition: 1300},
+    {name: 'Haunted Mansion Makeover', 
+        description: 'Learn how to be the spookiest house on Halloween. Unless someone else in your neighborhood takes this class, then you would have to share.',
+        tuition: 5324}, 
+    {name: 'Water Skiing', description: 'Go to a large body of water, and ride on top of it.', tuition: 9876},
+    {name: 'Unknown', 
+        description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', 
+        tuition: 0}, 
+    {name: 'UnknownB', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
+    {name: 'UnknownC', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
+    {name: 'D', description: 'none', tuition: 5}, 
+    {name: 'e', description: 'none', tuition: 5}, 
+    {name: 'f', description: 'none', tuition: 5},
+    {name: 'UnknownD', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
+    {name: 'UnknownE', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
+    {name: 'UnknownF', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
+    {name: 'UnknownG', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
+    {name: 'UnknownH', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
 
-// ]
+]
