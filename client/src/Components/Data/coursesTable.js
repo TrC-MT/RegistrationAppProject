@@ -15,7 +15,10 @@ export default function CoursesTable({pieces}){
     //     method: 'GET',
     //     headers: {
     //         "Content-Type": "application/json",
-    //     }
+    //     },
+        // body: JSON.stringify({
+        //     possibleStudentID: pieces.stu
+        // }),
     // })
     // .then((res) => res.json())
     // .then((data) => {
@@ -43,7 +46,7 @@ export default function CoursesTable({pieces}){
                         </tr>
                     </thead>
                     <tbody>
-                        <CoursesTableTags render={{courses: courses, filter: pieces.filter, num: pieces.num, sn: pieces.sn, nm: pieces.nm, scra: pieces.scra, sar1: pieces.sar1, sar2: pieces.sar2}}></CoursesTableTags>
+                        <CoursesTableTags render={{courses: courses, filter: pieces.filter, num: pieces.num, sn: pieces.sn, nm: pieces.nm, scra: pieces.scra, sar1: pieces.sar1, sar2: pieces.sar2, stu: pieces.stu}}></CoursesTableTags>
                     </tbody>
                 </table>
             </div>

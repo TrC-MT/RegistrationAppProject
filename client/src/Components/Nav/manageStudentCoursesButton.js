@@ -1,4 +1,8 @@
+import {useNavigate} from 'react-router'
+
+
 export default function ManageStudentCoursesButton({render}){
+    const navigate = useNavigate();
 
     if(render == 'True'){
         return(
@@ -9,7 +13,7 @@ export default function ManageStudentCoursesButton({render}){
     }
 
     function MStuCourses(){
-    
+        return navigate("/userProfile/adminData/manageStudentCourses")
     }
     
 }

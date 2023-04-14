@@ -7,6 +7,7 @@ import page3 from './profilePage'
 import page4 from './studentCoursesPage'
 import page5 from './adminDataPage'
 import page6 from './adminManageCoursesPage'
+import page7 from './adminManageStudentCoursesPage'
 
 
 export default {
@@ -17,4 +18,5 @@ export default {
     Page4: page4,
     Page5: page5,
     Page6: page6,
+    Page7: page7,
 }

@@ -18,6 +18,7 @@ function App() {
             <Route path="/userProfile/courses" element={<PAGES.Page4 />} />
             <Route path="/userProfile/adminData" element={<PAGES.Page5/>} />
             <Route path="/userProfile/adminData/manageCourses" element={<PAGES.Page6/>}/>
+            <Route path = "/userProfile/adminData/manageStudentCourses" element={<PAGES.Page7/>}/>
           </Route>
           <Route path='*' element={<PAGES.PageE/>}/>
         </Routes>

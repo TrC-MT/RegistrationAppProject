@@ -1,0 +1,25 @@
+#admin-manage-student-select-student-container{
+    background-color: var(--dark_blue);
+    position: fixed;
+    top: 12%;
+    left: 2%;
+    z-index: 8;
+    color: var(--light_blue);
+    width: 20%;
+    height: 10%;
+    border: 1px solid var(--blue);
+}
+
+#admin-account-search-head2{
+    margin-bottom: 0px;
+}
+
+.admin-id-search-box{
+    display: flex;
+    flex-direction: column;
+}
+
+#admin-manage-student-courses-idsearch{
+    width: 60%;
+    margin-left: 20%;
+}

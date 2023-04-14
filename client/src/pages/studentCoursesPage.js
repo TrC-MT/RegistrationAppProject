@@ -7,7 +7,9 @@ import Navbar from '../Components/Nav/navbar'
 
 
 
-export default function StudentCourses(){
+export default function StudentCourses({adminManage}){
+    const stu = adminManage.stu;
+
     let [filter, setFilter] = useState('');
     const initNum = 6; //I use this initNum, and num separetly. If I set them equal to each other later in the code, or used them in place of each other (ex: set initNum = num) then things could break when num changes through opperations.
     let [num, setNum] = useState(initNum);
@@ -32,7 +34,7 @@ export default function StudentCourses(){
                     </div>
 
                     <div className='tables-container'>
-                        <CoursesTable pieces={{filter: filter, num: num, sn: setNum, nm: initNum, sar1: setAmount_results1, sar2: setAmount_results2, cra: course_results_amount, scra: setCourse_results_amount}}></CoursesTable>
+                        <CoursesTable pieces={{filter: filter, num: num, sn: setNum, nm: initNum, sar1: setAmount_results1, sar2: setAmount_results2, cra: course_results_amount, scra: setCourse_results_amount, stu: stu}}></CoursesTable>
                     </div>
                 </div>
             </div>

@@ -1,15 +1,16 @@
 
-
 export default function CoursesTableTags({render}){
 
     let num = render.num;
-    let numMultiple = render.nm;
+    const numMultiple = render.nm;
     let courses = render.courses;
     let filter = render.filter;
     let setNum = render.sn;
     let scra = render.scra;
     let sar1 = render.sar1;
     let sar2 = render.sar2;
+
+    const stu = render.stu;
 
     let button_do = null;
     let button_text = '';
@@ -116,10 +117,10 @@ export default function CoursesTableTags({render}){
             },
             body: JSON.stringify({
                 courseName: course_name,
-                place: i
+                place: i,
+                possibleStudentID: stu
                 //The course[i].registered for that student should become false
             }),
-        
         })
         .then((res) => res.json())
         .then((data) => {
@@ -136,7 +137,8 @@ export default function CoursesTableTags({render}){
             },
             body: JSON.stringify({
                 courseName: course_name,
-                place: i
+                place: i,
+                possibleStudentID: stu
                 //The course[i].registered for that student should become true
             }),
         
