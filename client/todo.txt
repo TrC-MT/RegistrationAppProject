@@ -1,10 +1,10 @@
-ADMIN DATA, ADMINS REGISTER STUDENTS
-
 All fetch statements
 
 Implement the loading bar to places that should have it.
 
 Add logging.
+
+Test if admins can actually manage student courses.
 
 Students see registered courses first
 
