@@ -59,7 +59,12 @@ export default function AdminCoursesTableTags({render}){
         results[i] = matchCourses[i]
     };
     scra(matchCourses.length)
-    sar1(num-(numMultiple) +1)
+    if(matchCourses.length != 0){
+        sar1(num-(numMultiple) +1)
+    }
+    else{
+        sar1(0)
+    }
     if(num < matchCourses.length){
         sar2(num)
     }
