@@ -34,6 +34,18 @@ export default function AdminDataPage() {
         total_students = data.ts
         total_tuition = data.tt
     });
+
+    var accounts = [ //No need to comment this out. It gets redefined when the fetch runs.
+        {id: 1234, fn: 'Joe', ln: 'Boon', un: 'Jboon', pswd: '134lj1235', 
+        email: 'Jboon@testing.nully', pn: '555-555-5555', adrs: 'homeless', roll: 'Student'
+        },
+        {id: 5332, fn: 'Dalton', ln: 'Rasin', un: 'DRassin', pswd: '5039adsfl2345',
+        email: 'Drasin@debugg.undefined', pn: '888-888-8888', adrs: '234 oak ln', roll: 'Admin'
+        },
+        {id: 364, fn: 'Gary', ln: 'winters', un: 'unrealated', pswd: 'adfs3w5adsf4',
+        email: 'Nevermessageme@no.haha', pn: '123-321-4321', adrs: 'Ion 65 fl2', roll: 'Student'
+        },
+    ];
     
     //Fetch the accounts info
     fetch('/AllAccountsInfo', {
@@ -47,14 +59,22 @@ export default function AdminDataPage() {
     })
     .then((res) => res.json())
     .then((data) => {
-        let accounts = data; //I'm assuming an array of objects. Ex: [{id: blah, fn: blah, ln: blah, un: blah, pswd: blah, etc.}]
+        accounts = data; //I'm assuming an array of objects. Ex: [{id: blah, fn: blah, ln: blah, un: blah, pswd: blah, etc.}]
     });
 
-    var student_IDs = [134124, 2352435, 46546, 2423, 46546, 13425];
+    var student_IDs = [];
+    for(let i = 0; i < accounts.length; i++){
+        student_IDs[i] = accounts[i].id
+    }
+
 
     function handleRoll(target_value){
         setRoll(target_value)
         setShowChangeButton(true)
+    }
+    function handleFilter(target_value){
+        setFilter(target_value)
+        findaccount(target_value)
     }
 
     return (
@@ -73,9 +93,9 @@ export default function AdminDataPage() {
                 
                 <div id="account-manager-container">
                     <h5>Account:</h5>
-                    <input defaultValue="Search by ID" onKeyUp={(e) => setFilter(e.target.value) }></input>
+                    <input placeholder="Search by ID" onKeyUp={(e) => handleFilter(e.target.value) }></input>
                     <label for="accounts" className='account-info-label'>ID:</label>
-                    <select name="accounts" onClick={(e) => findaccount(e)}>
+                    <select name="accounts" onClick={(e) => findaccount(e.target.value)}>
                         <StudentIDs render={{student_IDs, filter}}></StudentIDs>
                     </select>
                     <label for="account-first-name" className='account-info-label'>First name:</label>
@@ -97,22 +117,27 @@ export default function AdminDataPage() {
                         <option>Student</option>
                         <option>Administrator</option>
                     </select>
-                    {showChangeButton && <button onClick={updateUser}>Change</button>}
+                    {showChangeButton && <button onClick={updateUser}>Update</button>}
                 </div>
 
             </div>
         </>
     )
 
-    function findaccount(e){
+    function findaccount(target_value){
         //send the e.target.value to filter the right account info
-        setaccount_first_name();
-        setaccount_last_name();
-        setaccount_username();
-        setaccount_password();
-        setaccount_email();
-        setaccount_phone_number();
-        setaccount_address();
+        for(let i = 0; i < accounts.length; i++){
+            if(accounts[i].id == target_value){
+                setaccount_first_name(accounts[i].fn);
+                setaccount_last_name(accounts[i].ln);
+                setaccount_username(accounts[i].un);
+                setaccount_password(accounts[i].pswd);
+                setaccount_email(accounts[i].email);
+                setaccount_phone_number(accounts[i].pn);
+                setaccount_address(accounts[i].adrs);
+            }
+        }
+        
     }
 
     function updateUser(){
