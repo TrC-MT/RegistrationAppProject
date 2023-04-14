@@ -8,6 +8,8 @@ export default function CoursesTableTags({render}){
     let filter = render.filter;
     let setNum = render.sn;
     let scra = render.scra;
+    let sar1 = render.sar1;
+    let sar2 = render.sar2;
 
     let button_do = null;
     let button_text = '';
@@ -73,6 +75,13 @@ export default function CoursesTableTags({render}){
         results[i] = matchCourses[i]
     };
     scra(matchCourses.length)
+    sar1(num-(numMultiple) +1)
+    if(num < matchCourses.length){
+        sar2(num)
+    }
+    else{
+        sar2(matchCourses.length)
+    }
     return results;
 
     function findNum(mCLen){

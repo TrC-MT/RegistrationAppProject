@@ -23,7 +23,6 @@ th, td{
     width: 15%;
 }
 
-
 .course-desc{
     display: block;
     width: 99%;
@@ -48,4 +47,8 @@ th, td{
 }
 .enroll-class-button{
     background-color: var(--light_green);
+}
+
+.results-amount{
+    font-size: .8vw;
 }

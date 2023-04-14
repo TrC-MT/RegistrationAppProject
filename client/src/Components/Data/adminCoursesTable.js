@@ -28,6 +28,9 @@ export default function AdminCoursesTable(){
             <div className='controls-container' id="admin-controls-container">
                 <label id='student-courses-filter-label' for='filter'>Search courses by name:</label>
                 <input id='student-courses-filter-input' name='filter' placeholder='Search course name here' onChange={(e) => changeFilter(e.target.value)}></input>
+                <span className="results-amount">
+                    Results: {amount_results1}-{amount_results2} of {course_results_amount}
+                </span>
                 <span id="admin-controls-buttons">
                     <button onClick={subNum}>&lt;</button>
                     <button onClick={incNum}>&gt;</button>
@@ -49,11 +52,8 @@ export default function AdminCoursesTable(){
                         </tr>
                     </thead>    
                     <tbody>
-                        <AdminCoursesTableTags render={{courses: courses, filter: filter, num: num, nm: initNum, sn: setNum, scra: setCourse_amount_results, sbn: subNum, sar1: setAmount_results1, sar2: setAmount_results2}}></AdminCoursesTableTags>
+                        <AdminCoursesTableTags render={{courses: courses, filter: filter, num: num, nm: initNum, sn: setNum, scra: setCourse_amount_results, sar1: setAmount_results1, sar2: setAmount_results2}}></AdminCoursesTableTags>
                     </tbody>
-                    <tfoot>
-                        Results: {amount_results1}-{amount_results2} of {course_results_amount}
-                    </tfoot>
                 </table>
             </div>
         </>

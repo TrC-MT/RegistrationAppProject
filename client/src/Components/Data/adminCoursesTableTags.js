@@ -66,7 +66,6 @@ export default function AdminCoursesTableTags({render}){
     else{
         sar2(matchCourses.length)
     }
-    console.log('num: ', num)
     return results;
 
 
