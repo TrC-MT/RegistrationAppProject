@@ -25,9 +25,9 @@ export default function AdminDataPage() {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-            question: 'Can I get the total students and total tuition?'
-        }),
+        // body: JSON.stringify({
+        //     question: 'Can I get the total students and total tuition?'
+        // }),
     })
     .then((res) => res.json())
     .then((data) => {
@@ -36,6 +36,20 @@ export default function AdminDataPage() {
     });
     
     //Fetch the accounts info
+    fetch('/AllAccountsInfo', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        // body: JSON.stringify({
+        //     question: 'Can I get all the Accounts information?
+        // }),
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        let accounts = data; //I'm assuming an array of objects. Ex: [{id: blah, fn: blah, ln: blah, un: blah, pswd: blah, etc.}]
+    });
+
     var student_IDs = [134124, 2352435, 46546, 2423, 46546, 13425];
 
     function handleRoll(target_value){
@@ -59,25 +73,25 @@ export default function AdminDataPage() {
                 
                 <div id="account-manager-container">
                     <h5>Account:</h5>
-                    <input placeholder="Search by ID" onKeyUp={(e) => setFilter(e.target.value) }></input>
+                    <input defaultValue="Search by ID" onKeyUp={(e) => setFilter(e.target.value) }></input>
                     <label for="accounts" className='account-info-label'>ID:</label>
                     <select name="accounts" onClick={(e) => findaccount(e)}>
                         <StudentIDs render={{student_IDs, filter}}></StudentIDs>
                     </select>
                     <label for="account-first-name" className='account-info-label'>First name:</label>
-                    <input className="account-info-input" name="account-first-name" id="account-first-name" onKeyUp={(e) => setaccount_first_name(e.target.value)} placeholder={account_first_name}></input>
+                    <input className="account-info-input" name="account-first-name" id="account-first-name" onKeyUp={(e) => setaccount_first_name(e.target.value)} defaultValue={account_first_name}></input>
                     <label for="account-last-name" className='account-info-label'>Last name:</label>
-                    <input className="account-info-input" name="account-last-name" id="account-last-name" onKeyUp={(e) => setaccount_last_name(e.target.value)} placeholder={account_last_name}></input>
+                    <input className="account-info-input" name="account-last-name" id="account-last-name" onKeyUp={(e) => setaccount_last_name(e.target.value)} defaultValue={account_last_name}></input>
                     <label for="account-username" className='account-info-label'>Username:</label>
-                    <input className="account-info-input" name="account-username" id="account-username" onKeyUp={(e) => setaccount_username(e.target.value)} placeholder={account_username}></input>
+                    <input className="account-info-input" name="account-username" id="account-username" onKeyUp={(e) => setaccount_username(e.target.value)} defaultValue={account_username}></input>
                     <label for="account-password" className='account-info-label'>Password:</label>
-                    <input className="account-info-input" name="account-password" id="account-password" onKeyUp={(e) => setaccount_password(e.target.value)} placeholder={account_password}></input>
+                    <input className="account-info-input" name="account-password" id="account-password" onKeyUp={(e) => setaccount_password(e.target.value)} defaultValue={account_password}></input>
                     <label for="account-email" className='account-info-label'>Email:</label>
-                    <input className="account-info-input" name="account-email" id="account-email" onKeyUp={(e) => setaccount_email(e.target.value)} placeholder={account_email}></input>
+                    <input className="account-info-input" name="account-email" id="account-email" onKeyUp={(e) => setaccount_email(e.target.value)} defaultValue={account_email}></input>
                     <label for="account-phone-number" className='account-info-label'>Phone number:</label>
-                    <input className="account-info-input" name="account-phone-number" id="account-phone-number" onKeyUp={(e) => setaccount_phone_number(e.target.value)} placeholder={account_phone_number}></input>
+                    <input className="account-info-input" name="account-phone-number" id="account-phone-number" onKeyUp={(e) => setaccount_phone_number(e.target.value)} defaultValue={account_phone_number}></input>
                     <label for="account-address" className='account-info-label'>Address:</label>
-                    <input className="account-info-input" name="account-address" id="account-address" onKeyUp={(e) => setaccount_address(e.target.value)} placeholder={account_address}></input>
+                    <input className="account-info-input" name="account-address" id="account-address" onKeyUp={(e) => setaccount_address(e.target.value)} defaultValue={account_address}></input>
                     <label for="is-admin" className='account-info-label'>Role:</label>
                     <select name="is-admin" id="is-admin" onClick={(e) => handleRoll(e.target.value)}>
                         <option>Student</option>

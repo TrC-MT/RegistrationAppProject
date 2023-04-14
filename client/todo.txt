@@ -1,6 +1,6 @@
-All fetch statements
+ADMIN DATA, ADMINS REGISTER STUDENTS
 
-Admins register students.
+All fetch statements
 
 Implement the loading bar to places that should have it.
 
@@ -8,4 +8,4 @@ Add logging.
 
 Students see registered courses first
 
-Find a better way to fix the admin courses search.       (https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)
+Find a better way to fix the admin courses search.  The variable num is just one multiple too big every other time.    (https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)
