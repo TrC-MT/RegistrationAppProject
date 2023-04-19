@@ -8,14 +8,14 @@ exports.returnCourses = async (req, res) => {
 }
 
 exports.returnUserEnrollment = async (req, res) => {
-    const userEnrollment = await db.getUserEnrollment(req.params.userId);
+    const userEnrollment = await db.getUserEnrollment(req.query.userId);
     res.status(200).json(userEnrollment);
 }
 
-exports.enrollNewCourse = (req, res) => {
+exports.enrollNewCourse = async (req, res) => {
     //check if user already enrolled and if course exists!
-    
-    if (db.enrollCourseCurrentUser(req.body.userId, req.body.courseId)) {
+    const enrollment = await db.enrollCourseCurrentUser(req.body.userId, req.body.courseId);
+    if (enrollment) {
         res.status(200).json({ message: `Successfully enrolled a course for user: ${req.body.userId}`})
     } else {
         res.status(401).json({ message: `Error: unable to register for course ${req.body.courseId}`})

@@ -19,8 +19,8 @@ exports.getUserById = async (id) => {
 }
 exports.insertNewUser = async (user) => {
     await pool.query('INSERT INTO users (user_name, password, email, first_name,'
-        + 'last_name, phone_number, address) VALUES ($1, $2, $3,'
-        + '$4, $5, $6, $7)', [user.userName, user.password, user.email, user.firstName,
+        + ' last_name, phone_number, address) VALUES ($1, $2, $3,'
+        + ' $4, $5, $6, $7)', [user.userName, user.password, user.email, user.firstName,
         user.lastName, user.phoneNumber, user.address]);
 };
 
@@ -38,15 +38,15 @@ exports.getUser = async (username) => {
 
 exports.getCourses = async () => {
     query = 'SELECT id, title, description, schedule, classroom_number, maximum_capacity,'
-    + 'credit_hours, tuition_cost FROM classes';
+    + ' credit_hours, tuition_cost FROM classes';
     const courses = await pool.query(query);
     // console.log(`Courses are: ${courses.rows}`);
     return courses.rows;
 }
 
 exports.getUserEnrollment = async (userId) => {
-    query = 'SELECT * FROM classes WHERE course_id IN ' 
-    + '(SELECT course_id FROM user_classes WHERE user_id=$1)';
+    query = 'SELECT * FROM classes WHERE course_id IN' 
+    + ' (SELECT course_id FROM user_classes WHERE user_id=$1)';
     const enrolledCourses = await pool.query(query, [userId]);
     return enrolledCourses.rows;
 }
@@ -54,8 +54,8 @@ exports.getUserEnrollment = async (userId) => {
 exports.editUser = async (req, res) => {
     console.log('editUser is running.');
     const query = 'UPDATE user SET (user_name, password, email, first_name,'
-    + 'last_name, phone_number, address) VALUES ($1, $2, $3,'
-    + '$4, $5, $6, $7)'
+    + ' last_name, phone_number, address) VALUES ($1, $2, $3,'
+    + ' $4, $5, $6, $7)'
     const values = [user.userName, user.password, user.email, user.firstName,
         user.lastName, user.phoneNumber, user.address]
     await pool.query(query, values, (err, results) => {
@@ -65,11 +65,11 @@ exports.editUser = async (req, res) => {
     })
 }
 // api/courses/enroll database logic------------------------------------------------
-exports.enrollCourseCurrentUser = async (courseId, userId) => {
-    const notEnrolled = await isUserEnrolled(courseId, userId);
+exports.enrollCourseCurrentUser = async (userId, courseId) => {
+    const hasNotEnrolled = await isUserEnrolled(userId, courseId);
     const validCourse = await isValidCourse(courseId);
 
-    if (notEnrolled && validCourse) {
+    if (hasNotEnrolled && validCourse) {
         query = 'INSERT INTO user_classes (user_id, course_id) VALUES ($1, $2)';
         const newEnrolledCourse = await pool.query(query, [userId, courseId]);
         return newEnrolledCourse;
@@ -81,10 +81,10 @@ exports.enrollCourseCurrentUser = async (courseId, userId) => {
 // enrollCourseCurrentUser helper functions---------
 const isUserEnrolled = async (userId, courseId) => {
     query = 'SELECT course_id FROM user_classes'
-    + 'WHERE user_id=$1 AND course_id=$2';
-    const notAlreadyEnrolled = await pool.query(query, [userId, courseId])
+    + ' WHERE user_id=$1 AND course_id=$2'
+    const alreadyEnrolled = await pool.query(query, [userId, courseId])
 
-    if (notAlreadyEnrolled) {
+    if (alreadyEnrolled.rows.length) {
         return false;
     }
     //if we made it here the user has NOT previously enrolled in the course
@@ -93,8 +93,8 @@ const isUserEnrolled = async (userId, courseId) => {
 
 const isValidCourse = async (courseId) => {
     //check if course_id actually exists in db
-    const query = 'SELECT * FROM users_classes'
-    + 'WHERE course_id=$1';
+    const query = 'SELECT * FROM user_classes'
+    + ' WHERE course_id=$1';
     const isValidCourseId = await pool.query(query, [courseId]);
 
     if (isValidCourseId) {
