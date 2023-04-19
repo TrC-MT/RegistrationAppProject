@@ -8,7 +8,10 @@ import Navbar from '../Components/Nav/navbar'
 
 
 export default function StudentCourses({adminManage}){
-    const stu = adminManage.stu;
+    const stu = '';
+    if(adminManage?.stu){
+        stu = adminManage.stu;
+    }
 
     let [filter, setFilter] = useState('');
     const initNum = 6; //I use this initNum, and num separetly. If I set them equal to each other later in the code, or used them in place of each other (ex: set initNum = num) then things could break when num changes through opperations.
