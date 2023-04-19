@@ -10,7 +10,7 @@ export default function CoursesTableTags({render}){
     let sar1 = render.sar1;
     let sar2 = render.sar2;
 
-    const stu = '';
+    let stu = '';
     if(render?.stu){
         stu = render.stu;
     }
