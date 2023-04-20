@@ -145,8 +145,7 @@ export default function CoursesTableTags({render}){
 
     function drop(course_name, i){
         const j = findOrigionalCourse(i);
-        // courses[i].registered = false;
-        
+                
         fetch('/courses/drop', {
             method: 'GET',
             headers: {

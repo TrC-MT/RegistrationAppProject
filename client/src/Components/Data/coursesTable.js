@@ -4,7 +4,7 @@ import CoursesTableTags from "./coursesTableTags"
 export default function CoursesTable({pieces}){    
 
     let courses = [
-        {name: 'Web Development', description: 'One of the best classes possible. You should schedual it right away.', tuition: 1300, registered: false},
+        {name: 'Web Development', description: 'One of the best classes possible. You should schedule it right away.', tuition: 1300, registered: false},
         {name: 'Haunted Mansion Makeover', 
             description: 'Learn how to be the spookiest house on Halloween. Unless someone else in your neihborhood takes this class, then you would have to share.',
             tuition: 5324, registered: true}, 

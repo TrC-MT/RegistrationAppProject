@@ -1,7 +1,14 @@
-All fetch statements
-
 Implement the loading bar to places that should have it.
 
 Add logging.
 
 Find a better way to fix the admin courses search.  The variable num is just one multiple too big every other time.
+
+
+New fetch statements since last conversation {
+    profile page,
+    components/data/tuitionAmount,
+    components/data/numClasses,
+}
+
+I'm pretty sure all the fetch statements have been written.

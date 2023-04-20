@@ -10,12 +10,15 @@ export default function UserFormSubmitButton({pieces}){
             </>
         )
     }
-    else if(pieces.type.defaultValue == ''){
+    else if(pieces.type.fn){
         return (
             <>
                 <button id='user-form-submit' onClick={pieces.funct.updateUser}>{pieces.text}</button>
             </>
         )
+    }
+    else{
+        console.log('Error with the userFormSubmitButton')
     }
     
 }
