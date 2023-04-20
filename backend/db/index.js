@@ -64,7 +64,7 @@ exports.editUser = async (req, res) => {
         }
     })
 }
-// api/courses/enroll database logic------------------------------------------------
+// api/courses/enroll database logic-----------------------------------------------------
 exports.enrollCourseCurrentUser = async (userId, courseId) => {
     const hasNotEnrolled = await isUserEnrolled(userId, courseId);
     const validCourse = await isValidCourse(courseId);
