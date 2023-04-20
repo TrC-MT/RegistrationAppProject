@@ -1,8 +1,3 @@
-Write all fetch statements {
-
-    STILL LOOKING
-}
-
 Implement the loading bar to places that should have it.
 
 Add logging.
@@ -15,3 +10,5 @@ New fetch statements since last conversation {
     components/data/tuitionAmount,
     components/data/numClasses,
 }
+
+I'm pretty sure all the fetch statements have been written.
