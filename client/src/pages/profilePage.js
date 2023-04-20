@@ -9,8 +9,32 @@ import UserForm from '../Components/Form/userForm';
 export default function ProfilePage() {
     
     //call a fetch to get the user info
-    // fill in the attribute.value object with that info
+    let user_attributes = {};
+    fetch('/userInformation', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        // fill in the attribute.value object with that info
+        user_attributes = {
+            fn: `defaultValue: ${data.fn}`,
+            ln: `defaultValue: ${data.ln}`,
+            un: `defaultValue: ${data.un}`,
+            pw: `defaultValue: ${data.pw}`,
+            e: `defaultValue: ${data.e}`,
+            pn: `defaultValue: ${data.pn}`,
+            a: `defaultValue: ${data.a}`,
+        }
+    })
 
+
+
+    var user_type = 'Admin';
+    //Uncomment line below to see student view, comment line below to see admin view.
+    user_type = 'Student';
     //Check if the user is a student or admin
     //if user is a student, set user_type to 'Student'; if user is admin, set user_type to 'Admin'.
     fetch('/isAdmin', {
@@ -24,15 +48,13 @@ export default function ProfilePage() {
         user_type = data;
     })
 
-    // var user_type = 'Admin';
-    //Uncomment line below to see student view, comment line below to see admin view.
-    var user_type = 'Student';
+    
 
     return(
         <>
             <Navbar pieces={{title: 'Profile', logout: 'True', dOc: {render: true, userType: user_type}, cl: 'lbnav'}}></Navbar>
             <div className='page-box' id='create-account-page-box'>
-                <UserForm render={{buttonText: 'Update', attribute: {defaultValue: ''}}}></UserForm>
+                <UserForm render={{buttonText: 'Update', attribute: user_attributes}}></UserForm>
                 <SideStudentProfileInfo render={user_type}></SideStudentProfileInfo>
             </div>
         </>

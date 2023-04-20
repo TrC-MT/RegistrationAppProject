@@ -54,31 +54,31 @@ export default function UserForm({render}) {
             <div id="user-form">
                     <span className="form-section user-form-section">
                         <label className='user-form-label'>First name: </label>
-                        <input name="first-name" type="first-name" id="first-name" {...render.attribute} onChange={(e) => handleFNChange(e)}/>
+                        <input name="first-name" type="first-name" id="first-name" {...render.attribute.fn} onChange={(e) => handleFNChange(e)}/>
                     </span>
                     <span className="form-section user-form-section">
                         <label className='user-form-label'>Last name: </label>
-                        <input name="last-name" type="last-name" id="last-name" {...render.attribute} onChange={(e) => handleLNChange(e)}/>
+                        <input name="last-name" type="last-name" id="last-name" {...render.attribute.ln} onChange={(e) => handleLNChange(e)}/>
                     </span>
                     <span className="form-section user-form-section">
                         <label className='user-form-label'>Username: </label>
-                        <input name="username" id="username" {...render.attribute} onChange={(e) => handleUNChange(e)}/>
+                        <input name="username" id="username" {...render.attribute.un} onChange={(e) => handleUNChange(e)}/>
                     </span>
                     <span className="form-section user-form-section">
                         <label className='user-form-label'>Password: </label>
-                        <input name="password" type="password" id="password" {...render.attribute} onChange={(e) => handlePwChange(e)}/>
+                        <input name="password" type="password" id="password" {...render.attribute.pw} onChange={(e) => handlePwChange(e)}/>
                     </span>
                     <span className="form-section user-form-section">
                         <label className='user-form-label'>Email: </label>
-                        <input name="email" type="email" id="email" {...render.attribute} onChange={(e) => handleEChange(e)}/>
+                        <input name="email" type="email" id="email" {...render.attribute.e} onChange={(e) => handleEChange(e)}/>
                     </span>
                     <span className="form-section user-form-section">
                         <label className='user-form-label'>Phone number: </label>
-                        <input name="phone-number" type="tel" id="phone-number" {...render.attribute} onChange={(e) => handlePnChange(e)}/>
+                        <input name="phone-number" type="tel" id="phone-number" {...render.attribute.pn} onChange={(e) => handlePnChange(e)}/>
                     </span>
                     <span className="form-section user-form-section">
                         <label className='user-form-label'>Address: </label>
-                        <input name="address" type="text" id="address" {...render.attribute} onChange={(e) => handleAChange(e)}/>
+                        <input name="address" type="text" id="address" {...render.attribute.a} onChange={(e) => handleAChange(e)}/>
                     </span>
                     {/* render.click is what calls the functions defined below. */}
                     {showSubmitButton && <UserFormSubmitButton pieces={{type: {...render.attribute}, text: render.buttonText, funct: {newUser, updateUser}}}></UserFormSubmitButton>}
