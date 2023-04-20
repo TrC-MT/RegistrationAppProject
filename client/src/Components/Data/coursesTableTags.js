@@ -10,13 +10,34 @@ export default function CoursesTableTags({render}){
     let sar1 = render.sar1;
     let sar2 = render.sar2;
 
-    const stu = '';
+    let stu = '';
     if(render?.stu){
         stu = render.stu;
     }
-    else{
-        
+    else{}
+
+    const origional_courses = courses;
+
+    let registeredCourses = [];
+    let notRegisteredCourses = [];
+    for(let i = 0; i < courses.length; i++){
+        if(courses[i].registered == true){
+            console.log(`Course ${courses[i].name} registered`)
+            registeredCourses.push(courses[i])
+        }
+        else{
+            console.log(`Course ${courses[i].name} NOT registered`)
+            notRegisteredCourses.push(courses[i])
+        }
     }
+    courses = [];
+    for(let i = 0; i < registeredCourses.length; i++){
+        courses.push(registeredCourses[i])
+    }
+    for(let i = 0; i < notRegisteredCourses.length; i++){
+        courses.push(notRegisteredCourses[i])
+    }
+
 
     let button_do = null;
     let button_text = '';
@@ -77,6 +98,7 @@ export default function CoursesTableTags({render}){
     if((num - numMultiple) > matchCourses.length){
         findNum(matchCourses.length)
     }
+
     let results = [];
     for(let i = num - numMultiple; i < num && i < matchCourses.length; i++){
         results[i] = matchCourses[i]
@@ -112,8 +134,17 @@ export default function CoursesTableTags({render}){
         }
     }
 
+
+    function findOrigionalCourse(L){
+        for(let i = 0; i < origional_courses.length; i++){
+            if(courses[L] == origional_courses[i]){
+                return i;
+            }
+        }
+    }
+
     function drop(course_name, i){
-        console.log('drop, ' + course_name + ', ' + i)
+        const j = findOrigionalCourse(i);
         // courses[i].registered = false;
         
         fetch('/courses/drop', {
@@ -123,7 +154,7 @@ export default function CoursesTableTags({render}){
             },
             body: JSON.stringify({
                 courseName: course_name,
-                place: i,
+                backendID: j+1,
                 possibleStudentID: stu
                 //The course[i].registered for that student should become false
             }),
@@ -135,7 +166,7 @@ export default function CoursesTableTags({render}){
         })
     }
     function enroll(course_name, i){
-        console.log('enroll, ' + course_name + ', ' + i)
+        const j = findOrigionalCourse(i);
         fetch('/courses/enroll', {
             method: 'GET',
             headers: {
@@ -143,7 +174,7 @@ export default function CoursesTableTags({render}){
             },
             body: JSON.stringify({
                 courseName: course_name,
-                place: i,
+                backendID: j+1,
                 possibleStudentID: stu
                 //The course[i].registered for that student should become true
             }),

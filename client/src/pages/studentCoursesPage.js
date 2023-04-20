@@ -8,7 +8,7 @@ import Navbar from '../Components/Nav/navbar'
 
 
 export default function StudentCourses({adminManage}){
-    const stu = '';
+    let stu = '';
     if(adminManage?.stu){
         stu = adminManage.stu;
     }
