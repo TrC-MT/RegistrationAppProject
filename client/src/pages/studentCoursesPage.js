@@ -1,6 +1,6 @@
 import '../Styles/PageStyles/studentCoursesPageStyles.css'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import CoursesTable from '../Components/Data/coursesTable'
 import Navbar from '../Components/Nav/navbar'
@@ -20,7 +20,22 @@ export default function StudentCourses({adminManage}){
     let [course_results_amount, setCourse_results_amount] = useState();
     let [amount_results1, setAmount_results1] = useState(num-(initNum) +1)
     let [amount_results2, setAmount_results2] = useState(num)
+    const [courses, setCourses] = useState([])
     
+    //api gets called when studentCoursesPage is rendered then the result gets passed down through props all the way down to courseTableTags.js
+    useEffect(() => {
+        fetch('http://localhost:3000/api/courses/allCourses', {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            setCourses(data);
+        })
+    }, [])
+
     return(
         <>
             <Navbar pieces={{title: 'Courses', logout: 'True'}}></Navbar>
@@ -37,7 +52,7 @@ export default function StudentCourses({adminManage}){
                     </div>
 
                     <div className='tables-container'>
-                        <CoursesTable pieces={{filter: filter, num: num, sn: setNum, nm: initNum, sar1: setAmount_results1, sar2: setAmount_results2, cra: course_results_amount, scra: setCourse_results_amount, stu: stu}}></CoursesTable>
+                        <CoursesTable pieces={{filter: filter, courses: courses, num: num, sn: setNum, nm: initNum, sar1: setAmount_results1, sar2: setAmount_results2, cra: course_results_amount, scra: setCourse_results_amount, stu: stu}}></CoursesTable>
                     </div>
                 </div>
             </div>
