@@ -22,11 +22,11 @@ export default function CoursesTableTags({render}){
     let notRegisteredCourses = [];
     for(let i = 0; i < courses.length; i++){
         if(courses[i].registered == true){
-            console.log(`Course ${courses[i].name} registered`)
+            console.log(`Course ${courses[i].title} registered`)
             registeredCourses.push(courses[i])
         }
         else{
-            console.log(`Course ${courses[i].name} NOT registered`)
+            console.log(`Course ${courses[i].title} NOT registered`)
             notRegisteredCourses.push(courses[i])
         }
     }
@@ -46,7 +46,7 @@ export default function CoursesTableTags({render}){
     let matchCourses = [];
     let j = -1;
     for(let i = 0; i < courses.length; i++){
-        if(((courses[i].name).toUpperCase()).includes((filter.toString()).toUpperCase())){
+        if(((courses[i].title).toUpperCase()).includes((filter.toString()).toUpperCase())){
             j += 1
             if(courses[i].registered == true){
                 courses[i].button_do = drop;
@@ -61,7 +61,7 @@ export default function CoursesTableTags({render}){
             matchCourses[j] = 
                 <tr className="table-course">
                     <td className="course-name">
-                        {courses[i].name}
+                        {courses[i].title}
                     </td>
                     <td className="course-id">
                         {courses[i].id}
@@ -70,22 +70,22 @@ export default function CoursesTableTags({render}){
                         {courses[i].description}
                     </td>
                     <td className="course-tuition">
-                        ${courses[i].tuition}
+                        ${courses[i].tuition_cost}
                     </td>
                     <td className="course-hours">
-                        {courses[i].creditHours}
+                        {courses[i].credit_hours}
                     </td>
                     <td className="course-period">
-                        {courses[i].period}
+                        {courses[i].schedule}
                     </td>
                     <td className="course-room">
-                        {courses[i].room}
+                        {courses[i].classroom_number}
                     </td>
                     <td className="course-seats">
-                        {courses[i].seats}
+                        {courses[i].maximum_capacity}
                     </td>
                     <td className="select-box">
-                       <button className={`course-select-button ${button_className}`} onClick={(e) => courses[i].button_do(courses[i].name, i)}>{button_text}</button>
+                       <button className={`course-select-button ${button_className}`} onClick={(e) => courses[i].button_do(courses[i].title, i)}>{button_text}</button>
                     </td>
                 </tr>
         }
