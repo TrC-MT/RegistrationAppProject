@@ -1,9 +1,10 @@
+import { useState, useEffect } from 'react';
 
 export default function CoursesTableTags({render}){
 
     let num = render.num;
     const numMultiple = render.nm;
-    let courses = render.courses;
+    courses = render.courses;
     //let uniqueCourseId = courses.course_id;
     let filter = render.filter;
     let setNum = render.sn;
@@ -181,6 +182,7 @@ export default function CoursesTableTags({render}){
         })
         .then((res) => res.json())
         .then((data) => {
+            courses[coursesIndex].registered = true;
             //courses = data;
             console.log(data.message + '\'' + enrollCourseTitle + '\'' + '!');
             //should rerender the table with the correct button
