@@ -37,7 +37,7 @@ exports.getUser = async (username) => {
 
 
 exports.getCourses = async () => {
-    query = 'SELECT id, title, description, schedule, classroom_number, maximum_capacity,'
+    query = 'SELECT course_id, id, title, description, schedule, classroom_number, maximum_capacity,'
     + ' credit_hours, tuition_cost FROM classes';
     const courses = await pool.query(query);
     // console.log(`Courses are: ${courses.rows}`);

@@ -4,6 +4,7 @@ export default function CoursesTableTags({render}){
     let num = render.num;
     const numMultiple = render.nm;
     let courses = render.courses;
+    //let uniqueCourseId = courses.course_id;
     let filter = render.filter;
     let setNum = render.sn;
     let scra = render.scra;
@@ -16,17 +17,17 @@ export default function CoursesTableTags({render}){
     }
     else{}
 
-    const origional_courses = courses;
+    const original_courses = courses;
 
     let registeredCourses = [];
     let notRegisteredCourses = [];
     for(let i = 0; i < courses.length; i++){
         if(courses[i].registered == true){
-            console.log(`Course ${courses[i].title} registered`)
+            // console.log(`Course ${courses[i].title} registered`)
             registeredCourses.push(courses[i])
         }
         else{
-            console.log(`Course ${courses[i].title} NOT registered`)
+            // console.log(`Course ${courses[i].title} NOT registered`)
             notRegisteredCourses.push(courses[i])
         }
     }
@@ -85,7 +86,7 @@ export default function CoursesTableTags({render}){
                         {courses[i].maximum_capacity}
                     </td>
                     <td className="select-box">
-                       <button className={`course-select-button ${button_className}`} onClick={(e) => courses[i].button_do(courses[i].title, i)}>{button_text}</button>
+                       <button className={`course-select-button ${button_className}`} onClick={(e) => courses[i].button_do(courses[i].course_id, i)}>{button_text}</button>
                     </td>
                 </tr>
         }
@@ -135,26 +136,24 @@ export default function CoursesTableTags({render}){
     }
 
 
-    function findOrigionalCourse(L){
-        for(let i = 0; i < origional_courses.length; i++){
-            if(courses[L] == origional_courses[i]){
+    function findOriginalCourse(L){
+        for(let i = 0; i < original_courses.length; i++){
+            if(courses[L].course_id == original_courses[i].course_id){
                 return i;
             }
         }
     }
 
-    function drop(course_name, i){
-        const j = findOrigionalCourse(i);
+    function drop(course_id, i){
+        const j = findOriginalCourse(i);
                 
         fetch('/courses/drop', {
-            method: 'GET',
+            method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                courseName: course_name,
-                backendID: j+1,
-                possibleStudentID: stu
+                courseId: course_id,
                 //The course[i].registered for that student should become false
             }),
         })
@@ -164,24 +163,26 @@ export default function CoursesTableTags({render}){
             //should rerender the table with the correct button
         })
     }
-    function enroll(course_name, i){
-        const j = findOrigionalCourse(i);
-        fetch('/courses/enroll', {
-            method: 'GET',
+    function enroll(course_id, i){
+
+        const coursesIndex = findOriginalCourse(i);
+        let enrollCourseTitle = original_courses[coursesIndex].title;
+
+        fetch('courses/enroll', {
+            method: 'POST',
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                courseName: course_name,
-                backendID: j+1,
-                possibleStudentID: stu
+                courseId: course_id,
                 //The course[i].registered for that student should become true
             }),
         
         })
         .then((res) => res.json())
         .then((data) => {
-            courses = data;
+            //courses = data;
+            console.log(data.message + '\'' + enrollCourseTitle + '\'' + '!');
             //should rerender the table with the correct button
         })
     }

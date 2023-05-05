@@ -21,10 +21,11 @@ export default function StudentCourses({adminManage}){
     let [amount_results1, setAmount_results1] = useState(num-(initNum) +1)
     let [amount_results2, setAmount_results2] = useState(num)
     const [courses, setCourses] = useState([])
+    //const [enrolledCourses, setEnrolledCourses] = useState([])
     
     //api gets called when studentCoursesPage is rendered then the result gets passed down through props all the way down to courseTableTags.js
     useEffect(() => {
-        fetch('http://localhost:3000/api/courses/allCourses', {
+        fetch('courses/allCourses', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -33,7 +34,18 @@ export default function StudentCourses({adminManage}){
         .then((res) => res.json())
         .then((data) => {
             setCourses(data);
-        })
+        });
+        console.log('Testing...');
+        // fetch('http://localhost:3000/api/courses/enrolledCourses', {
+        //     method: 'GET',
+        //     headers: {
+        //         "content-type": "application/json",
+        //     }
+        // })
+        // .then((res) => res.json())
+        // .then((data) => {
+        //     setEnrolledCourses(data);
+        // });
     }, [])
 
     return(

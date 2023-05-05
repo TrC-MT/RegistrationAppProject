@@ -45,7 +45,7 @@ app.use('/', authRoute);
 
 
 // protected routes------------------------------------------
-app.use('/api/courses', courseRoute);
+app.use('/userProfile/courses', courseRoute);
 
 
 app.listen(port, () => {
