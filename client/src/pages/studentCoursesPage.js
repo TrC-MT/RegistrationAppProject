@@ -1,7 +1,7 @@
 import '../Styles/PageStyles/studentCoursesPageStyles.css'
 
 import { useState, useEffect } from 'react';
-
+import ServerMessage from '../Components/serverMessage';
 import CoursesTable from '../Components/Data/coursesTable'
 import Navbar from '../Components/Nav/navbar'
 
@@ -12,6 +12,9 @@ export default function StudentCourses({adminManage}){
     if(adminManage?.stu){
         stu = adminManage.stu;
     }
+
+    const [message, setMessage] = useState('');
+
 
     let [filter, setFilter] = useState('');
     const initNum = 6; //I use this initNum, and num separetly. If I set them equal to each other later in the code, or used them in place of each other (ex: set initNum = num) then things could break when num changes through opperations.
@@ -39,6 +42,7 @@ export default function StudentCourses({adminManage}){
     return(
         <>
             <Navbar pieces={{title: 'Courses', logout: 'True'}}></Navbar>
+            <ServerMessage Message={{message, sm: setMessage}}></ServerMessage>
             <div className="page-box">
                 <div id='student-courses-page-container'>
                     <div className='controls-container'>
@@ -52,7 +56,7 @@ export default function StudentCourses({adminManage}){
                     </div>
 
                     <div className='tables-container'>
-                        <CoursesTable pieces={{filter: filter, courses: courses, num: num, sn: setNum, nm: initNum, sar1: setAmount_results1, sar2: setAmount_results2, cra: course_results_amount, scra: setCourse_results_amount, stu: stu}}></CoursesTable>
+                        <CoursesTable pieces={{filter: filter, courses: courses, num: num, sn: setNum, nm: initNum, sar1: setAmount_results1, sar2: setAmount_results2, cra: course_results_amount, scra: setCourse_results_amount, stu: stu, setMsg: setMessage}}></CoursesTable>
                     </div>
                 </div>
             </div>

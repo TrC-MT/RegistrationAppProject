@@ -49,7 +49,7 @@ export default function CoursesTable({pieces}){
                         </tr>
                     </thead>
                     <tbody>
-                        <CoursesTableTags render={{courses: pieces.courses, filter: pieces.filter, num: pieces.num, sn: pieces.sn, nm: pieces.nm, scra: pieces.scra, sar1: pieces.sar1, sar2: pieces.sar2, stu: pieces.stu}}></CoursesTableTags>
+                        <CoursesTableTags render={{courses: pieces.courses, filter: pieces.filter, num: pieces.num, sn: pieces.sn, nm: pieces.nm, scra: pieces.scra, sar1: pieces.sar1, sar2: pieces.sar2, stu: pieces.stu, setMsg: render.setMsg}}></CoursesTableTags>
                     </tbody>
                 </table>
             </div>

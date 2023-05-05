@@ -9,6 +9,7 @@ export default function CoursesTableTags({render}){
     let scra = render.scra;
     let sar1 = render.sar1;
     let sar2 = render.sar2;
+    let setMsg = render.setMsg;
 
     let stu = '';
     if(render?.stu){
@@ -162,6 +163,8 @@ export default function CoursesTableTags({render}){
         .then((data) => {
             courses = data;
             //should rerender the table with the correct button
+            setNum(numMultiple)
+            setMsg('Course dropped.')
         })
     }
     function enroll(course_name, i){
@@ -183,6 +186,8 @@ export default function CoursesTableTags({render}){
         .then((data) => {
             courses = data;
             //should rerender the table with the correct button
+            setNum(numMultiple)
+            setMsg('Course enrolled.')
         })
     }
 }
