@@ -66,43 +66,82 @@ exports.editUser = async (req, res) => {
 }
 // api/courses/enroll database logic-----------------------------------------------------
 exports.enrollCourseCurrentUser = async (userId, courseId) => {
-    const hasNotEnrolled = await isUserEnrolled(userId, courseId);
+    query = 'INSERT INTO user_classes' 
+    + ' (user_id, course_id) VALUES ($1, $2)';
+
+    return await checkCourse(userId, courseId, query, userNeedsEnrolled, 'enroll');
+}
+
+
+// api/courses/drop database logic -------------------------------------------
+
+exports.dropCourseCurrentUser = async (userId, courseId) => {
+    let query = 'DELETE FROM user_classes'
+    + ' WHERE user_id=$1 AND course_id=$2';
+
+    return await checkCourse(userId, courseId, query, userNeedsEnrolled, 'drop');
+}
+
+
+//logic for both dropping courses and enrolling in courses
+async function checkCourse(userId, courseId, dbQuery, cb, action) {
+    const obj = { successfulQuery: null };
+    const hasEnrolled = await cb(userId, courseId, action);
     const validCourse = await isValidCourse(courseId);
 
-    if (hasNotEnrolled && validCourse) {
-        query = 'INSERT INTO user_classes (user_id, course_id) VALUES ($1, $2)';
-        const newEnrolledCourse = await pool.query(query, [userId, courseId]);
-        return newEnrolledCourse;
+    if (hasEnrolled && validCourse) {
+        try {
+            //Delete course from db!
+            await pool.query(dbQuery, [userId, courseId]);
+            obj.successfulQuery = true;
+            return obj;
+        } catch(e) {
+            console.log('Error encountered: ', e);
+            obj.successfulQuery = false;
+            return obj;
+        }
     }
     //if we got here then either the user's already been enrolled or the course doesn't exist
     return false;
 }
 
-// enrollCourseCurrentUser helper functions---------
-const isUserEnrolled = async (userId, courseId) => {
+// checkcourse callback (drop) function--------------
+const userNeedsEnrolled = async (userId, courseId, action) => {
     query = 'SELECT course_id FROM user_classes'
     + ' WHERE user_id=$1 AND course_id=$2'
     const alreadyEnrolled = await pool.query(query, [userId, courseId])
 
-    if (alreadyEnrolled.rows.length) {
-        return false;
+    //using a switch statement here alleviates the need to define two separate 
+    //functions that perform a very similar task!
+    switch(action) {
+        case 'enroll':
+            if (alreadyEnrolled.rows.length) {
+                //if we are here the user has previously enrolled in the course!
+                return false;
+            }
+                //if we made it here the user has NOT previously enrolled in the course
+                return true;
+            break;
+        default:
+            if (alreadyEnrolled.rows.length) {
+                //if we are here the user has previously enrolled in the course!
+                return true;
+            }
+                //if we made it here the user has NOT previously enrolled in the course
+                return false;
     }
-    //if we made it here the user has NOT previously enrolled in the course
-    return true;
+    
 }
 
 const isValidCourse = async (courseId) => {
-    //check if course_id actually exists in db
-    const query = 'SELECT * FROM user_classes'
+    //check if course_id actually exists in classes db!!
+    const query = 'SELECT * FROM classes'
     + ' WHERE course_id=$1';
     const isValidCourseId = await pool.query(query, [courseId]);
 
-    if (isValidCourseId) {
+    if (isValidCourseId.rows.length) {
         return true;
     }
     //if we made it here the course does NOT currently exist in the database
     return false;
 }
-
-
-
