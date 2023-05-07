@@ -1,16 +1,21 @@
-import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { useState } from 'react';
+// import 'react-toastify/dist/ReactToastify.css';
 
 export default function CoursesTableTags({render}){
 
     let num = render.num;
     const numMultiple = render.nm;
-    courses = render.courses;
+    let courses = render.courses;
+    let setCourses = render.sc;
     //let uniqueCourseId = courses.course_id;
     let filter = render.filter;
     let setNum = render.sn;
     let scra = render.scra;
     let sar1 = render.sar1;
     let sar2 = render.sar2;
+    let setEnrolledCourses = render.sec;
+    const [rerenderCount, setRerenderCount] = useState(0);
 
     let stu = '';
     if(render?.stu){
@@ -32,6 +37,9 @@ export default function CoursesTableTags({render}){
             notRegisteredCourses.push(courses[i])
         }
     }
+    //Update the total number of registered courses displayed above courses table!
+    setEnrolledCourses(registeredCourses.length);
+
     courses = [];
     for(let i = 0; i < registeredCourses.length; i++){
         courses.push(registeredCourses[i])
@@ -146,9 +154,10 @@ export default function CoursesTableTags({render}){
     }
 
     function drop(course_id, i){
-        const j = findOriginalCourse(i);
+        const coursesIndex = findOriginalCourse(i);
+        let droppedCourseTitle = original_courses[coursesIndex].title;
                 
-        fetch('/courses/drop', {
+        fetch('courses/drop', {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",
@@ -160,12 +169,18 @@ export default function CoursesTableTags({render}){
         })
         .then((res) => res.json())
         .then((data) => {
-            courses = data;
+            //spread operator performs shallow copy of original_courses
+            //then changes registered property of the selected course.
+            //setRerenederCount() then rerenders the coursesTableTags page.
+            let clone = [...original_courses];
+            clone[data.courseId - 1].registered = false;
+            toast(data.message + '\'' + droppedCourseTitle + '\'' + ' course!');
+            setRerenderCount(rerenderCount + 1);
+            //toast(data.message);
             //should rerender the table with the correct button
         })
     }
     function enroll(course_id, i){
-
         const coursesIndex = findOriginalCourse(i);
         let enrollCourseTitle = original_courses[coursesIndex].title;
 
@@ -182,9 +197,13 @@ export default function CoursesTableTags({render}){
         })
         .then((res) => res.json())
         .then((data) => {
-            courses[coursesIndex].registered = true;
-            //courses = data;
-            console.log(data.message + '\'' + enrollCourseTitle + '\'' + '!');
+            //spread operator performs shallow copy of original_courses
+            //then changes registered property of the selected course.
+            //setRerenederCount() then rerenders the coursesTableTags page.
+            let clone = [...original_courses];
+            clone[data.courseId - 1].registered = true;
+            toast(data.message + '\'' + enrollCourseTitle + '\'' + '!');
+            setRerenderCount(rerenderCount + 1);
             //should rerender the table with the correct button
         })
     }
