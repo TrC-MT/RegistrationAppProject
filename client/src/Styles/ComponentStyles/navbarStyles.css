@@ -22,3 +22,9 @@ nav{
     justify-content: space-evenly;
     width: 50%;
 }
+
+
+.nav-button{
+    background-color: var(--light_blue);
+    border: 1px solid var(--dark_blue)
+}
