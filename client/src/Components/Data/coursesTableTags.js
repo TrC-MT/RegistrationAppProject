@@ -157,13 +157,14 @@ export default function CoursesTableTags({render}){
         const coursesIndex = findOriginalCourse(i);
         let droppedCourseTitle = original_courses[coursesIndex].title;
                 
-        fetch('courses/drop', {
+        fetch('/student/api/drop', {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 courseId: course_id,
+                id: stu,
                 //The course[i].registered for that student should become false
             }),
         })
@@ -184,13 +185,14 @@ export default function CoursesTableTags({render}){
         const coursesIndex = findOriginalCourse(i);
         let enrollCourseTitle = original_courses[coursesIndex].title;
 
-        fetch('courses/enroll', {
+        fetch('/student/api/enroll', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 courseId: course_id,
+                id: stu,
                 //The course[i].registered for that student should become true
             }),
         

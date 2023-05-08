@@ -15,9 +15,9 @@ export default function StudentCourses({adminManage}){
     if(adminManage?.stu){
         stu = adminManage.stu;
     }
-
+    let allCoursesKey = adminManage?.allCoursesKeyword;
     let [filter, setFilter] = useState('');
-    const initNum = 6; //I use this initNum, and num separetly. If I set them equal to each other later in the code, or used them in place of each other (ex: set initNum = num) then things could break when num changes through opperations.
+    const initNum = 6; //I use this initNum, and num separetly. If I set them equal to each other later in the code, or used them in place of each other (ex: set initNum = num) then things could break when num changes through operations.
     let [num, setNum] = useState(initNum);
 
     let [course_results_amount, setCourse_results_amount] = useState();
@@ -25,14 +25,18 @@ export default function StudentCourses({adminManage}){
     let [amount_results2, setAmount_results2] = useState(num)
     const [courses, setCourses] = useState([])
     //const [enrolledCourses, setEnrolledCourses] = useState([])
-    
+
     //api gets called when studentCoursesPage is rendered then the result gets passed down through props all the way down to courseTableTags.js
     useEffect(() => {
-        fetch('courses/allCourses', {
-            method: 'GET',
+        fetch('/student/api/allCourses', {
+            method: 'POST',
             headers: {
                 "Content-Type": "application/json",
             },
+            body: JSON.stringify({
+                id: stu,
+                keyword: allCoursesKey
+            }),
         })
         .then((res) => res.json())
         .then((data) => {

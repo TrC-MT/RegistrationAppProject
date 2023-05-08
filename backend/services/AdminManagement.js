@@ -27,7 +27,7 @@ class AdminManagement {
         }
     }
 
-    isValidPass() {
+    async returnCourses() {
 
     }
 

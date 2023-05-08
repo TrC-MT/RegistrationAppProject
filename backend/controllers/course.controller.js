@@ -4,7 +4,20 @@ const db = require('../db');
 //controller that returns 'courses' payload from querying classes db table
 exports.returnCourses = async (req, res) => {
     const courses = await db.getCourses();
-    const userEnrollment = await db.getUserEnrollment(req.user?.id);
+    //remember const/let are block-scoped, so declare userEnrollment outside
+    //the if/else block first.
+    let userEnrollment;
+
+    switch(req.body.keyword) {
+        case 'admin': 
+            //case for when an admin is logged in and Managing student courses
+            userEnrollment = await db.getUserEnrollment(req.body.id);
+            break;
+        default:
+            //case for when student is logged into their account
+            userEnrollment = await db.getUserEnrollment(req.user?.id);
+    }
+    
     //console.log(`Current userEnrollment for ${req.user?.id}:`, userEnrollment);
     //by default set registered property to false for all courses
     courses.forEach(course => {
@@ -31,7 +44,7 @@ exports.returnUserEnrollment = async (req, res) => {
 exports.enrollNewCourse = async (req, res) => {
     //check if user already enrolled and if course exists!
 
-    const enrollment = await db.enrollCourseCurrentUser(req.user?.id, req.body.courseId);
+    const enrollment = await db.enrollCourseCurrentUser(req.body.id, req.body.courseId);
     //now get userEnrollment (from db) and add authenticated  
     //const userEnrollment = await db.getUserEnrollment(req.user?.id);
     if (enrollment && req.user?.id) {

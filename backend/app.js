@@ -46,8 +46,8 @@ app.use('/', authRoute);
 
 
 // protected routes------------------------------------------
-app.use('/userProfile/adminData', adminRoute);
-app.use('/userProfile/courses', courseRoute);
+app.use('/admin/api', adminRoute);
+app.use('/student/api', courseRoute);
 
 
 

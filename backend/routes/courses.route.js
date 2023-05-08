@@ -4,7 +4,7 @@ const passport = require('passport');
 const courseController = require('../controllers/course.controller.js')
 
 //gets all courses from controller
-router.get('/allCourses', courseController.returnCourses);
+router.post('/allCourses', courseController.returnCourses);
 
 router.get('/enrolledCourses', courseController.returnUserEnrollment);
 
