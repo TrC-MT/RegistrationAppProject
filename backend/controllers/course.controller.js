@@ -47,7 +47,7 @@ exports.enrollNewCourse = async (req, res) => {
     const enrollment = await db.enrollCourseCurrentUser(req.body.id, req.body.courseId);
     //now get userEnrollment (from db) and add authenticated  
     //const userEnrollment = await db.getUserEnrollment(req.user?.id);
-    if (enrollment && req.user?.id) {
+    if (enrollment && req.body.id) {
         res.status(200).json({ 
             courseId: req.body.courseId,
             message: `Successfully enrolled in course `});
@@ -61,9 +61,9 @@ exports.enrollNewCourse = async (req, res) => {
 // into a single helper function down the road!
 exports.dropCourse = async (req, res) => {
     //check if user is actually enrolled and if the course exists!
-    const success = await db.dropCourseCurrentUser(req.user?.id, req.body.courseId);
+    const success = await db.dropCourseCurrentUser(req.body.id, req.body.courseId);
 
-    if (success && req.user?.id) {
+    if (success && req.body.id) {
         res.status(200).json({
             courseId: req.body.courseId,
             message: `Successfully dropped `});

@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    /* overflow-y: scroll; */
 }
 
 #add-course-container{
@@ -46,16 +47,21 @@
 
 #admin-table-container{
     width: 100%;
-    height: 70%;
+    height: 90%;
 }
 
 #admin-controls-container{
-    width: 12%;
-    height: 20%;
+    width: 18%;
+    height: 12%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between;   
+    margin-bottom: 10px;
+}
+
+#admin-controls-container input {
+    height: 50%;
 }
 
 td > input{
@@ -68,4 +74,12 @@ td > textarea{
     margin-top: 2.2%;
     background-color: var(--light_green);
     height: 80%;
+}
+
+.filler {
+    position: absolute;
+    background-color: green;
+    bottom: -15px;
+    left: 0;
+    height: 20px;
 }

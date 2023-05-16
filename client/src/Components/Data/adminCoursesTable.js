@@ -1,83 +1,100 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AdminCoursesTableTags from "./adminCoursesTableTags";
+import '../../App.css';
 
-export default function AdminCoursesTable(){
+export default function AdminCoursesTable(props){
+    let trigger = props.trigger
     let [filter, setFilter] = useState('');
     const initNum = 4;
     let [num, setNum] = useState(initNum);
 
     let [course_results_amount, setCourse_amount_results] = useState();
-    let [amount_results1, setAmount_results1] = useState(num-(initNum) +1)
-    let [amount_results2, setAmount_results2] = useState(num)
+    let [amount_results1, setAmount_results1] = useState(num-(initNum) +1);
+    let [amount_results2, setAmount_results2] = useState(num);
+    const [courses, setCourses] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [triggerUpdate, setTriggerUpdate] = useState(0);
+    const [triggerDelete, setTriggerDelete] = useState(0);
 
-    let courses = [
-        {name: 'Web Development', description: 'One of the best classes possible. You should schedule it right away.', tuition: 1300},
-        {name: 'Haunted Mansion Makeover', 
-            description: 'Learn how to be the spookiest house on Halloween. Unless someone else in your neighborhood takes this class, then you would have to share.',
-            tuition: 5324}, 
-        {name: 'Water Skiing', description: 'Go to a large body of water, and ride on top of it.', tuition: 9876},
-        {name: 'Unknown', 
-            description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', 
-            tuition: 0}, 
-        {name: 'UnknownB', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
-        {name: 'UnknownC', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
-        {name: 'D', description: 'none', tuition: 5}, 
-        {name: 'e', description: 'none', tuition: 5}, 
-        {name: 'f', description: 'none', tuition: 5},
-        {name: 'UnknownD', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
-        {name: 'UnknownE', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
-        {name: 'UnknownF', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
-        {name: 'UnknownG', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
-        {name: 'UnknownH', description: 'Lengthy unknown random words that do not make sense and nobody cares, plus incorrect grammar and crazy nothingness without anything otherwise you would read this.', tuition: 0}, 
-    
-    ]
+    // initially renders courses upon initial render
+    useEffect(() => {
+        fetch('/api/allCourses', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            setCourses(data);
+            console.log('Inside fetch statement', data);
+            setTimeout(setIsLoading(false), 400);
+        })
+    }, [])
 
-    fetch('courses/allCourses', {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .then(data => courses = data)
+    // courses get updated after new course gets successfully added to backend
+    useEffect(() => {
+        fetch('/api/allCourses', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            setCourses(data);
+        })
+    }, [trigger])
 
-    return(
-        <>
-            <div className='controls-container' id="admin-controls-container">
-                <label id='student-courses-filter-label' for='filter'>Search courses by name:</label>
-                <input id='student-courses-filter-input' name='filter' placeholder='Search course name here' onChange={(e) => changeFilter(e.target.value)}></input>
-                <span className="results-amount">
-                    Results: {amount_results1}-{amount_results2} of {course_results_amount}
-                </span>
-                <span id="admin-controls-buttons">
-                    <button onClick={subNum}>&lt;</button>
-                    <button onClick={incNum}>&gt;</button>
-                </span>
+    if (isLoading) {
+        return (
+            <>
+            <div className="loader-container">
+                <div className="loader"></div>
+                <div className="text-white">Loading...</div>
             </div>
-            <div id="admin-table-container">
-                <table id="admin-courses-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Identifier</th>
-                            <th>Description</th>
-                            <th>Tuition ($)</th>
-                            <th>Credit hours</th>
-                            <th>Period</th>
-                            <th>Classroom</th>
-                            <th>Max capacity</th>
-                            <th>Controls</th>
-                        </tr>
-                    </thead>    
-                    <tbody>
-                        <AdminCoursesTableTags render={{courses: courses, filter: filter, num: num, nm: initNum, sn: setNum, scra: setCourse_amount_results, sar1: setAmount_results1, sar2: setAmount_results2}}></AdminCoursesTableTags>
-                    </tbody>
-                </table>
-            </div>
-        </>
-    )
+            </>
+        )
+  } else {
+
+        return(
+            <>
+                <div className='controls-container' id="admin-controls-container">
+                    <label id='student-courses-filter-label' for='filter'>Search courses by name:</label>
+                    <input id='student-courses-filter-input' name='filter' placeholder='Search course name here' onChange={(e) => changeFilter(e.target.value)}></input>
+                </div>
+                <div id="admin-table-container">
+                    <table id="admin-courses-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Identifier</th>
+                                <th>Description</th>
+                                <th>Tuition ($)</th>
+                                <th>Credit hours</th>
+                                <th>Period</th>
+                                <th>Classroom</th>
+                                <th>Max capacity</th>
+                                <th>Controls</th>
+                            </tr>
+                        </thead>    
+                        <tbody>
+                            <AdminCoursesTableTags render={{courses: courses, setCourses: setCourses, filter: filter, num: num, nm: initNum, sn: setNum, scra: setCourse_amount_results, sar1: setAmount_results1, sar2: setAmount_results2, triggerUpdate: triggerUpdate, setTriggerUpdate: setTriggerUpdate, setTriggerDelete: setTriggerDelete, triggerDelete: triggerDelete}}></AdminCoursesTableTags>
+                        </tbody>
+                    </table>
+                    <span className="results-amount">
+                        Results: {amount_results1}-{amount_results2} of {course_results_amount}
+                    </span>
+                    <div id="admin-controls-buttons">
+                        <button onClick={subNum}>&lt;</button>
+                        <button onClick={incNum}>&gt;</button>
+                    </div>
+                </div>
+                <div className="filler"></div>
+            </>
+        )
+    }
 
     function changeFilter(target_value){
         setFilter(target_value)

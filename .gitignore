@@ -1,5 +1,11 @@
+# dependencies
 node_modules
 .env
+
+#development
 api.http
-.vscode
+
+# misc
+postgres-test-queries.sql
 reqObj.txt
+.vscode

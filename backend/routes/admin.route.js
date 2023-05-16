@@ -17,11 +17,12 @@ const adminController = require('../controllers/admin.controller.js')
 
 //HTTP reqeuests for manageCourses page-------------------------------
 //updates 'classes' db with new course, accessible by admins only!
-//router.post('/createNewCourse', adminController);
 
-//router.update('/updateCourse', adminController);
+router.post('/createNewCourse', adminController.createNewCourse);
 
-//router.delete('/deleteCourse', adminController);
+router.put('/updateCourse', adminController.updateCourse);
+
+router.delete('/deleteCourse', adminController.deleteCourse);
 
 
 

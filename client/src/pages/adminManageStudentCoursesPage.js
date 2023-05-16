@@ -26,11 +26,11 @@ export default function AdminManageStudentCoursesPage() {
         setStuid(data[0].id);
         setTimeout(() => {
             setIsLoading(false);
-        }, 450);
+        }, 400);
         
-        //student_IDs = data; //I'm assuming an array. Ex: [123, 432, 4654, etc.]
       });
   }, []);
+
   if (isLoading) {
     return (
         <>
@@ -52,6 +52,7 @@ export default function AdminManageStudentCoursesPage() {
           ></Navbar>
           <div id="admin-manage-student-select-student-container">
             <h5 id="admin-account-search-head2">Account:</h5>
+            {/* {stuid} */}
             <span className="admin-id-search-box">
               <input
                 id="admin-manage-student-courses-idsearch"
@@ -62,8 +63,8 @@ export default function AdminManageStudentCoursesPage() {
                 <label htmlFor="accounts" className="account-info-label">
                   Name:
                 </label>
-                <select name="accounts" onClick={(e) => setStuid(e.target.value)}>
-                  <StudentIDs render={{ students, filter }}></StudentIDs>
+                <select name="accounts" onChange={(e) => setStuid(e.target.value)}>
+                  <StudentIDs render={{ students, filter, setStuid, stuid }}></StudentIDs>
                 </select>
               </span>
             </span>
@@ -72,5 +73,4 @@ export default function AdminManageStudentCoursesPage() {
         </>
     );
   }
-  
 }

@@ -28,7 +28,7 @@ export default function StudentCourses({adminManage}){
 
     //api gets called when studentCoursesPage is rendered then the result gets passed down through props all the way down to courseTableTags.js
     useEffect(() => {
-        fetch('/student/api/allCourses', {
+        fetch('/api/allCourses', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -44,6 +44,23 @@ export default function StudentCourses({adminManage}){
         });
         console.log('Testing...');
     }, [])
+    useEffect(() => {
+        fetch('/api/allCourses', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id: stu,
+                keyword: allCoursesKey
+            }),
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            setCourses(data);
+            console.log('Hooray it\'s working!');
+        });
+    }, [stu])
 
     return(
         <>
@@ -65,11 +82,9 @@ export default function StudentCourses({adminManage}){
                         <div>
                             <button onClick={subNum}>&lt;</button>
                             <button onClick={incNum}>&gt;</button>
-                        </div>
-                        
+                        </div> 
                 </div>
-            </div>
-            
+            </div> 
         </>
     )
 

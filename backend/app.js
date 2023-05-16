@@ -9,6 +9,7 @@ const db = require('./db')
 const authRoute = require('./routes/auth.route.js')
 const courseRoute = require('./routes/courses.route.js')
 const adminRoute = require('./routes/admin.route.js')
+const sharedRoute = require('./routes/shared.route.js')
 const reactClientURL = 'http://localhost:3000'
 const authenticate = require('./authenticate.js')
 
@@ -46,6 +47,10 @@ app.use('/', authRoute);
 
 
 // protected routes------------------------------------------
+//shared route between admin and student----
+app.use('/api', sharedRoute);
+
+//separate admin and student routes-------
 app.use('/admin/api', adminRoute);
 app.use('/student/api', courseRoute);
 
