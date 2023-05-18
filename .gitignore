@@ -2,10 +2,10 @@
 node_modules
 .env
 
-#development
+#development only
 api.http
+postgres-test-queries.sql
 
 # misc
-postgres-test-queries.sql
 reqObj.txt
 .vscode

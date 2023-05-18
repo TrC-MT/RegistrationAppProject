@@ -75,4 +75,22 @@ exports.currentlyAuthenticated = (req, res, next) => AuthUser.isAuthenticated(re
 
 exports.notAuthenticated = (req, res, next) => AuthUser.notAuthenticated(req, res, next);
     
+
+
+//login page -------------------------------------------------------------------
+//studentLogin POST http request
+exports.userLogin = async (req, res) => {
+    const isAdmin = AuthUser.isAdminDB;
+    //if we're here then passport authentication was successful
+    // console.log(`${req.user}`);
+    // console.log(`is the user authenticated? ${req.isAuthenticated()}`);
+    if (isAdmin) {
+        res.status(200).json({ isAdmin: true });
+    } else if (isAdmin === false) {
+        res.status(200).json({ isAdmin: false });
+    } else {
+        res.status(401).json({ message: 'Error: please attempt logging in again!' })
+    }
+
     
+}

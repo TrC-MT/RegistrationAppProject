@@ -3,13 +3,16 @@ import Navbar from "../Components/Nav/navbar";
 import StudentCourses from "./studentCoursesPage";
 import StudentIDs from "../Components/Data/studentIDs";
 import "../Styles/PageStyles/adminManageStudentCoursesPageStyles.css";
+import LoadingScreen from "../Components/Data/loadingScreen";
 
 export default function AdminManageStudentCoursesPage() {
   let [filter, setFilter] = useState("");
   const [students, setStudents] = useState([]);
-  let [stuid, setStuid] = useState();
+  let [stuid, setStuid] = useState('');
+  let [studentName, setStudentName] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const allCoursesKeyword = 'admin';
+  const userRoll = 'student';
 
  //var student_IDs = [1238, 543, 234]; //No need to comment out. Will be redefined in the fetch call.
   useEffect(() => {
@@ -24,6 +27,7 @@ export default function AdminManageStudentCoursesPage() {
         setStudents(data);
         //initialize stuid on initial render so that backend will render courses correctly!
         setStuid(data[0].id);
+        //setStudentName();
         setTimeout(() => {
             setIsLoading(false);
         }, 400);
@@ -34,10 +38,7 @@ export default function AdminManageStudentCoursesPage() {
   if (isLoading) {
     return (
         <>
-          <div className="loader-container">
-              <div className="loader"></div>
-              <div className="text-white">Loading...</div>
-          </div>
+         <LoadingScreen></LoadingScreen>
         </>
     )
   } else {
@@ -64,12 +65,12 @@ export default function AdminManageStudentCoursesPage() {
                   Name:
                 </label>
                 <select name="accounts" onChange={(e) => setStuid(e.target.value)}>
-                  <StudentIDs render={{ students, filter, setStuid, stuid }}></StudentIDs>
+                  <StudentIDs render={{ students, filter, setStuid, stuid, userRoll }}></StudentIDs>
                 </select>
               </span>
             </span>
           </div>
-          <StudentCourses adminManage={{ stu: stuid, allCoursesKeyword: allCoursesKeyword }}></StudentCourses>
+          <StudentCourses adminManage={{ stu: stuid, allCoursesKeyword: allCoursesKeyword, studentName: studentName, setStudentName: setStudentName }}></StudentCourses>
         </>
     );
   }

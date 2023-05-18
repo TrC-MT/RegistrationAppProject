@@ -12,6 +12,7 @@ export default function LoginPage() {
     const [login_username, setLogin_username] = useState('');
     const [login_password, setLogin_password] = useState('');
     const [load, setLoad] = useState(false)
+    const [isAdmin, setIsAdmin] = useState();
     
     //-----------------------
 
@@ -39,8 +40,8 @@ export default function LoginPage() {
                                 <input name="password" type="password" id="password" placeholder="Type your password here." onChange={(e) => setLogin_password(e.target.value)}/>
                             </span>
                             <span className="form-section">
-                                <button className="login-button" onClick={studentLogin}>Student login</button>
-                                <button className="login-button" onClick={adminLogin}>Admin login</button>
+                                <button className="login-button" onClick={Login}>Login</button>
+                                {/* <button className="login-button" onClick={adminLogin}>Admin login</button> */}
                             </span>
                         </div>
                         <Link to="/signUp" id="sign-up-button">New user?</Link>
@@ -51,7 +52,7 @@ export default function LoginPage() {
     )
     //-----------------------------------------------------
 
-    function studentLogin() {
+    function Login() {
         if(login_username != '' && login_password != ''){
             var loginUser = {
                     username: login_username,
@@ -73,7 +74,12 @@ export default function LoginPage() {
                 } else {
                     // localStorage.setItem("myToken", data.token);
                     setLoad(true)
-                    navigate('/userProfile')
+                    if (data.isAdmin) {
+                        navigate('/userProfile/adminData');
+                    } else {
+                        navigate('/userProfile')
+                    }
+                    
                     setMessage(data.successMessage)
                 }
                 });
@@ -111,7 +117,7 @@ export default function LoginPage() {
                     setMessage(data.message)
                     // localStorage.setItem("myToken", data.token);
                     // setMessage(data.successMessage);
-                    navigate('/userProfile')
+                    navigate('/userProfile');
                 }
                 });
         }

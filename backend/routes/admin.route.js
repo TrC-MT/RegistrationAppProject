@@ -13,6 +13,10 @@ const adminController = require('../controllers/admin.controller.js')
 
 //router.post('createNewAdminUser', adminController);
 
+router.get('/getCurrentUser', adminController.getCurrentUser);
+
+router.get('/getAllAdmins', adminController.getAdminsById);
+
 
 
 //HTTP reqeuests for manageCourses page-------------------------------
@@ -29,6 +33,7 @@ router.delete('/deleteCourse', adminController.deleteCourse);
 //HTTP reqeuests for manageStudentCourses page-------------------------
 //gets a list of all students 
 router.get('/getAllStudents', adminController.getStudentsById);
+
 
 //router.post('/enroll', courseController.enrollNewCourse);
 

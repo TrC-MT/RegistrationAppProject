@@ -43,11 +43,16 @@ exports.returnUserEnrollment = async (req, res) => {
 
 exports.enrollNewCourse = async (req, res) => {
     //check if user already enrolled and if course exists!
-
-    const enrollment = await db.enrollCourseCurrentUser(req.body.id, req.body.courseId);
+    //this is a trick so that the studentCoursesPage enroll/drop functionality will
+    //work for both the admin user as well as for the standard user
+    let userId = req.user.id;
+    if (req.body.id) {
+        userId = req.body.id;
+    }
+    const enrollment = await db.enrollCourseCurrentUser(userId, req.body.courseId);
     //now get userEnrollment (from db) and add authenticated  
     //const userEnrollment = await db.getUserEnrollment(req.user?.id);
-    if (enrollment && req.body.id) {
+    if (enrollment && userId) {
         res.status(200).json({ 
             courseId: req.body.courseId,
             message: `Successfully enrolled in course `});
@@ -61,9 +66,15 @@ exports.enrollNewCourse = async (req, res) => {
 // into a single helper function down the road!
 exports.dropCourse = async (req, res) => {
     //check if user is actually enrolled and if the course exists!
-    const success = await db.dropCourseCurrentUser(req.body.id, req.body.courseId);
+    //this is a trick so that the studentCoursesPage enroll/drop functionality will
+    //work for both the admin user as well as for the standard user
+    let userId = req.user.id;
+    if (req.body.id) {
+        userId = req.body.id;
+    }
+    const success = await db.dropCourseCurrentUser(userId, req.body.courseId);
 
-    if (success && req.body.id) {
+    if (success && userId) {
         res.status(200).json({
             courseId: req.body.courseId,
             message: `Successfully dropped `});

@@ -10,21 +10,17 @@ const authController = require('../controllers/auth.controller.js');
 // });
 
 //authentication routes
-router.post('/studentLogin', authController.notAuthenticated, authController.authUser, (req, res)=> {
-    //if we're here then passport authentication was successful
-    console.log(`${req.user}`);
-    console.log(`is the user authenticated? ${req.isAuthenticated()}`);
-    res.status(200).json({ successMessage: 'login successful' });
-});
+router.post('/studentLogin', authController.notAuthenticated, authController.authUser, authController.userLogin);
+
 
 //called by frontend for private routing by the GUI
 router.get('/authenticate', (req, res) => {
+
     if (req.isAuthenticated()) {
         res.status(200).json({ authenticated: true })
     } else {
         res.status(200).json({ authenticated: false })
-    }
-});
+    }});
 
 router.get('/loginFailed', (req, res)=>{
     //console.log(req.flash('message'))

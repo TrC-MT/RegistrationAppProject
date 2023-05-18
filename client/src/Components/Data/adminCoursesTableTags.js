@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
 export default function AdminCoursesTableTags({render}){
@@ -14,6 +15,8 @@ export default function AdminCoursesTableTags({render}){
     let triggerDelete = render.triggerDelete;
     let setTriggerDelete = render.setTriggerDelete;
     let setTriggerUpdate = render.setTriggerUpdate;
+    let isTableLoading = render.ITL;
+    var setIsTableLoading = render.SITL;
 
 
     let matchCourses = [];
@@ -22,7 +25,7 @@ export default function AdminCoursesTableTags({render}){
         if(((courses[i].title).toUpperCase()).includes((filter.toString()).toUpperCase())){
             j += 1
             matchCourses[j] = 
-                <tr className="table-course">
+                <tr className="table-course" key={courses[i].title}>
                     <td className="course-name">
                         <input defaultValue={courses[i].title} onChange={(e) => courses[i].title = e.target.value}/>
                     </td>
@@ -48,8 +51,8 @@ export default function AdminCoursesTableTags({render}){
                         <input defaultValue={courses[i].maximum_capacity} onChange={(e) => courses[i].maximum_capacity = Number(e.target.value)}/>
                     </td>
                     <td className="select-box">
-                       <button className={`course-select-button`} onClick={(e) => updateCourse(i)}>UPDATE</button>
-                       <button className={`course-select-button d-class-button`} onClick={(e) => delCourse(i)}>DELETE</button>
+                    <button className={`course-select-button`} onClick={(e) => updateCourse(i)}>UPDATE</button>
+                    <button className={`course-select-button d-class-button`} onClick={(e) => delCourse(i)}>DELETE</button>
                     </td>
                 </tr>
         }
@@ -79,7 +82,7 @@ export default function AdminCoursesTableTags({render}){
         sar2(matchCourses.length)
     }
     return results;
-
+ 
 
     function findNum(mCLen){
         let r = 0;
@@ -118,35 +121,7 @@ export default function AdminCoursesTableTags({render}){
         )
         {
             fetch('/admin/api/updateCourse', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: {
-                    courseId: courses[i].course_id,
-                    title: courses[i].title,
-                    id: courses[i].id,
-                    description: courses[i].description,
-                    tuition: courses[i].tuition_cost,
-                    creditHours: courses[i].credit_hours,
-                    schedule: courses[i].schedule,
-                    classroomNumber: courses[i].classroom_number,
-                    maximumCapacity: courses[i].maximum_capacity,
-                }
-            })
-            .then(res => res.json())
-            .then(data => {
-                setCourses(data);
-                toast(data.message);
-                setTriggerUpdate(triggerUpdate + 1);
-            })
-        }
-    }
-
-    function delCourse(i){
-        if(window.confirm(`Are you sure you want to delete the ${courses[i].title} course?`)){
-            fetch('/admin/api/deleteCourse', {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -164,9 +139,43 @@ export default function AdminCoursesTableTags({render}){
             })
             .then(res => res.json())
             .then(data => {
+                 //trigger loading screen
+                 setIsTableLoading(true);
+                 setTriggerUpdate(triggerUpdate + 1);
+                 setCourses(data);
+                 toast(data.message);
+                 console.log('trigger value',triggerUpdate);
+            })
+        }
+    }
+
+    function delCourse(i){
+        if(window.confirm(`Are you sure you want to delete the ${courses[i].title} course?`)){
+            fetch('/admin/api/deleteCourse', {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    courseId: courses[i].course_id,
+                    title: courses[i].title,
+                    id: courses[i].id,
+                    description: courses[i].description,
+                    tuition: courses[i].tuition_cost,
+                    creditHours: courses[i].credit_hours,
+                    schedule: courses[i].schedule,
+                    classroomNumber: courses[i].classroom_number,
+                    maximumCapacity: courses[i].maximum_capacity,
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                //trigger loading screen
+                setIsTableLoading(true);
+                setTriggerDelete(triggerDelete + 1);
                 setCourses(data);
                 toast(data.message);
-                setTriggerDelete(triggerDelete + 1);
+                console.log('trigger value',triggerDelete);
             })
         }
         

@@ -1,7 +1,25 @@
 const passport = require('passport')
-class AuthUser {
-    isValidUser() {
+const Pool = require('pg').Pool;
 
+let dbURL = {
+    connectionString: 
+    process.env.DATABASE_URL ||
+    'postgres://postgres:postgres@localhost:5432/postgres',
+    ssl: true
+};
+const pool = new Pool(dbURL);
+class AuthUser {
+    async isAdminDB(userId) {
+        query = 'SELECT is_admin FROM users'
+        + ' WHERE id=$1';
+
+        try {
+            const isAdmin = await pool.query(query, [userId]);
+            return isAdmin.rows;
+        } catch(e) {
+            console.log(e);
+            return null;
+        }
     }
 
     isValidPass() {

@@ -3,13 +3,14 @@ import "../../Styles/ComponentStyles/coursesTableStyles.css";
 import CoursesTableTags from "./coursesTableTags";
 
 export default function CoursesTable({ pieces }) {
+  let stuid = pieces.stu;
+  // let studentName = pieces.studentName;
   const [enrolledCourses, setEnrolledCourses] = useState(0);
 
   return (
     <>
       <div className="table-box">
         <div className="course-descriptors">
-            <div className="filler"></div>
             <h4 id="table-title" className="table-title">
                 Enrolled/Available Courses
             </h4>

@@ -31,7 +31,7 @@ export default function AdminManageCoursesPage() {
   }
 
   const updateField = (e) => {
-    console.log('here\'s your event obj.', e.target.value);
+    //console.log('here\'s your event obj.', e.target.value);
     const { name, value } = e.target;
     setForm(form => ({ ...form, [name]: value }));
   }
@@ -51,7 +51,7 @@ export default function AdminManageCoursesPage() {
               <h5 id="add-course-title">Add a course</h5>
             </span>
             <span className="add-course-section">
-              <label for="title">Course name</label>
+              <label htmlFor="title">Course name</label>
               <input
                 type="text"
                 name="title"
@@ -60,7 +60,7 @@ export default function AdminManageCoursesPage() {
               />
             </span>
             <span className="add-course-section">
-              <label for="id">Identifier</label>
+              <label htmlFor="id">Identifier</label>
               <input
                 type="text"
                 name="id"
@@ -69,7 +69,7 @@ export default function AdminManageCoursesPage() {
               ></input>
             </span>
             <span className="add-course-section">
-              <label for="description">Description</label>
+              <label htmlFor="description">Description</label>
               <textarea
                 type="text"
                 id="course-description-input"
@@ -79,7 +79,7 @@ export default function AdminManageCoursesPage() {
               ></textarea>
             </span>
             <span className="add-course-section">
-              <label for="course-tuition-input">Tuition ($)</label>
+              <label htmlFor="course-tuition-input">Tuition ($)</label>
               <input
                 type="text"
                 name="tuition"
@@ -88,7 +88,7 @@ export default function AdminManageCoursesPage() {
               />
             </span>
             <span className="add-course-section">
-              <label for="course-credit-hours-input">Credit hours</label>
+              <label htmlFor="course-credit-hours-input">Credit hours</label>
               <input
                 type="text"
                 name="creditHours"
@@ -97,7 +97,7 @@ export default function AdminManageCoursesPage() {
               />
             </span>
             <span className="add-course-section">
-              <label for="course-period-input">Period</label>
+              <label htmlFor="course-period-input">Period</label>
               <input
                 type="text"
                 name="schedule"
@@ -106,7 +106,7 @@ export default function AdminManageCoursesPage() {
               />
             </span>
             <span className="add-course-section">
-              <label for="course-classroom-input">Classroom</label>
+              <label htmlFor="course-classroom-input">Classroom</label>
               <input
                 type="text"
                 name="classroomNumber"
@@ -115,7 +115,7 @@ export default function AdminManageCoursesPage() {
               />
             </span>
             <span className="add-course-section">
-              <label for="maximumCapacity">Max capacity</label>
+              <label htmlFor="maximumCapacity">Max capacity</label>
               <input
                 type="text"
                 name="maximumCapacity"

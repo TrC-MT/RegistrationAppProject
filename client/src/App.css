@@ -26,10 +26,10 @@
   border-top: 16px solid #3498db;
   border-radius: 50%;
   position: absolute;
-  width: 120px;
+  width: 500px;
   height: 120px;
-  left: 46%;
-  top: 46%;
+  left: 0%;
+  top: 10%;
   animation: spin 2s linear infinite;
   z-index: 1;
 
