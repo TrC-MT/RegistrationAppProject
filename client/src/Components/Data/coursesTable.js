@@ -4,6 +4,8 @@ import CoursesTableTags from "./coursesTableTags";
 
 export default function CoursesTable({ pieces }) {
   let stuid = pieces.stu;
+  let allCoursesKey = pieces.allCoursesKey;
+  console.log('inside coursesTable.js', allCoursesKey);
   // let studentName = pieces.studentName;
   const [enrolledCourses, setEnrolledCourses] = useState(0);
 
@@ -12,7 +14,7 @@ export default function CoursesTable({ pieces }) {
       <div className="table-box">
         <div className="course-descriptors">
             <h4 id="table-title" className="table-title">
-                Enrolled/Available Courses
+                {allCoursesKey ? `User Courses` : 'Enrolled/Available Courses'}
             </h4>
             <div className="enrollment-stats">Total enrolled courses: <span>{enrolledCourses}</span></div>
         </div>

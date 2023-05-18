@@ -70,7 +70,7 @@ export default function AdminManageStudentCoursesPage() {
               </span>
             </span>
           </div>
-          <StudentCourses adminManage={{ stu: stuid, allCoursesKeyword: allCoursesKeyword, studentName: studentName, setStudentName: setStudentName }}></StudentCourses>
+          <StudentCourses adminManage={{ stu: stuid, allCoursesKeyword: allCoursesKeyword, studentName: studentName, setStudentName: setStudentName}}></StudentCourses>
         </>
     );
   }

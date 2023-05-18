@@ -72,6 +72,7 @@ exports.logUserOut = (req, res) => {
 // SERVICE CALLS------------------------------------------------------------------
 // controller calls isAuthenticated service
 exports.currentlyAuthenticated = (req, res, next) => AuthUser.isAuthenticated(req, res, next);
+exports.currentlyAuthenticatedAdmin = (req, res, next) => AuthUser.isAuthenticatedAdmin(req, res, next);
 
 exports.notAuthenticated = (req, res, next) => AuthUser.notAuthenticated(req, res, next);
     
@@ -80,7 +81,7 @@ exports.notAuthenticated = (req, res, next) => AuthUser.notAuthenticated(req, re
 //login page -------------------------------------------------------------------
 //studentLogin POST http request
 exports.userLogin = async (req, res) => {
-    const isAdmin = AuthUser.isAdminDB;
+    const isAdmin = await AuthUser.isAdminDB(req.user.id);
     //if we're here then passport authentication was successful
     // console.log(`${req.user}`);
     // console.log(`is the user authenticated? ${req.isAuthenticated()}`);

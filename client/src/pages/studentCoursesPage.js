@@ -11,7 +11,7 @@ import Navbar from "../Components/Nav/navbar";
 export default function StudentCourses({ adminManage }) {
 //   let studentName = adminManage.studentName;
 //   let setStudentName = adminManage.setStudentName;
-  let allCoursesKey = null;
+  let allCoursesKey = false;
   let stu = null;
   if (adminManage?.allCoursesKeyword) {
     allCoursesKey = adminManage.allCoursesKeyword;
@@ -99,6 +99,7 @@ export default function StudentCourses({ adminManage }) {
                 cra: course_results_amount,
                 scra: setCourse_results_amount,
                 stu: stu,
+                allCoursesKey: allCoursesKey
                 // studentName: studentName,
                 // setStudentName: setStudentName,
               }}

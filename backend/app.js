@@ -12,6 +12,7 @@ const adminRoute = require('./routes/admin.route.js')
 const sharedRoute = require('./routes/shared.route.js')
 const reactClientURL = 'http://localhost:3000'
 const authenticate = require('./authenticate.js')
+const authController = require('./controllers/auth.controller.js')
 
 // MIDDLEWARE----------------------------------------------
 //app.use(express.static('../client/build'))
@@ -51,8 +52,8 @@ app.use('/', authRoute);
 app.use('/api', sharedRoute);
 
 //separate admin and student routes-------
-app.use('/admin/api', adminRoute);
-app.use('/student/api', courseRoute);
+app.use('/admin/api', authController.currentlyAuthenticatedAdmin, adminRoute);
+app.use('/student/api', authController.currentlyAuthenticated, courseRoute);
 
 
 

@@ -7,6 +7,7 @@ import UserFormSubmitButton from './userFormSubmitButton';
 import ServerMessage from '../serverMessage';
 
 export default function UserForm({render}) {
+    const flag = render.flag;
     const navigate = useNavigate();
 
     const [message, setMessage] = useState('');
@@ -52,6 +53,7 @@ export default function UserForm({render}) {
         <>
             <ServerMessage Message={{message, sm: setMessage}}></ServerMessage>
             <div id="user-form">
+            {flag ? <h4 className="update-user-header">Create New User</h4> : <h4 className="update-user-header">Update User Account</h4>}
                     <span className="form-section user-form-section">
                         <label className='user-form-label'>First name: </label>
                         <input name="first-name" type="first-name" id="first-name" {...render.attribute.fn} onChange={(e) => handleFNChange(e)}/>
