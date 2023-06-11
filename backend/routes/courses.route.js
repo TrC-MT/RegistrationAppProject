@@ -10,4 +10,6 @@ router.get('/enrolledCourses', courseController.returnUserEnrollment);
 
 router.post('/enroll', courseController.enrollNewCourse);
 
+router.delete('/drop', courseController.dropCourse);
+
 module.exports = router;

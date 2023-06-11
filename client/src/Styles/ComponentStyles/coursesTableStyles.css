@@ -52,3 +52,23 @@ th, td{
 .results-amount{
     font-size: .8vw;
 }
+
+.course-descriptors {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.filler {
+    width: 24%;
+}
+
+.enrollment-stats {
+    width: 25%;
+    font-weight: normal;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+}
+
+.enrollment-stats span {
+    color: darkpurple;
+}
