@@ -5,8 +5,13 @@
     align-items: center;
     width: 48%;
     height: 90%;
+    /* font-size: 40px; */
     background-color: var(--lighter_blue);
     box-shadow: inset 0px 0px 5px var(--blue);
+}
+
+#account-manager-container input {
+    font-size: 0.75em;
 }
 
 .account-info-label{

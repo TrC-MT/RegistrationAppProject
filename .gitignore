@@ -5,6 +5,7 @@ node_modules
 #development only
 api.http
 postgres-test-queries.sql
+postgres-table-definitions.sql
 
 # misc
 reqObj.txt
