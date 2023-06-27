@@ -1,114 +1,175 @@
-import '../Styles/PageStyles/adminManageCoursesPageStyles.css'
+import "../Styles/PageStyles/adminManageCoursesPageStyles.css";
 import Navbar from "../Components/Nav/navbar";
-import { useState } from 'react';
-import ServerMessage from '../Components/serverMessage';
-import AdminCoursesTable from '../Components/Data/adminCoursesTable';
+import { useState } from "react";
+import ServerMessage from "../Components/serverMessage";
+import AdminCoursesTable from "../Components/Data/adminCoursesTable";
+import { ToastContainer, toast } from "react-toastify";
 
-export default function AdminManageCoursesPage(){
-    const [message, setMessage] = useState('');
-    const [showSubmitButton, setShowSubmitButton] = useState(false);
-    const [addName, setAddName] = useState('');
-    const [addIdentifier, setAddIdentifier] = useState('');
-    const [addDesc, setAddDesc] = useState('');
-    const [addTuition, setAddTuition] = useState();
-    const [addCreditHours, setAddCreditHours] = useState();
-    const [addPeriod, setAddPeriod] = useState();
-    const [addClassroom, setAddClassroom] = useState();
-    const [addMaxCapacity, setAddMaxCapacity] = useState();
+const initialState = {
+    title: '',
+    id: '',
+    description: '',
+    tuition: '',
+    creditHours: '',
+    schedule: '',
+    classroomNumber: '',
+    maximumCapacity: '',
+}
 
-    function handleAddMC(target_value){
-        setAddMaxCapacity(Number(target_value))
-        setShowSubmitButton(true)
-    }
+export default function AdminManageCoursesPage() {
+  const [message, setMessage] = useState("");
+  //counter triggers getCourses api call when updated
+  const [trigger, setTrigger] = useState(0);
+  const [showSubmitButton, setShowSubmitButton] = useState(false);
+  const [addMaxCapacity, setAddMaxCapacity] = useState();
 
-    return(
-        <>
-            <Navbar pieces={{title: 'Manage Courses', back: 'True', logout: 'True'}}></Navbar>
-            <div className="page-box">
-                <ServerMessage Message={{message, sm: setMessage}}></ServerMessage>
-                <div id='admin-manage-courses-page-box'>
-                    <div id="add-course-container">
-                        <span className="add-course-section">
-                            <h5 id='add-course-title'>Add a course</h5>
-                        </span>
-                        <span className="add-course-section">
-                            <label for="course-name-input">Course name</label>
-                            <input type='text' name="course-name-input" onKeyUp={(e) => setAddName(e.target.value)}></input>
-                        </span>
-                        <span className="add-course-section">
-                            <label for="course-identifier-input">Identifier</label>
-                            <input type='text' name="course-identifier-input" onKeyUp={(e) => setAddIdentifier(e.target.value)}></input>
-                        </span>
-                        <span className="add-course-section">
-                            <label for="course-description-input">Description</label>
-                            <textarea type='text' id='course-description-input' name="course-description-input" onKeyUp={(e) => setAddDesc(e.target.value)}></textarea>
-                        </span>
-                        <span className="add-course-section">
-                            <label for="course-tuition-input">Tuition ($)</label>
-                            <input type='text' name="course-tuition-input" onKeyUp={(e) => setAddTuition(e.target.value)} />
-                        </span>
-                        <span className="add-course-section">
-                            <label for="course-credit-hours-input">Credit hours</label>
-                            <input type='text' name="course-credit-hours-input" onKeyUp={(e) => setAddCreditHours(e.target.value)} />
-                        </span>
-                        <span className="add-course-section">
-                            <label for="course-period-input">Period</label>
-                            <input type='text' name="course-period-input" onKeyUp={(e) => setAddPeriod(e.target.value)} />
-                        </span>
-                        <span className="add-course-section">
-                            <label for="course-classroom-input">Classroom</label>
-                            <input type='text' name="course-classroom-input" onKeyUp={(e) => setAddClassroom(e.target.value)} />
-                        </span>
-                        <span className="add-course-section">
-                            <label for="course-max-capacity-input">Max capacity</label>
-                            <input type='text' name="course-max-capacity-input" onKeyUp={(e) => handleAddMC(e.target.value)} />
-                        </span>
-                        {showSubmitButton && <button onClick={addCourse} id="add-course-button">Add course</button>}
-                    </div>
-                    <div className='courses-edit-container'>
-                        <AdminCoursesTable></AdminCoursesTable>
-                    </div>
-                </div>
-            </div>
-        </>
-    )
+  const [form, setForm] = useState({});
 
-    function addCourse(){
-        if(
-            addName != ''
-            && addIdentifier != ''
-            && addDesc != ''
-            && addTuition != undefined
-            && addCreditHours != undefined
-            && addPeriod != undefined
-            && addClassroom != undefined
-            && addMaxCapacity != undefined
-        )
-        {
-            fetch('/addCourse', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: {
-                    name: addName,
-                    ID: addIdentifier,
-                    desc: addDesc,
-                    tuition: addTuition,
-                    creditHours: addCreditHours,
-                    period: addPeriod,
-                    classroom: addClassroom,
-                    maxCapacity: addMaxCapacity,
-                }
-            })
-            .then((res) => res.json())
-            .then(data => {
-                setMessage(data.message)
-            })
-        }
-        else{
-            setMessage('Please type the proper fields before adding a course.')
-        }
-    }
+  function handleAddMC(event) {
+    setForm(form => ({ ...form, maximumCapacity: event.target.value }));
+    setShowSubmitButton(true);
+  }
+
+  const updateField = (e) => {
+    //console.log('here\'s your event obj.', e.target.value);
+    const { name, value } = e.target;
+    setForm(form => ({ ...form, [name]: value }));
+  }
+
+  return (
+    <>
+      <Navbar
+        pieces={{ title: "Manage Courses", back: "True", logout: "True" }}
+      ></Navbar>
+      <ToastContainer />
+      <div className="page-box">
+        {/* <ServerMessage Message={{message, sm: setMessage}}></ServerMessage> */}
+
+        <div id="admin-manage-courses-page-box">
+          <div id="add-course-container">
+            <span className="add-course-section">
+              <h5 id="add-course-title">Add a course</h5>
+            </span>
+            <span className="add-course-section">
+              <label htmlFor="title">Course name</label>
+              <input
+                type="text"
+                name="title"
+                value={form.title}
+                onChange={updateField}
+              />
+            </span>
+            <span className="add-course-section">
+              <label htmlFor="id">Identifier</label>
+              <input
+                type="text"
+                name="id"
+                value={form.id}
+                onChange={updateField}
+              ></input>
+            </span>
+            <span className="add-course-section">
+              <label htmlFor="description">Description</label>
+              <textarea
+                type="text"
+                id="course-description-input"
+                name="description"
+                value={form.description}
+                onChange={updateField}
+              ></textarea>
+            </span>
+            <span className="add-course-section">
+              <label htmlFor="course-tuition-input">Tuition ($)</label>
+              <input
+                type="text"
+                name="tuition"
+                value={form.tuition}
+                onChange={updateField}
+              />
+            </span>
+            <span className="add-course-section">
+              <label htmlFor="course-credit-hours-input">Credit hours</label>
+              <input
+                type="text"
+                name="creditHours"
+                value={form.creditHours}
+                onChange={updateField}
+              />
+            </span>
+            <span className="add-course-section">
+              <label htmlFor="course-period-input">Period</label>
+              <input
+                type="text"
+                name="schedule"
+                value={form.schedule}
+                onChange={updateField}
+              />
+            </span>
+            <span className="add-course-section">
+              <label htmlFor="course-classroom-input">Classroom</label>
+              <input
+                type="text"
+                name="classroomNumber"
+                value={form.classroomNumber}
+                onChange={updateField}
+              />
+            </span>
+            <span className="add-course-section">
+              <label htmlFor="maximumCapacity">Max capacity</label>
+              <input
+                type="text"
+                name="maximumCapacity"
+                value={form.maximumCapacity}
+                onChange={(e) => handleAddMC(e)}
+              />
+            </span>
+            {showSubmitButton && (
+              <button onClick={addCourse} id="add-course-button">
+                Add course
+              </button>
+            )}
+          </div>
+          {/* <pre>{JSON.stringify(form)}</pre> */}
+          <div className="courses-edit-container">
+            <AdminCoursesTable trigger={trigger}></AdminCoursesTable>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+
+  function addCourse() {
+    if (
+      form.title != "" &&
+      form.id != "" &&
+      form.description != "" &&
+      form.tuition != undefined &&
+      form.creditHours != undefined &&
+      form.schedule != undefined &&
+      form.classroomNumber != undefined &&
+      form.maximumCapacity != undefined
+    ) {
+      fetch("/admin/api/createNewCourse", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          formObj: form,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          toast(data.message);
+
+          if (data.success) {
+            setForm({ ...initialState });
+            //trigger rerender of courses after successful added course
+            setTrigger(trigger + 1);
+          }
+        });
         
+    } 
+  }
 }

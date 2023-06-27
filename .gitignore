@@ -1,7 +1,12 @@
+# dependencies
 node_modules
 .env
+
+#development only
 api.http
-.vscode
-reqObj.txt
-postgres-table-definitions.sql
 postgres-test-queries.sql
+postgres-table-definitions.sql
+
+# misc
+reqObj.txt
+.vscode

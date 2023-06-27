@@ -2,9 +2,9 @@ const Pool = require('pg').Pool;
 
 let dbURL = {
     connectionString: 
-    // process.env.DATABASE_URL ||
+    process.env.DATABASE_URL ||
     'postgres://postgres:postgres@localhost:5432/postgres',
-    // ssl: true
+    ssl: true
 };
 const pool = new Pool(dbURL);
 
@@ -38,7 +38,7 @@ exports.getUser = async (username) => {
 
 exports.getCourses = async () => {
     query = 'SELECT course_id, id, title, description, schedule, classroom_number, maximum_capacity,'
-    + ' credit_hours, tuition_cost FROM classes';
+    + ' credit_hours, tuition_cost FROM classes ORDER BY course_id ASC';
     const courses = await pool.query(query);
     // console.log(`Courses are: ${courses.rows}`);
     return courses.rows;
@@ -68,8 +68,12 @@ exports.editUser = async (req, res) => {
 exports.enrollCourseCurrentUser = async (userId, courseId) => {
     query = 'INSERT INTO user_classes' 
     + ' (user_id, course_id) VALUES ($1, $2)';
-
-    return await checkCourse(userId, courseId, query, userNeedsEnrolled, 'enroll');
+    try {
+        return await checkCourse(userId, courseId, query, userNeedsEnrolled, 'enroll');
+    } catch(e) {
+        console.log(e);
+        return null;
+    }
 }
 
 
@@ -78,8 +82,13 @@ exports.enrollCourseCurrentUser = async (userId, courseId) => {
 exports.dropCourseCurrentUser = async (userId, courseId) => {
     let query = 'DELETE FROM user_classes'
     + ' WHERE user_id=$1 AND course_id=$2';
-
-    return await checkCourse(userId, courseId, query, userNeedsEnrolled, 'drop');
+    try {
+        return await checkCourse(userId, courseId, query, userNeedsEnrolled, 'drop');
+    } catch(e) {
+        console.log(e);
+        return null;
+    }
+    
 }
 
 

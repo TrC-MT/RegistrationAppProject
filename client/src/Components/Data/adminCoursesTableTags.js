@@ -1,23 +1,33 @@
+import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 export default function AdminCoursesTableTags({render}){
     let num = render.num;
     let numMultiple = render.nm;
     let courses = render.courses;
+    let setCourses = render.setCourses;
     let filter = render.filter;
     let setNum = render.sn;
     let scra = render.scra;
     let sar1 = render.sar1;
     let sar2 = render.sar2;
+    let triggerUpdate = render.triggerUpdate;
+    let triggerDelete = render.triggerDelete;
+    let setTriggerDelete = render.setTriggerDelete;
+    let setTriggerUpdate = render.setTriggerUpdate;
+    let isTableLoading = render.ITL;
+    var setIsTableLoading = render.SITL;
+
 
     let matchCourses = [];
     let j = -1;
     for(let i = 0; i < courses.length; i++){
-        if(((courses[i].name).toUpperCase()).includes((filter.toString()).toUpperCase())){
+        if(((courses[i].title).toUpperCase()).includes((filter.toString()).toUpperCase())){
             j += 1
             matchCourses[j] = 
-                <tr className="table-course">
+                <tr className="table-course" key={courses[i].title}>
                     <td className="course-name">
-                        <input defaultValue={courses[i].name} onChange={(e) => courses[i].name = e.target.value}/>
+                        <input defaultValue={courses[i].title} onChange={(e) => courses[i].title = e.target.value}/>
                     </td>
                     <td className="course-id">
                         <input defaultValue={courses[i].id} onChange={(e) => courses[i].id = e.target.value}/>
@@ -26,23 +36,23 @@ export default function AdminCoursesTableTags({render}){
                         <textarea defaultValue={courses[i].description} onChange={(e) => courses[i].description = e.target.value}/>
                     </td>
                     <td className="course-tuition">
-                        <input defaultValue={courses[i].tuition} onChange={(e) => courses[i].tuition = Number(e.target.value)}/>
+                        <input defaultValue={courses[i].tuition_cost} onChange={(e) => courses[i].tuition_cost = Number(e.target.value)}/>
                     </td>
                     <td className="course-hours">
-                        <input defaultValue={courses[i].creditHours} onChange={(e) => courses[i].creditHours = Number(e.target.value)}/>
+                        <input defaultValue={courses[i].credit_hours} onChange={(e) => courses[i].credit_hours = Number(e.target.value)}/>
                     </td>
                     <td className="course-period">
-                        <input defaultValue={courses[i].period} onChange={(e) => courses[i].period = e.target.value}/>
+                        <input defaultValue={courses[i].schedule} onChange={(e) => courses[i].schedule = e.target.value}/>
                     </td>
                     <td className="course-room">
-                        <input defaultValue={courses[i].room} onChange={(e) => courses[i].room = e.target.value}/>
+                        <input defaultValue={courses[i].classroom_number} onChange={(e) => courses[i].classroom_number = e.target.value}/>
                     </td>
                     <td className="course-seats">
-                        <input defaultValue={courses[i].seats} onChange={(e) => courses[i].seats = Number(e.target.value)}/>
+                        <input defaultValue={courses[i].maximum_capacity} onChange={(e) => courses[i].maximum_capacity = Number(e.target.value)}/>
                     </td>
                     <td className="select-box">
-                       <button className={`course-select-button`} onClick={(e) => updateCourse(i)}>UPDATE</button>
-                       <button className={`course-select-button d-class-button`} onClick={(e) => delCourse(i)}>DELETE</button>
+                    <button className={`course-select-button`} onClick={(e) => updateCourse(i)}>UPDATE</button>
+                    <button className={`course-select-button d-class-button`} onClick={(e) => delCourse(i)}>DELETE</button>
                     </td>
                 </tr>
         }
@@ -72,7 +82,7 @@ export default function AdminCoursesTableTags({render}){
         sar2(matchCourses.length)
     }
     return results;
-
+ 
 
     function findNum(mCLen){
         let r = 0;
@@ -93,66 +103,80 @@ export default function AdminCoursesTableTags({render}){
     function updateCourse(i){
         console.log(courses[i])
         if(
-            (courses[i].name != '' && courses[i].name != undefined && courses[i].name != null)
+            (courses[i].title != '' && courses[i].title != undefined && courses[i].title != null)
             &&
             (courses[i].id != '' && courses[i].id != undefined && courses[i].id != null)
             &&
             (courses[i].description != '' && courses[i].description != undefined && courses[i].description != null)
             &&
-            (courses[i].tuition != '' && courses[i].tuition != undefined && courses[i].tuition != null)
+            (courses[i].tuition_cost != '' && courses[i].tuition_cost != undefined && courses[i].tuition_cost != null)
             &&
-            (courses[i].creditHours != '' && courses[i].creditHours != undefined && courses[i].creditHours != null)
+            (courses[i].credit_hours != '' && courses[i].credit_hours != undefined && courses[i].credit_hours != null)
             &&
-            (courses[i].period != '' && courses[i].period != undefined && courses[i].period != null)
+            (courses[i].schedule != '' && courses[i].schedule != undefined && courses[i].schedule != null)
             &&
-            (courses[i].room != '' && courses[i].room != undefined && courses[i].room != null)
+            (courses[i].classroom_number != '' && courses[i].classroom_number != undefined && courses[i].classroom_number != null)
             &&
-            (courses[i].seats != '' && courses[i].seats != undefined && courses[i].seats != null)
+            (courses[i].maximum_capacity != '' && courses[i].maximum_capacity != undefined && courses[i].maximum_capacity != null)
         )
         {
-            // fetch('/updateCourse', {
-            //     method: 'GET',
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     },
-            //     body: {
-            //         place: i,
-            //         Nname: courses[i].name,
-            //         NID: courses[i].id,
-            //         Ndescription: courses[i].description,
-            //         Ntuition: courses[i].tuition,
-            //         NcreditHours:  courses[i].creditHours,
-            //         Nperiod: courses[i].period,
-            //         Nclassroom:  courses[i].room,
-            //         NmaxCapacity:  courses[i].seats,
-            //     }
-            // })
-            // .then(res => res.json())
-            // .then(data => courses = data)
+            fetch('/admin/api/updateCourse', {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    courseId: courses[i].course_id,
+                    title: courses[i].title,
+                    id: courses[i].id,
+                    description: courses[i].description,
+                    tuition: courses[i].tuition_cost,
+                    creditHours: courses[i].credit_hours,
+                    schedule: courses[i].schedule,
+                    classroomNumber: courses[i].classroom_number,
+                    maximumCapacity: courses[i].maximum_capacity,
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                 //trigger loading screen
+                 setIsTableLoading(true);
+                 setTriggerUpdate(triggerUpdate + 1);
+                 setCourses(data);
+                 toast(data.message);
+                 console.log('trigger value',triggerUpdate);
+            })
         }
-        
     }
+
     function delCourse(i){
-        if(window.confirm(`Are you sure you want to delete the ${courses[i].name} course?`)){
-            // fetch('/delCourse', {
-            //     method: 'GET',
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     },
-            //     body: {
-            //         place: i,
-            //         name: courses[i].name,
-            //         ID: courses[i].id,
-            //         description: courses[i].description,
-            //         tuition: courses[i].tuition,
-            //         creditHours:  courses[i].creditHours,
-            //         period: courses[i].period,
-            //         classroom:  courses[i].room,
-            //         maxCapacity:  courses[i].seats,
-            //     }
-            // })
-            // .then(res => res.json())
-            // .then(data => courses = data)
+        if(window.confirm(`Are you sure you want to delete the ${courses[i].title} course?`)){
+            fetch('/admin/api/deleteCourse', {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    courseId: courses[i].course_id,
+                    title: courses[i].title,
+                    id: courses[i].id,
+                    description: courses[i].description,
+                    tuition: courses[i].tuition_cost,
+                    creditHours: courses[i].credit_hours,
+                    schedule: courses[i].schedule,
+                    classroomNumber: courses[i].classroom_number,
+                    maximumCapacity: courses[i].maximum_capacity,
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                //trigger loading screen
+                setIsTableLoading(true);
+                setTriggerDelete(triggerDelete + 1);
+                setCourses(data);
+                toast(data.message);
+                console.log('trigger value',triggerDelete);
+            })
         }
         
     }

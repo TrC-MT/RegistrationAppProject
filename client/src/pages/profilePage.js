@@ -7,7 +7,7 @@ import UserForm from '../Components/Form/userForm';
 
 
 export default function ProfilePage() {
-    
+    let flag = false;
     //call a fetch to get the user info
     let user_attributes = {};
     fetch('/userInformation', {
@@ -54,7 +54,7 @@ export default function ProfilePage() {
         <>
             <Navbar pieces={{title: 'Profile', logout: 'True', dOc: {render: true, userType: user_type}, cl: 'lbnav'}}></Navbar>
             <div className='page-box' id='create-account-page-box'>
-                <UserForm render={{buttonText: 'Update', attribute: user_attributes}}></UserForm>
+                <UserForm render={{buttonText: 'Update', attribute: user_attributes, flag: flag}}></UserForm>
                 <SideStudentProfileInfo render={user_type}></SideStudentProfileInfo>
             </div>
         </>
