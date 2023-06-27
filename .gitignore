@@ -3,3 +3,5 @@ node_modules
 api.http
 .vscode
 reqObj.txt
+postgres-table-definitions.sql
+postgres-test-queries.sql
